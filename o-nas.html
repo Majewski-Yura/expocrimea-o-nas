@@ -84,7 +84,7 @@ a{color:inherit;text-decoration:none}
 .facts__in{position:relative;display:grid;grid-template-columns:180px 1fr;gap:40px;padding-top:80px;padding-bottom:80px}
 .facts__title{font-size:36px;font-weight:600}
 .facts__grid{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:32px 64px}
-.fact b{display:block;font-size:80px;line-height:1;font-weight:500;color:var(--red);white-space:nowrap}
+.fact b{display:block;font-size:80px;line-height:1;font-weight:500;color:var(--red);white-space:nowrap;font-variant-numeric:tabular-nums}
 .fact span{display:block;margin-top:12px;font-size:18px}
 
 /* Что мы делаем — карточки 01–04 */
@@ -813,11 +813,14 @@ document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () =
   function countUp(b) {
     const m = b.textContent.match(/^([\d\s\u00a0]+)(.*)$/);
     if (!m) return;
-    const end = +m[1].replace(/\D/g, ''), tail = m[2], t0 = performance.now(), dur = 1600;
+    const end = +m[1].replace(/\D/g, ''), tail = m[2], dur = 3200, step = 90;
     const fmt = n => n >= 1000 ? n.toLocaleString('ru-RU').replace(/\s/g, '\u00a0') : String(n);
+    // резервируем ширину итогового числа, чтобы блок не прыгал
+    b.style.minWidth = b.getBoundingClientRect().width + 'px';
+    let t0 = performance.now(), last = 0;
     const tick = t => {
       const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
-      b.textContent = fmt(Math.round(end * e)) + tail;
+      if (t - last >= step || k === 1) { b.textContent = fmt(Math.round(end * e)) + tail; last = t; }
       if (k < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
