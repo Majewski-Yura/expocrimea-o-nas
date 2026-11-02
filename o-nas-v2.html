@@ -176,9 +176,9 @@ button{font:inherit;color:inherit}
 .prow__a{width:52px;height:52px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;transform:rotate(-45deg);transition:transform .5s var(--ease),background .3s,border-color .3s}
 .prow__a svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .prow:hover .prow__a{transform:none;background:#fff;border-color:#fff;color:var(--red)}
-.pfloat{position:fixed;left:0;top:0;width:240px;height:160px;border-radius:var(--radius);background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.25);display:grid;place-items:center;padding:24px;pointer-events:none;z-index:55;opacity:0;transform:translate(48px,-50%) scale(.5) rotate(-8deg);transition:opacity .25s,transform .45s var(--ease)}
+.pfloat{position:fixed;left:0;top:0;border-radius:var(--radius);background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.25);padding:24px;pointer-events:none;z-index:55;opacity:0;transform:translate(48px,-50%) scale(.5) rotate(-8deg);transition:opacity .25s,transform .45s var(--ease)}
 .pfloat.on{opacity:1;transform:translate(48px,-50%) scale(1) rotate(-4deg)}
-.pfloat img{max-width:100%;max-height:100%;object-fit:contain}
+.pfloat img{display:block;width:auto;height:128px;max-width:220px;object-fit:contain}
 
 /* 6. История — горизонтальная лента */
 .hist{background:var(--bg);position:relative}
