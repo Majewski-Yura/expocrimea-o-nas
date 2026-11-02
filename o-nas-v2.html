@@ -198,15 +198,20 @@ button{font:inherit;color:inherit}
 .hstep.is-on .hstep__dot{background:var(--red);border-color:var(--red);transform:scale(1.3)}
 .hstep.is-on .hstep__ic{filter:none;opacity:1}
 .hstep.is-on .hstep__ics{transform:scale(1.3)}
-.hstep__y{margin-top:40px;font-size:clamp(88px,11vw,180px);line-height:.9;font-weight:700;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--c,var(--ink));transition:color .5s,-webkit-text-stroke-color .5s}
+.hstep__y{margin-top:40px;font-size:clamp(88px,11vw,180px);line-height:.9;font-weight:700;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:4px var(--c,var(--ink));transition:color .5s,-webkit-text-stroke-color .5s;position:relative}
+/* обводка толще, сверху та же цифра цветом фона: внутренние пересечения контуров Gilroy закрыты */
+.hstep__y::after{content:attr(data-y);position:absolute;inset:0;color:var(--bg);-webkit-text-stroke:0;transition:color .5s}
+.hstep.is-on .hstep__y::after{color:var(--c,var(--red))}
+.hstep--todo.is-on .hstep__y::after{color:var(--bg)}
 .hstep.is-on .hstep__y{color:var(--c,var(--red));-webkit-text-stroke-color:var(--c,var(--red))}
 .hstep--todo .hstep__y{-webkit-text-stroke-color:var(--muted-2)}
 .hstep--todo.is-on .hstep__y{color:transparent;-webkit-text-stroke-color:var(--red)}
 .hstep__t{margin-top:28px;font-size:24px;line-height:1.2;font-weight:600}
 .hstep__d{margin-top:10px;color:#555;max-width:380px}
 .hstep__tag{display:inline-block;margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--muted-2);padding:4px 10px;border-radius:999px}
-.hstep--fem .hstep__y{background:linear-gradient(180deg,#6EB7DD,#12336A) 0 0/100% 0 no-repeat;-webkit-background-clip:text;background-clip:text;transition:color .5s,-webkit-text-stroke-color .5s,background-size .6s var(--ease)}
-.hstep--fem.is-on .hstep__y{color:transparent;-webkit-text-stroke-color:transparent;background-size:100% 100%}
+.hstep--fem .hstep__y::after{background:linear-gradient(180deg,#6EB7DD,#12336A);-webkit-background-clip:text;background-clip:text}
+.hstep--fem.is-on .hstep__y::after{color:transparent}
+.hstep--fem.is-on .hstep__y{color:transparent;-webkit-text-stroke-color:transparent}
 /* режим закрепления: секция «держит» экран, лента едет вбок */
 .h-pin .hist__pin{position:sticky;top:var(--hdr);height:calc(100vh - var(--hdr));padding:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .h-pin .hist__track{overflow:visible;scroll-snap-type:none}
@@ -619,13 +624,13 @@ button{font:inherit;color:inherit}
         </div>
       </div>
       <div class="hist__track">
-        <div class="hstep"><span class="hstep__dot"></span><div class="hstep__y">2010</div><div class="hstep__t">Основание компании</div><p class="hstep__d">Первая выставка в Симферополе</p></div>
-        <div class="hstep" style="--c:#00305B"><span class="hstep__ics"><img class="hstep__ic" src="logos/rhm.svg" alt="" aria-hidden="true"></span><div class="hstep__y">2012</div><div class="hstep__t">РестоОтельМаркет</div><p class="hstep__d">Первая выставка оснащения отельного и ресторанного бизнеса</p></div>
-        <div class="hstep" style="--c:#42924B"><span class="hstep__ics"><img class="hstep__ic" src="logos/agro.png" alt="" aria-hidden="true"></span><div class="hstep__y">2013</div><div class="hstep__t">АгроЭкспоКрым</div><p class="hstep__d">Первая выставка для аграриев полуострова</p></div>
-        <div class="hstep" style="--c:#00305B"><span class="hstep__ics"><img class="hstep__ic" src="logos/ros.svg" alt="" aria-hidden="true"></span><div class="hstep__y">2014</div><div class="hstep__t">Выход в Ялту</div><p class="hstep__d">Выставки переезжают в «Ялта-Интурист», стартует РосЭкспоКрым — выставка российских производителей</p></div>
-        <div class="hstep" style="--c:#A50E1A"><span class="hstep__ics"><img class="hstep__ic" src="logos/cuf.svg" alt="" aria-hidden="true"></span><div class="hstep__y">2022</div><div class="hstep__t">КрымУрбанФорум</div><p class="hstep__d">Форум и премия о развитии городов и территорий</p></div>
-        <div class="hstep hstep--todo"><span class="hstep__dot"></span><div class="hstep__y">20??</div><div class="hstep__t">«Федеральная практика»</div><p class="hstep__d">ЭКСПОКРЫМ присоединился к федеральному сообществу</p><span class="hstep__tag">Год уточняется</span></div>
-        <div class="hstep hstep--fem" style="--c:#2F6FA6"><span class="hstep__ics"><img class="hstep__ic" src="logos/fem.svg" alt="" aria-hidden="true"></span><div class="hstep__y">2026</div><div class="hstep__t">Форум эстетической медицины</div><p class="hstep__d">Новый проект экосистемы — теперь 14 отраслевых событий в трёх городах</p></div>
+        <div class="hstep"><span class="hstep__dot"></span><div class="hstep__y" data-y="2010">2010</div><div class="hstep__t">Основание компании</div><p class="hstep__d">Первая выставка в Симферополе</p></div>
+        <div class="hstep" style="--c:#00305B"><span class="hstep__ics"><img class="hstep__ic" src="logos/rhm.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2012">2012</div><div class="hstep__t">РестоОтельМаркет</div><p class="hstep__d">Первая выставка оснащения отельного и ресторанного бизнеса</p></div>
+        <div class="hstep" style="--c:#42924B"><span class="hstep__ics"><img class="hstep__ic" src="logos/agro.png" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2013">2013</div><div class="hstep__t">АгроЭкспоКрым</div><p class="hstep__d">Первая выставка для аграриев полуострова</p></div>
+        <div class="hstep" style="--c:#00305B"><span class="hstep__ics"><img class="hstep__ic" src="logos/ros.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2014">2014</div><div class="hstep__t">Выход в Ялту</div><p class="hstep__d">Выставки переезжают в «Ялта-Интурист», стартует РосЭкспоКрым — выставка российских производителей</p></div>
+        <div class="hstep" style="--c:#A50E1A"><span class="hstep__ics"><img class="hstep__ic" src="logos/cuf.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2022">2022</div><div class="hstep__t">КрымУрбанФорум</div><p class="hstep__d">Форум и премия о развитии городов и территорий</p></div>
+        <div class="hstep hstep--todo"><span class="hstep__dot"></span><div class="hstep__y" data-y="20??">20??</div><div class="hstep__t">«Федеральная практика»</div><p class="hstep__d">ЭКСПОКРЫМ присоединился к федеральному сообществу</p><span class="hstep__tag">Год уточняется</span></div>
+        <div class="hstep hstep--fem" style="--c:#2F6FA6"><span class="hstep__ics"><img class="hstep__ic" src="logos/fem.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2026">2026</div><div class="hstep__t">Форум эстетической медицины</div><p class="hstep__d">Новый проект экосистемы — теперь 14 отраслевых событий в трёх городах</p></div>
       </div>
     </div>
   </section>
