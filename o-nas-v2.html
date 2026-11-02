@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>О компании — ЭКСПОКРЫМ</title>
+<meta name="description" content="ЭКСПОКРЫМ — конгрессно-выставочная экосистема Крыма с 2010 года. О компании, проекты, история, команда и реквизиты.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Версия 2: та же палитра и шрифты, смелее компоновка и анимации */
+@font-face{font-family:'Gilroy';font-weight:400;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-regular.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:500;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-medium.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:600;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-semibold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:700;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-bold.woff2') format('woff2')}
+
+:root{
+  --red:#E41A00; --red-dark:#C21600;
+  --ink:#111111; --ink-2:#222222; --ink-3:#1C1C1C;
+  --bg:#F2F2F2; --card:#FFFFFF;
+  --muted:#828282; --muted-2:#BDBDBD; --line:#E0E0E0;
+  --radius:12px; --container:1360px; --gut:40px; --hdr:88px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Gilroy','Manrope',system-ui,sans-serif;font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--gut)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:28px}
+.eyebrow::before{content:"";width:32px;height:2px;background:currentColor}
+.h2{font-size:clamp(36px,5vw,72px);line-height:.98;font-weight:600;letter-spacing:-.02em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 32px;font-size:15px;font-weight:600;border:1px solid var(--red);background:var(--red);color:#fff;cursor:pointer;position:relative;overflow:hidden;isolation:isolate;transition:color .3s,border-color .3s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1}
+.btn:hover::before{transform:none}
+.btn:hover{border-color:var(--ink)}
+.btn--line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--line:hover{color:#fff}
+.todo{color:var(--muted)}
+
+/* Полоса прогресса прокрутки */
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(var(--sp,0));z-index:70}
+
+/* Шапка */
+.header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .3s}
+.header.is-scrolled{box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.header__in{display:flex;align-items:center;gap:32px;height:var(--hdr)}
+.logo{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.logo__mark{display:flex;flex-direction:column;align-items:center;gap:2px}
+.logo__mark img{width:48px;height:48px}
+.logo__mark span{font-size:9px;letter-spacing:.14em;color:var(--red);font-weight:600}
+.logo__tag{font-size:15px;line-height:1.25;font-weight:500;max-width:150px}
+.nav{display:flex;gap:40px;margin-left:auto;font-size:14px;font-weight:500}
+.nav a{position:relative;transition:color .2s}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav a:hover::after,.nav a[aria-current]::after{transform:scaleX(1);transform-origin:left}
+.nav a:hover,.nav a[aria-current]{color:var(--red)}
+.header .btn{height:44px;padding:0 28px;font-size:14px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:0;background:none;cursor:pointer}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px auto;transition:transform .3s,opacity .3s}
+.header.is-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.header.is-open .burger span:nth-child(2){opacity:0}
+.header.is-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* 1. Первый экран */
+.hero{background:#fff;padding:40px 0 72px;position:relative;overflow:hidden}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:56px}
+.crumbs a:hover{color:var(--red)}
+.crumbs span{margin:0 8px}
+.hero__title{font-size:clamp(40px,7.6vw,128px);line-height:.92;font-weight:600;letter-spacing:-.03em;text-transform:uppercase}
+.hero__title .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.hero__title .ln>span{display:inline-block}
+.hero__title em{font-style:normal;color:var(--red)}
+.hero__title .ln--indent{padding-left:12vw}
+.hero__row{display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;margin-top:56px}
+.hero__sub{font-size:20px;line-height:1.4;max-width:560px;color:#333}
+.hero__btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.seal{position:relative;width:168px;height:168px;display:grid;place-items:center;flex-shrink:0}
+.seal svg.seal__ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 18s linear infinite}
+.seal__ring text{font-size:10.5px;font-weight:600;letter-spacing:.24em;fill:var(--ink);text-transform:uppercase}
+.seal__core{width:84px;height:84px;border-radius:50%;background:var(--red);display:grid;place-items:center;transition:transform .4s var(--ease)}
+.seal:hover .seal__core{transform:scale(1.12)}
+.seal__core svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:nudge 1.8s ease-in-out infinite}
+.hero__bgnum{position:absolute;right:-2vw;top:-4vw;font-size:42vw;line-height:.8;font-weight:700;color:transparent;-webkit-text-stroke:1px var(--line);pointer-events:none;user-select:none;letter-spacing:-.06em;z-index:0}
+.hero .container{position:relative;z-index:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes nudge{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+@keyframes rise{from{transform:translateY(110%)}to{transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .hero__title .ln>span{animation:rise 1.1s var(--ease) both;animation-delay:calc(.15s + var(--i,0) * .12s)}
+  .hero__row>*,.crumbs{animation:fadeUp .9s var(--ease) both;animation-delay:.7s}
+  .hero__row>.seal{animation-delay:.85s}
+}
+
+/* 2. Фото, раскрывающееся при прокрутке */
+.zoom{--p:1;--zx:24%;--zy:10%;position:relative;height:230vh;background:#fff}
+.zoom__stick{position:sticky;top:var(--hdr);height:calc(100vh - var(--hdr));overflow:hidden}
+.zoom__win{position:absolute;inset:0;clip-path:inset(calc((1 - var(--p)) * var(--zy)) calc((1 - var(--p)) * var(--zx)) round calc((1 - var(--p)) * 24px));background:#222}
+.zoom__win img{width:100%;height:100%;object-fit:cover;transform:scale(calc(1.3 - var(--p) * .3))}
+.zoom__win::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 60%);opacity:var(--p)}
+.zoom__cap{position:absolute;left:0;right:0;bottom:56px;color:#fff;opacity:calc((var(--p) - .55) * 3);transform:translateY(calc((1 - var(--p)) * 80px))}
+.zoom__cap b{display:block;font-size:clamp(34px,6vw,96px);line-height:.95;font-weight:600;text-transform:uppercase;letter-spacing:-.02em}
+.zoom__cap span{display:block;margin-top:16px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.zoom__side{position:absolute;top:50%;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:calc(1 - var(--p) * 2.5);transform:translateY(-50%)}
+.zoom__side--l{left:var(--gut)}
+.zoom__side--r{right:var(--gut);text-align:right}
+
+/* Бегущие ленты */
+.bands{position:relative;height:240px;background:#fff;overflow:hidden}
+.band{position:absolute;left:-5%;width:110%;white-space:nowrap;padding:20px 0;font-size:clamp(20px,2.4vw,32px);font-weight:600;text-transform:uppercase;letter-spacing:-.01em;color:#fff}
+.band--red{background:var(--red);top:72px;transform:rotate(-3deg);z-index:2}
+.band--dark{background:var(--ink);top:84px;transform:rotate(2.5deg)}
+.band__track{display:inline-flex;animation:marq 60s linear infinite}
+.band--dark .band__track{animation-direction:reverse;animation-duration:70s}
+.band__track span{display:inline-flex;align-items:center;gap:28px;padding-right:28px}
+.band__track span::after{content:"";width:12px;height:12px;background:currentColor;transform:rotate(45deg)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* 3. Манифест */
+.manifest{background:#fff;padding:120px 0 140px}
+.manifest__text{font-size:clamp(28px,3.9vw,58px);line-height:1.1;font-weight:600;letter-spacing:-.02em;max-width:1240px}
+.manifest__text em{font-style:normal;color:var(--red)}
+.manifest__text .w{opacity:.13;transition:opacity .35s}
+.manifest__text .w.on{opacity:1}
+.manifest__foot{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:96px;padding-top:40px;border-top:1px solid var(--line)}
+.manifest__foot p{font-size:18px;color:#444;max-width:560px}
+.mission{position:relative;padding-left:32px}
+.mission::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:4px;background:var(--red);transform-origin:top;transform:scaleY(var(--m,1));transition:transform 1.2s var(--ease) .2s}
+.mission small{display:block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.mission p{font-size:clamp(20px,1.9vw,26px);line-height:1.3;font-weight:600;color:var(--ink)}
+
+/* 4. Цифры — бенто */
+.facts{background:var(--ink);color:#fff;padding:120px 0}
+.facts__head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px}
+.facts__head p{color:rgba(255,255,255,.55);max-width:360px}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(220px,auto);gap:16px}
+.tile{position:relative;overflow:hidden;border-radius:var(--radius);padding:28px;background:var(--ink-3);display:flex;flex-direction:column;justify-content:space-between;gap:24px;transition:transform .5s var(--ease),background .4s}
+.tile:hover{transform:translateY(-6px)}
+.tile b{display:block;font-size:clamp(48px,4.8vw,80px);line-height:1;font-weight:600;letter-spacing:-.03em;color:var(--red);white-space:nowrap}
+.tile b+span{font-size:16px;color:rgba(255,255,255,.75);max-width:260px}
+.tile--hero{grid-column:span 2;grid-row:span 2;background:var(--red)}
+.tile--hero b{color:#fff;font-size:clamp(140px,17vw,280px);letter-spacing:-.06em;line-height:.85}
+.tile--hero b+span{color:#fff;font-size:22px;font-weight:600;max-width:none}
+.tile--hero p{color:rgba(255,255,255,.85);max-width:420px;position:relative}
+.tile--hero img{position:absolute;right:-12%;top:-14%;width:72%;opacity:.14;filter:brightness(0) invert(1);animation:spin 60s linear infinite;pointer-events:none}
+.tile--wide{grid-column:span 2}
+.tile--light{background:var(--bg);color:var(--ink)}
+.tile--light b+span{color:#444}
+.tile--light b{color:var(--ink)}
+.cities{display:flex;flex-wrap:wrap;gap:8px}
+.cities i{font-style:normal;font-size:13px;font-weight:600;padding:6px 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff}
+/* одометр */
+.od{display:inline-block;height:1em;overflow:hidden;vertical-align:top}
+.od__c{display:block;transition:transform 2.6s var(--ease)}
+.od__c i{display:block;height:1em;line-height:1;font-style:normal}
+.od-s{display:inline-block;line-height:1;vertical-align:top}
+
+/* 5. Проекты — указатель */
+.pidx{background:#fff;padding:120px 0}
+.pidx__head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;margin-bottom:56px}
+.pidx__head p{max-width:380px;color:#444;font-size:18px}
+.plist{list-style:none;border-bottom:1px solid var(--line)}
+.prow{position:relative;display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:24px;padding:22px 16px;border-top:1px solid var(--line);isolation:isolate;overflow:hidden;transition:color .35s}
+.prow::before{content:"";position:absolute;inset:0;background:var(--red);transform:scaleY(0);transform-origin:50% 100%;transition:transform .5s var(--ease);z-index:-1}
+.prow:hover{color:#fff}
+.prow:hover::before{transform:scaleY(1)}
+.prow__n{font-size:14px;font-weight:600;color:var(--muted);transition:color .35s}
+.prow:hover .prow__n{color:rgba(255,255,255,.7)}
+.prow__t{font-size:clamp(22px,3.3vw,48px);line-height:1.05;font-weight:600;letter-spacing:-.02em;text-transform:uppercase;transition:transform .5s var(--ease)}
+.prow:hover .prow__t{transform:translateX(20px)}
+.prow__logo{display:none}
+.prow__a{width:52px;height:52px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;transform:rotate(-45deg);transition:transform .5s var(--ease),background .3s,border-color .3s}
+.prow__a svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.prow:hover .prow__a{transform:none;background:#fff;border-color:#fff;color:var(--red)}
+.pfloat{position:fixed;left:0;top:0;width:240px;height:160px;border-radius:var(--radius);background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.25);display:grid;place-items:center;padding:24px;pointer-events:none;z-index:55;opacity:0;transform:translate(48px,-50%) scale(.5) rotate(-8deg);transition:opacity .25s,transform .45s var(--ease)}
+.pfloat.on{opacity:1;transform:translate(48px,-50%) scale(1) rotate(-4deg)}
+.pfloat img{max-width:100%;max-height:100%;object-fit:contain}
+
+/* 6. История — горизонтальная лента */
+.hist{background:var(--bg);position:relative}
+.hist__pin{padding:120px 0 96px}
+.hist__head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px}
+.hist__meta{display:flex;flex-direction:column;align-items:flex-end;gap:12px;min-width:240px}
+.hist__meta p{font-size:13px;color:var(--muted)}
+.hist__bar{width:240px;height:2px;background:var(--line);position:relative}
+.hist__bar i{position:absolute;inset:0;background:var(--red);transform-origin:0 50%;transform:scaleX(var(--hp,0))}
+.hist__track{display:flex;padding:0 var(--gut);scroll-padding-inline:var(--gut);will-change:transform;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.hist__track::-webkit-scrollbar{display:none}
+.hstep{flex:0 0 min(520px,78vw);padding-right:56px;position:relative;scroll-snap-align:start}
+.hstep::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--muted-2)}
+.hstep::after{content:"";position:absolute;left:0;top:-6px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--muted-2);transition:background .4s,border-color .4s,transform .4s var(--ease)}
+.hstep.is-on::after{background:var(--red);border-color:var(--red);transform:scale(1.3)}
+.hstep__y{margin-top:40px;font-size:clamp(88px,11vw,180px);line-height:.9;font-weight:700;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--ink);transition:color .5s,-webkit-text-stroke-color .5s}
+.hstep.is-on .hstep__y{color:var(--red);-webkit-text-stroke-color:var(--red)}
+.hstep--todo .hstep__y{-webkit-text-stroke-color:var(--muted-2)}
+.hstep--todo.is-on .hstep__y{color:transparent;-webkit-text-stroke-color:var(--red)}
+.hstep__t{margin-top:28px;font-size:24px;line-height:1.2;font-weight:600}
+.hstep__d{margin-top:10px;color:#555;max-width:380px}
+.hstep__tag{display:inline-block;margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--muted-2);padding:4px 10px;border-radius:999px}
+.hstep--now{flex-basis:min(560px,82vw)}
+.hstep--now .hstep__y{color:var(--ink);-webkit-text-stroke-color:var(--ink)}
+.hstep--now.is-on .hstep__y{color:var(--red);-webkit-text-stroke-color:var(--red)}
+/* режим закрепления: секция «держит» экран, лента едет вбок */
+.h-pin .hist__pin{position:sticky;top:var(--hdr);height:calc(100vh - var(--hdr));padding:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.h-pin .hist__track{overflow:visible;scroll-snap-type:none}
+
+/* 7. Руководство */
+.boss{background:#fff;padding:140px 0}
+.boss__grid{display:grid;grid-template-columns:5fr 7fr;gap:96px;align-items:center}
+.boss__ph{position:relative}
+.boss__ph::before{content:"";position:absolute;inset:0;background:var(--red);border-radius:var(--radius);transform:translate(28px,calc(28px + var(--by,0px)))}
+.boss__frame{position:relative;aspect-ratio:4/5;border-radius:var(--radius);background:var(--bg);display:grid;place-items:center;overflow:hidden}
+.boss__frame svg{width:42%;height:42%;color:var(--muted-2)}
+.boss__name{font-size:clamp(44px,5.6vw,88px);line-height:.95;font-weight:600;letter-spacing:-.03em;text-transform:uppercase;margin:4px 0 16px}
+.boss__role{font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.boss__q{position:relative;margin-top:48px;padding-top:56px;font-size:clamp(20px,2vw,28px);line-height:1.35;font-weight:500;color:#333}
+.boss__q::before{content:"«";position:absolute;left:-6px;top:-44px;font-size:160px;line-height:1;font-weight:700;color:var(--red)}
+.boss__c{display:flex;flex-wrap:wrap;gap:12px;margin-top:48px}
+.chip-l{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border:1px solid var(--line);border-radius:999px;font-size:15px;font-weight:500;transition:border-color .3s,color .3s}
+.chip-l:hover{border-color:var(--red);color:var(--red)}
+.chip-l svg{width:18px;height:18px;stroke:var(--red);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* 8. Команда */
+.team-s{background:var(--bg);padding:120px 0}
+.team__head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:48px;flex-wrap:wrap}
+.team__head p{color:#444;font-size:18px;margin-top:20px;max-width:520px}
+.chips{position:relative;display:inline-flex;gap:4px;padding:4px;background:#fff;border-radius:999px}
+.chips__ind{position:absolute;top:4px;bottom:4px;left:0;width:0;background:var(--red);border-radius:999px;transition:transform .5s var(--ease),width .5s var(--ease)}
+.chip{position:relative;z-index:1;height:44px;padding:0 20px;border:0;background:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;transition:color .3s}
+.chip.is-on{color:#fff}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tcard{position:relative;background:#fff;border-radius:var(--radius);overflow:hidden}
+.tcard[hidden]{display:none}
+.tcard__ph{aspect-ratio:1/1;background:#E9E9E9;display:grid;place-items:center;overflow:hidden}
+.tcard__ph svg{width:38%;height:38%;color:var(--muted-2);transition:transform .6s var(--ease)}
+.tcard:hover .tcard__ph svg{transform:scale(1.12)}
+.tcard__b{padding:20px 22px 24px}
+.tcard__r{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.tcard__n{font-size:20px;font-weight:600;margin-top:6px}
+.tcard__p{font-size:14px;color:var(--muted);margin-top:8px}
+.tcard__c{position:absolute;left:0;right:0;top:0;aspect-ratio:1/1;background:rgba(228,26,0,.94);display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity .35s}
+.tcard__c a{width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;transform:translateY(16px);opacity:0;transition:transform .45s var(--ease),opacity .35s}
+.tcard__c a:nth-child(2){transition-delay:.05s}
+.tcard__c a:nth-child(3){transition-delay:.1s}
+.tcard__c svg{width:20px;height:20px;stroke:var(--red);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tcard:hover .tcard__c,.tcard:focus-within .tcard__c{opacity:1}
+.tcard:hover .tcard__c a,.tcard:focus-within .tcard__c a{transform:none;opacity:1}
+.tcard.pop{animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0) * 60ms)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+
+/* 9. Отзывы */
+.rev{background:var(--ink);color:#fff;padding:120px 0;overflow:hidden}
+.rev__grid{display:grid;grid-template-columns:4fr 8fr;gap:80px}
+.rev__num{font-size:clamp(96px,12vw,180px);line-height:.85;font-weight:700;letter-spacing:-.05em;color:var(--red);margin-top:32px}
+.rev__num small{font-size:.22em;color:rgba(255,255,255,.4);letter-spacing:0;margin-left:8px}
+.rev__nav{display:flex;gap:12px;margin-top:40px}
+.rev__nav button{width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:none;cursor:pointer;display:grid;place-items:center;transition:background .3s,border-color .3s}
+.rev__nav button:hover{background:var(--red);border-color:var(--red)}
+.rev__nav svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rev__bar{margin-top:32px;height:2px;background:rgba(255,255,255,.15);max-width:240px;overflow:hidden}
+.rev__bar i{display:block;height:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
+.rev__bar i.run{animation:bar 8s linear forwards}
+.rev:hover .rev__bar i.run{animation-play-state:paused}
+@keyframes bar{to{transform:scaleX(1)}}
+.slides{display:grid}
+.slide{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+.slide.on{opacity:1;visibility:visible}
+.slide blockquote{font-size:clamp(24px,2.7vw,40px);line-height:1.25;font-weight:500;letter-spacing:-.01em}
+.slide figcaption{margin-top:40px;display:flex;align-items:center;gap:16px;font-size:16px;font-weight:600}
+.slide figcaption::before{content:"";width:40px;height:2px;background:var(--red)}
+.slide .w2{display:inline-block}
+.slide.on .w2{animation:wordIn .7s var(--ease) both;animation-delay:calc(var(--i) * 18ms)}
+@keyframes wordIn{from{opacity:0;transform:translateY(.5em)}to{opacity:1;transform:none}}
+
+/* 10. Партнёры — бегущие строки */
+.part{background:#fff;padding:120px 0}
+.part__label{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:56px 0 20px}
+.mq-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mq{display:flex;width:max-content;animation:marq 45s linear infinite}
+.mq--rev{animation-direction:reverse;animation-duration:38s}
+.mq-wrap:hover .mq{animation-play-state:paused}
+.plogo{flex:0 0 auto;width:240px;height:128px;margin-right:16px;background:var(--bg);border-radius:var(--radius);display:grid;place-items:center;padding:20px 28px}
+.plogo img{max-height:80px;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.7;transition:filter .35s,opacity .35s,transform .35s var(--ease)}
+.plogo:hover img{filter:none;opacity:1;transform:scale(1.06)}
+
+/* 11. Реквизиты */
+.req-s{background:var(--bg);padding:120px 0}
+.req__grid{display:grid;grid-template-columns:7fr 5fr;gap:24px;margin-top:56px;align-items:start}
+.rq{background:#fff;border-radius:var(--radius);padding:8px 32px}
+.rq__row{display:grid;grid-template-columns:200px 1fr 40px;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.rq__row:last-child{border-bottom:0}
+.rq__row dt{font-size:14px;color:var(--muted)}
+.rq__row dd{font-weight:500}
+.cp{width:40px;height:40px;border-radius:50%;border:0;background:var(--bg);cursor:pointer;display:grid;place-items:center;transition:background .3s}
+.cp:hover{background:var(--red)}
+.cp svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.cp:hover svg{stroke:#fff}
+.cp.ok{background:var(--red)}
+.cp.ok svg{stroke:#fff}
+.docs{display:flex;flex-direction:column;gap:12px}
+.doc{position:relative;display:flex;align-items:center;gap:20px;padding:28px;border-radius:var(--radius);background:var(--ink);color:#fff;overflow:hidden;isolation:isolate}
+.doc::before{content:"";position:absolute;inset:0;background:var(--red);transform:translateX(-101%);transition:transform .5s var(--ease);z-index:-1}
+.doc:hover::before{transform:none}
+.doc__i{width:48px;height:48px;flex-shrink:0;stroke:#fff;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.doc b{display:block;font-size:18px;font-weight:600}
+.doc small{font-size:13px;color:rgba(255,255,255,.55)}
+.doc:hover small{color:rgba(255,255,255,.8)}
+.doc__a{margin-left:auto;width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
+.doc:hover .doc__a{transform:translate(4px,4px)}
+.toast{position:fixed;left:50%;bottom:32px;z-index:80;background:var(--ink);color:#fff;font-size:14px;font-weight:600;padding:14px 22px;border-radius:999px;transform:translate(-50%,120px);transition:transform .45s var(--ease)}
+.toast.on{transform:translate(-50%,0)}
+
+/* 12. Вакансии */
+.jobs{position:relative;background:var(--red);color:#fff;padding:120px 0;overflow:hidden}
+.jobs__in{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:56px}
+.jobs h2{font-size:clamp(48px,8.4vw,144px);line-height:.88;font-weight:600;letter-spacing:-.04em;text-transform:uppercase}
+.jobs p{font-size:18px;max-width:520px;margin-top:32px;color:rgba(255,255,255,.9)}
+.jobs__bg{position:absolute;right:-6%;bottom:-40%;width:48%;opacity:.07;filter:brightness(0) invert(1);animation:spin 80s linear infinite reverse;pointer-events:none}
+.magnet{width:200px;height:200px;border-radius:50%;background:#fff;color:var(--red);display:grid;place-items:center;text-align:center;font-size:16px;font-weight:600;line-height:1.25;transition:transform .5s var(--ease)}
+.magnet span{display:block;transition:transform .5s var(--ease)}
+.magnet svg{display:block;margin:10px auto 0;width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Подвал */
+.footer{background:var(--ink);color:#fff;padding:80px 0 32px}
+.footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px}
+.footer .logo__tag{color:#fff}
+.footer__about{margin-top:24px;font-size:14px;color:rgba(255,255,255,.6);max-width:300px}
+.footer h4{font-size:16px;font-weight:600;margin-bottom:20px}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px;color:rgba(255,255,255,.75)}
+.footer a{transition:color .2s}
+.footer a:hover{color:var(--red)}
+.footer__bottom{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:64px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:rgba(255,255,255,.5)}
+
+/* Плавающие кнопки */
+.fab{position:fixed;bottom:28px;z-index:50;width:56px;height:56px;border-radius:50%;display:grid;place-items:center}
+.fab svg{width:24px;height:24px}
+.fab--chat{left:28px;background:var(--red)}
+.fab--chat svg{fill:#fff}
+.fab--chat::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--red);animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.6);opacity:0}}
+.fab--up{right:28px;background:#fff;border:1px solid var(--line);opacity:0;pointer-events:none;transform:translateY(16px);transition:opacity .3s,transform .3s}
+.fab--up.is-visible{opacity:1;pointer-events:auto;transform:none}
+.fab--up svg{stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Появление при прокрутке */
+.js-anim .rv{opacity:0;transform:translateY(48px);transition:opacity .9s var(--ease),transform 1.1s var(--ease);transition-delay:var(--d,0s)}
+.js-anim .rv--clip{opacity:1;transform:translateY(30px);clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease),transform 1.1s var(--ease);transition-delay:var(--d,0s)}
+.js-anim .rv.in{opacity:1;transform:none;clip-path:inset(-25% -5% -25% -5%)}
+.js-anim .mission{--m:0}
+.js-anim .mission.in{--m:1}
+
+@media (max-width:1100px){
+  .nav,.header .btn{display:none}
+  .burger{display:block}
+  .header.is-open .nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:8px var(--gut) 16px;margin:0}
+  .header.is-open .nav a{padding:14px 0;font-size:16px}
+  .header.is-open .nav a::after{display:none}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:repeat(3,1fr)}
+  .footer__grid{grid-template-columns:1fr 1fr}
+  .boss__grid{gap:64px}
+}
+@media (max-width:900px){
+  .hero__row,.manifest__foot,.boss__grid,.rev__grid,.req__grid,.jobs__in,.pidx__head{grid-template-columns:1fr}
+  .manifest__foot{gap:40px}
+  .boss__ph{max-width:420px}
+  .rev__grid{gap:24px}
+  .rev__num{margin-top:16px}
+  .hist__head{flex-direction:column;align-items:flex-start}
+  .hist__meta{align-items:flex-start}
+}
+@media (max-width:767px){
+  :root{--gut:16px;--hdr:64px}
+  .logo__mark img{width:36px;height:36px}
+  .logo__tag{font-size:13px}
+  .hero{padding:24px 0 56px}
+  .crumbs{margin-bottom:32px}
+  .hero__title .ln--indent{padding-left:0}
+  .hero__row{margin-top:32px;gap:24px}
+  .hero__sub{font-size:17px}
+  .seal{width:120px;height:120px;justify-self:end;margin-top:-8px}
+  .seal__core{width:60px;height:60px}
+  .hero__btns .btn{flex:1 1 100%}
+  .zoom{--zx:6%;--zy:16%;height:180vh}
+  .zoom__side{display:none}
+  .zoom__cap{bottom:32px}
+  .bands{height:180px}
+  .band--red{top:52px}
+  .band--dark{top:62px}
+  .band{padding:14px 0}
+  .manifest,.facts,.pidx,.team-s,.rev,.part,.req-s,.jobs{padding:80px 0}
+  .boss{padding:80px 0 96px}
+  .hist__pin{padding:80px 0 72px}
+  .manifest__foot{margin-top:56px}
+  .facts__head,.team__head{flex-direction:column;align-items:flex-start;gap:20px}
+  .bento{gap:10px;grid-auto-rows:minmax(160px,auto)}
+  .tile{padding:20px}
+  .tile b{font-size:40px}
+  .tile b+span{font-size:14px}
+  .tile--hero b{font-size:150px}
+  .tile--hero b+span{font-size:18px}
+  .tile--wide,.tile--hero,.tile--m2{grid-column:span 2}
+  .bento{grid-auto-flow:dense}
+  .prow{grid-template-columns:44px 1fr 40px;gap:12px;padding:16px 4px}
+  .prow__n{display:none}
+  .prow__logo{display:grid;place-items:center;width:44px;height:44px;border-radius:8px;background:var(--bg);padding:6px}
+  .prow__logo img{max-width:100%;max-height:100%;object-fit:contain}
+  .prow__t{font-size:18px}
+  .prow:hover .prow__t{transform:none}
+  .prow__a{width:40px;height:40px}
+  .prow__a svg{width:16px;height:16px}
+  .hstep{padding-right:32px}
+  .hstep__y{margin-top:28px}
+  .hstep__t{font-size:20px}
+  .chips{display:flex;width:100%;overflow-x:auto;scrollbar-width:none}
+  .chip{flex:1 0 auto;padding:0 16px}
+  .tgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(var(--gut) * -1);padding:0 var(--gut);scrollbar-width:none}
+  .tgrid::-webkit-scrollbar{display:none}
+  .tcard{flex:0 0 72vw;scroll-snap-align:start}
+  .tcard__c{position:static;aspect-ratio:auto;background:none;opacity:1;justify-content:flex-start;padding:0 22px 22px}
+  .tcard__c a{opacity:1;transform:none;width:44px;height:44px;background:var(--bg)}
+  .boss__ph::before{transform:translate(14px,calc(14px + var(--by,0px)))}
+  .boss__q{margin-top:40px}
+  .boss__c{margin-top:32px}
+  .chip-l{flex:1 1 100%}
+  .plogo{width:180px;height:100px;padding:16px 20px}
+  .plogo img{max-height:60px}
+  .part__label{margin:40px 0 16px}
+  .rq{padding:4px 20px}
+  .rq__row{grid-template-columns:1fr 40px;gap:4px 12px}
+  .rq__row dt{grid-column:1/-1}
+  .doc{padding:22px}
+  .magnet{width:150px;height:150px;font-size:14px}
+  .footer__grid{grid-template-columns:1fr}
+  .fab{width:48px;height:48px;bottom:16px}
+  .fab--chat{left:16px}
+  .fab--up{right:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .zoom{height:auto}
+  .zoom__stick{position:relative;top:0;height:70vh}
+  .manifest__text .w{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path d="M21.5 3.5 2.5 11l7 2.5m12-10-3.5 17-8.5-7m12-10-12 10m0 0V20l3-3.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 32 32"><path d="M8 3h11l7 7v19H8z"/><path d="M19 3v7h7M12 18h10M12 23h7"/></symbol>
+</svg>
+
+<header class="header">
+  <div class="container header__in">
+    <a class="logo" href="https://expocrimea.com/">
+      <span class="logo__mark"><img src="site-source/logo.svg" alt=""><span>ЭКСПОКРЫМ</span></span>
+      <span class="logo__tag">Место встречи профессионалов</span>
+    </a>
+    <nav class="nav">
+      <a href="https://expocrimea.com/#events">Мероприятия</a>
+      <a href="#partners">Партнёры</a>
+      <a href="https://expocrimea.com/#news">Новости</a>
+      <a href="#about" aria-current="page">О компании</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn" href="#contacts">Обратный звонок</a>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Первый экран -->
+  <section class="hero">
+    <div class="hero__bgnum" aria-hidden="true">16</div>
+    <div class="container">
+      <nav class="crumbs"><a href="https://expocrimea.com/">Главная</a><span>/</span>О компании</nav>
+      <h1 class="hero__title">
+        <span class="ln"><span style="--i:0">Конгрессно-</span></span>
+        <span class="ln ln--indent"><span style="--i:1">выставочная</span></span>
+        <span class="ln"><span style="--i:2">экосистема <em>Крыма</em></span></span>
+      </h1>
+      <div class="hero__row">
+        <div>
+          <p class="hero__sub">Крупнейший организатор выставок, форумов и деловых событий в Республике Крым. С 2010 года — 14 отраслевых проектов в Симферополе, Ялте и Алуште.</p>
+          <div class="hero__btns">
+            <a class="btn" href="https://expocrimea.com/#events">Наши мероприятия</a>
+            <a class="btn btn--line" href="#contacts">Связаться с нами</a>
+          </div>
+        </div>
+        <a class="seal" href="#about" aria-label="Листайте вниз">
+          <svg class="seal__ring" viewBox="0 0 168 168" aria-hidden="true">
+            <defs><path id="ring" d="M84 84m-70 0a70 70 0 1 1 140 0a70 70 0 1 1-140 0"/></defs>
+            <text><textPath href="#ring">ЭКСПОКРЫМ • С 2010 года • ЭКСПОКРЫМ • С 2010 года • </textPath></text>
+          </svg>
+          <span class="seal__core"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Фото раскрывается при прокрутке -->
+  <section class="zoom" aria-label="Фото с мероприятия">
+    <div class="zoom__stick">
+      <div class="zoom__side zoom__side--l">Симферополь<br>Ялта<br>Алушта</div>
+      <div class="zoom__side zoom__side--r">250+<br>мероприятий</div>
+      <div class="zoom__win">
+        <img src="https://expocrimea.com/wp-content/uploads/2025/09/ph_0110-1536x1024.jpg" alt="Участники КрымУрбанФорума">
+      </div>
+      <div class="zoom__cap container">
+        <b>Место встречи<br>профессионалов</b>
+        <span>КрымУрбанФорум</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ленты с проектами -->
+  <div class="bands" aria-hidden="true">
+    <div class="band band--dark"><div class="band__track">
+      <span>Выставки</span><span>Форумы</span><span>Премии</span><span>Деловая программа</span><span>B2B‑встречи</span><span>Застройка стендов</span>
+      <span>Выставки</span><span>Форумы</span><span>Премии</span><span>Деловая программа</span><span>B2B‑встречи</span><span>Застройка стендов</span>
+    </div></div>
+    <div class="band band--red"><div class="band__track">
+      <span>АгроЭкспоКрым</span><span>РестоОтельМаркет</span><span>РосЭкспоКрым</span><span>КрымУрбанФорум</span><span>СтройЭкспоКрым</span><span>Здравоохранение.Крым</span><span>ТуристЭкспо. Крым</span><span>Безопасность. Крым</span>
+      <span>АгроЭкспоКрым</span><span>РестоОтельМаркет</span><span>РосЭкспоКрым</span><span>КрымУрбанФорум</span><span>СтройЭкспоКрым</span><span>Здравоохранение.Крым</span><span>ТуристЭкспо. Крым</span><span>Безопасность. Крым</span>
+    </div></div>
+  </div>
+
+  <!-- 3. Кто мы — манифест -->
+  <section class="manifest" id="about">
+    <div class="container">
+      <div class="eyebrow rv">Кто мы</div>
+      <p class="manifest__text">ЭКСПОКРЫМ — <em>крупнейший организатор</em> выставок, форумов и деловых событий в Республике Крым. Мы собираем на одной площадке производителей, поставщиков, закупщиков и экспертов — от агропрома и строительства до медицины, туризма и гостеприимства.</p>
+      <div class="manifest__foot">
+        <p class="rv">Сегодня это экосистема из 14 отраслевых проектов. Мы берём на себя всё: от концепции и деловой программы до застройки стендов, привлечения посетителей и организации B2B‑встреч.</p>
+        <div class="mission rv" style="--d:.1s">
+          <small>Наша миссия</small>
+          <p>Помочь производителям и поставщикам услуг наладить партнёрские отношения и заключить выгодные контракты.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Факты -->
+  <section class="facts">
+    <div class="container">
+      <div class="facts__head">
+        <h2 class="h2 rv rv--clip">Факты</h2>
+        <p class="rv">Цифры, которые за 16 лет сложились в главную деловую площадку полуострова.</p>
+      </div>
+      <div class="bento">
+        <div class="tile tile--hero rv">
+          <img src="site-source/logo.svg" alt="" aria-hidden="true">
+          <div><b class="odo">16</b><span>лет на рынке</span></div>
+          <p>С 2010 года собираем производителей, поставщиков и закупщиков Крыма на одной площадке.</p>
+        </div>
+        <div class="tile rv"><b class="odo">250+</b><span>мероприятий</span></div>
+        <div class="tile tile--m2 rv"><b class="odo">20 000+</b><span>участников и партнёров</span></div>
+        <div class="tile tile--wide tile--light rv"><b class="odo">150 000+</b><span>посетителей</span></div>
+        <div class="tile tile--wide rv"><b class="odo">400+</b><span>предприятий впервые вышли на крымский рынок</span></div>
+        <div class="tile rv"><b class="odo">14</b><span>отраслевых проектов</span></div>
+        <div class="tile tile--m2 rv"><b class="odo">3</b><div class="cities"><i>Симферополь</i><i>Ялта</i><i>Алушта</i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Проекты -->
+  <section class="pidx" id="projects">
+    <div class="container">
+      <div class="pidx__head">
+        <h2 class="h2 rv rv--clip">Наши<br>проекты</h2>
+        <p class="rv">14 отраслевых выставок, форумов и премий, которые мы проводим каждый год.</p>
+      </div>
+      <ol class="plist">
+        <li><a class="prow rv" href="https://expocrimea.com/events/agro/" data-logo="logos/agro.png"><span class="prow__n">01</span><span class="prow__logo"><img src="logos/agro.png" alt="" loading="lazy"></span><span class="prow__t">АгроЭкспоКрым</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/rhm/" data-logo="logos/rhm.svg"><span class="prow__n">02</span><span class="prow__logo"><img src="logos/rhm.svg" alt="" loading="lazy"></span><span class="prow__t">РестоОтельМаркет</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/ros/" data-logo="logos/ros.svg"><span class="prow__n">03</span><span class="prow__logo"><img src="logos/ros.svg" alt="" loading="lazy"></span><span class="prow__t">РосЭкспоКрым</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/chempionat-naczionalnoj-kuhni/" data-logo="logos/chnk.svg"><span class="prow__n">04</span><span class="prow__logo"><img src="logos/chnk.svg" alt="" loading="lazy"></span><span class="prow__t">Чемпионат национальной кухни</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://fem.expocrimea.com/" data-logo="logos/fem.svg"><span class="prow__n">05</span><span class="prow__logo"><img src="logos/fem.svg" alt="" loading="lazy"></span><span class="prow__t">Форум эстетической медицины</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://cuf.expocrimea.com/" data-logo="logos/cuf.svg"><span class="prow__n">06</span><span class="prow__logo"><img src="logos/cuf.svg" alt="" loading="lazy"></span><span class="prow__t">КрымУрбанФорум</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://cuf.expocrimea.com/cua" data-logo="logos/cua.svg"><span class="prow__n">07</span><span class="prow__logo"><img src="logos/cua.svg" alt="" loading="lazy"></span><span class="prow__t">КрымУрбанПремия</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/stroy/" data-logo="logos/stroy.svg"><span class="prow__n">08</span><span class="prow__logo"><img src="logos/stroy.svg" alt="" loading="lazy"></span><span class="prow__t">СтройЭкспоКрым</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/mvmk/" data-logo="logos/mebel.svg"><span class="prow__n">09</span><span class="prow__logo"><img src="logos/mebel.svg" alt="" loading="lazy"></span><span class="prow__t">Выставка мебели</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/m2/" data-logo="logos/m2.svg"><span class="prow__n">10</span><span class="prow__logo"><img src="logos/m2.svg" alt="" loading="lazy"></span><span class="prow__t">Ярмарка недвижимости</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/safety/" data-logo="logos/safety.svg"><span class="prow__n">11</span><span class="prow__logo"><img src="logos/safety.svg" alt="" loading="lazy"></span><span class="prow__t">Безопасность. Крым</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/med/" data-logo="logos/med.svg"><span class="prow__n">12</span><span class="prow__logo"><img src="logos/med.svg" alt="" loading="lazy"></span><span class="prow__t">Здравоохранение.<wbr>Крым</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/efetovskie-chteniya/" data-logo="logos/efet.svg"><span class="prow__n">13</span><span class="prow__logo"><img src="logos/efet.svg" alt="" loading="lazy"></span><span class="prow__t">Ефетовские чтения</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a class="prow rv" href="https://expocrimea.com/events/turistekspo-krym/" data-logo="logos/turist.svg"><span class="prow__n">14</span><span class="prow__logo"><img src="logos/turist.svg" alt="" loading="lazy"></span><span class="prow__t">ТуристЭкспо. Крым</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
+      </ol>
+    </div>
+    <div class="pfloat" aria-hidden="true"><img src="logos/agro.png" alt=""></div>
+  </section>
+
+  <!-- 6. История -->
+  <section class="hist">
+    <div class="hist__pin">
+      <div class="container hist__head">
+        <h2 class="h2 rv rv--clip">История</h2>
+        <div class="hist__meta rv">
+          <div class="hist__bar"><i></i></div>
+          <p>Годы части этапов уточняются у компании</p>
+        </div>
+      </div>
+      <div class="hist__track">
+        <div class="hstep"><div class="hstep__y">2010</div><div class="hstep__t">Основание компании</div><p class="hstep__d">Первая выставка в Симферополе</p></div>
+        <div class="hstep hstep--todo"><div class="hstep__y">20??</div><div class="hstep__t">Первые отраслевые проекты</div><p class="hstep__d">АгроЭкспоКрым, СтройЭкспоКрым</p><span class="hstep__tag">Год уточняется</span></div>
+        <div class="hstep hstep--todo"><div class="hstep__y">20??</div><div class="hstep__t">Выход в Ялту</div><p class="hstep__d">РестоОтельМаркет и Здравоохранение.Крым в «Ялта-Интурист»</p><span class="hstep__tag">Год уточняется</span></div>
+        <div class="hstep"><div class="hstep__y">2022</div><div class="hstep__t">КрымУрбанФорум</div><p class="hstep__d">Форум и премия о развитии городов и территорий</p></div>
+        <div class="hstep hstep--todo"><div class="hstep__y">20??</div><div class="hstep__t">«Федеральная практика»</div><p class="hstep__d">ЭКСПОКРЫМ присоединился к федеральному сообществу</p><span class="hstep__tag">Год уточняется</span></div>
+        <div class="hstep hstep--now"><div class="hstep__y">2026</div><div class="hstep__t">Сегодня</div><p class="hstep__d">14 отраслевых проектов в Симферополе, Ялте и Алуште</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Руководство -->
+  <section class="boss">
+    <div class="container boss__grid">
+      <div class="boss__ph rv"><div class="boss__frame"><svg><use href="#i-user"/></svg></div></div>
+      <div>
+        <div class="eyebrow rv">Руководство</div>
+        <div class="boss__role rv">Генеральный директор</div>
+        <div class="boss__name rv rv--clip">Дмитрий<br>Зубаровский</div>
+        <p class="boss__q rv todo">Короткая цитата руководителя о том, зачем мы делаем выставки и что даём участникам.</p>
+        <div class="boss__c rv">
+          <a class="chip-l" href="tel:+79789009090"><svg><use href="#i-phone"/></svg>+7 (978) 900 90 90</a>
+          <a class="chip-l" href="mailto:info@expocrimea.com"><svg><use href="#i-mail"/></svg>info@expocrimea.com</a>
+          <a class="chip-l todo" href="#"><svg><use href="#i-tg"/></svg>@username</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Команда -->
+  <section class="team-s" id="team">
+    <div class="container">
+      <div class="team__head">
+        <div>
+          <h2 class="h2 rv rv--clip">Команда</h2>
+          <p class="rv">Найдите менеджера своей выставки и свяжитесь с ним напрямую.</p>
+        </div>
+        <div class="chips rv" role="tablist">
+          <span class="chips__ind" aria-hidden="true"></span>
+          <button class="chip is-on" data-f="all">Все</button>
+          <button class="chip" data-f="projects">Проекты</button>
+          <button class="chip" data-f="sales">Продажи</button>
+          <button class="chip" data-f="marketing">Маркетинг</button>
+        </div>
+      </div>
+      <div class="tgrid" id="team-grid"></div>
+    </div>
+  </section>
+
+  <!-- 9. Отзывы -->
+  <section class="rev">
+    <div class="container rev__grid">
+      <div>
+        <div class="eyebrow rv">Отзывы участников</div>
+        <div class="rev__num rv"><span id="rev-n">01</span><small>/ 03</small></div>
+        <div class="rev__nav rv">
+          <button id="rev-prev" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button id="rev-next" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+        </div>
+        <div class="rev__bar rv"><i></i></div>
+      </div>
+      <div class="slides rv">
+        <figure class="slide on">
+          <blockquote>Наша компания занимается оснащением медицинских учреждений качественным оборудованием Samsung! Мы впервые на выставке «Здравоохранение. Крым»! Хочу сказать, что уже много знакомств, контактов. Ялта нас тепло встречает, спасибо организаторам!</blockquote>
+          <figcaption>ООО «МедБери»</figcaption>
+        </figure>
+        <figure class="slide">
+          <blockquote>Наша компания участвует в развитии Крыма! Мы строим в разных городах: Алушта, Симферополь, Феодосия… Выставка нам очень понравилась! Сегодня мы поделились своими идеями, презентовали новые объекты и проекты!</blockquote>
+          <figcaption>СЗ «Славянский дом»</figcaption>
+        </figure>
+        <figure class="slide">
+          <blockquote>Впечатления потрясающие! Здесь много коллег и партнёров из нашей отрасли! Форум — это возможность обменяться опытом, посмотреть новое, продемонстрировать свои достижения!</blockquote>
+          <figcaption>Жилой квартал «Просторы Крыма»</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Партнёры -->
+  <section class="part" id="partners">
+    <div class="container">
+      <h2 class="h2 rv rv--clip">Партнёры<br>и поддержка</h2>
+      <div class="part__label rv">Официальная поддержка</div>
+    </div>
+    <div class="mq-wrap rv"><div class="mq">
+      <div class="plogo"><img src="logos/partners/sovmin.png" alt="Совет министров Республики Крым" title="Совет министров Республики Крым"></div>
+      <div class="plogo"><img src="logos/partners/gossovet.png" alt="Государственный совет Республики Крым" title="Государственный совет Республики Крым"></div>
+      <div class="plogo"><img src="logos/partners/minpromrf.png" alt="Минпромторг России" title="Минпромторг России"></div>
+      <div class="plogo"><img src="logos/partners/minselhoz.png" alt="Минсельхоз России" title="Минсельхоз России"></div>
+      <div class="plogo"><img src="logos/partners/minzdravrk.png" alt="Минздрав Республики Крым" title="Минздрав Республики Крым"></div>
+      <div class="plogo"><img src="logos/partners/minkurort.png" alt="Минкурортов Республики Крым" title="Минкурортов Республики Крым"></div>
+    </div></div>
+    <div class="container"><div class="part__label rv">Партнёры</div></div>
+    <div class="mq-wrap rv"><div class="mq mq--rev">
+      <div class="plogo"><img src="logos/partners/delros.png" alt="Деловая Россия" title="Деловая Россия"></div>
+      <div class="plogo"><img src="logos/partners/opora.png" alt="Опора России" title="Опора России"></div>
+      <div class="plogo"><img src="logos/partners/rspp.png" alt="РСПП" title="РСПП"></div>
+      <div class="plogo"><img src="logos/partners/kfu.png" alt="КФУ им. В. И. Вернадского" title="КФУ им. В. И. Вернадского"></div>
+    </div></div>
+  </section>
+
+  <!-- 11. Документы и реквизиты -->
+  <section class="req-s">
+    <div class="container">
+      <h2 class="h2 rv rv--clip">Документы<br>и реквизиты</h2>
+      <div class="req__grid">
+        <dl class="rq rv">
+          <div class="rq__row"><dt>Полное наименование</dt><dd>Общество с ограниченной ответственностью «ЭКСПОКРЫМ»</dd><button class="cp" aria-label="Скопировать наименование"><svg><use href="#i-copy"/></svg></button></div>
+          <div class="rq__row"><dt>ИНН / КПП</dt><dd>9102171932 / 910201001</dd><button class="cp" aria-label="Скопировать ИНН и КПП"><svg><use href="#i-copy"/></svg></button></div>
+          <div class="rq__row"><dt>ОГРН</dt><dd>1159102060336</dd><button class="cp" aria-label="Скопировать ОГРН"><svg><use href="#i-copy"/></svg></button></div>
+          <div class="rq__row"><dt>Юридический адрес</dt><dd>295017, Республика Крым, г. Симферополь, ул. Киевская, 41, офис 322</dd><button class="cp" aria-label="Скопировать юридический адрес"><svg><use href="#i-copy"/></svg></button></div>
+          <div class="rq__row"><dt>Фактический адрес</dt><dd>г. Симферополь, ул. Киевская, 41, БЦ «ФАБРИКА», офис 322</dd><button class="cp" aria-label="Скопировать фактический адрес"><svg><use href="#i-copy"/></svg></button></div>
+          <div class="rq__row"><dt>Телефон</dt><dd><a href="tel:+79789009090">+7 (978) 900 90 90</a></dd><button class="cp" aria-label="Скопировать телефон"><svg><use href="#i-copy"/></svg></button></div>
+          <div class="rq__row"><dt>Почта</dt><dd><a href="mailto:info@expocrimea.com">info@expocrimea.com</a></dd><button class="cp" aria-label="Скопировать почту"><svg><use href="#i-copy"/></svg></button></div>
+        </dl>
+        <div class="docs">
+          <a class="doc rv" href="#"><svg class="doc__i"><use href="#i-doc"/></svg><span><b>Карточка предприятия</b><small>PDF</small></span><svg class="doc__a" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></svg></a>
+          <a class="doc rv" href="#"><svg class="doc__i"><use href="#i-doc"/></svg><span><b>Презентация компании</b><small>PDF</small></span><svg class="doc__a" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></svg></a>
+          <a class="doc rv" href="#"><svg class="doc__i"><use href="#i-doc"/></svg><span><b>Типовой договор участника</b><small>DOCX</small></span><svg class="doc__a" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Вакансии -->
+  <section class="jobs">
+    <img class="jobs__bg" src="site-source/logo.svg" alt="" aria-hidden="true">
+    <div class="container jobs__in">
+      <div>
+        <h2 class="rv rv--clip">Хотите<br>в команду?</h2>
+        <p class="rv">Мы ищем менеджеров проектов, продажников и маркетологов, которым интересно делать главные деловые события Крыма.</p>
+      </div>
+      <div class="magnet-wrap rv"><a class="magnet" href="https://expocrimea.com/vakansii/"><span>Смотреть<br>вакансии<svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span></a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contacts">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="https://expocrimea.com/"><span class="logo__mark"><img src="site-source/logo.svg" alt=""><span>ЭКСПОКРЫМ</span></span><span class="logo__tag">Место встречи профессионалов</span></a>
+        <p class="footer__about">Помогаем производителям и поставщикам услуг наладить партнёрские отношения и заключить выгодные контракты.</p>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <ul><li><a href="#about">О компании</a></li><li><a href="#team">Команда</a></li><li><a href="#partners">Партнёры</a></li><li><a href="https://expocrimea.com/vakansii/">Вакансии</a></li></ul>
+      </div>
+      <div>
+        <h4>Участникам</h4>
+        <ul><li><a href="https://expocrimea.com/#events">Мероприятия</a></li><li><a href="https://expocrimea.com/#news">Новости</a></li><li><a href="#">Документы</a></li></ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+79789009090">+7 (978) 900 90 90</a></li>
+          <li><a href="mailto:info@expocrimea.com">info@expocrimea.com</a></li>
+          <li>Республика Крым, г. Симферополь, ул. Киевская, 41, БЦ «ФАБРИКА», офис 322</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom"><span>© 2010–2026 ЭКСПОКРЫМ</span><a href="o-nas.html">Первая версия страницы</a><a href="#">Политика конфиденциальности</a></div>
+  </div>
+</footer>
+
+<a class="fab fab--chat" href="#contacts" aria-label="Написать нам"><svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 5v2h10V8zm0 4v2h7v-2z"/></svg></a>
+<a class="fab fab--up" href="#" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="M12 21V3M5 10l7-7 7 7"/></svg></a>
+<div class="toast" role="status" aria-live="polite">Скопировано</div>
+
+<script>
+const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+// Данные сотрудников — заменить на реальные
+const TEAM = [
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'АгроЭкспоКрым, РосЭкспоКрым'},
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'РестоОтельМаркет, Чемпионат национальной кухни'},
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'КрымУрбанФорум, КрымУрбанПремия'},
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'Здравоохранение.Крым, Форум эстетической медицины'},
+  {n:'Имя Фамилия', r:'Менеджер по продажам', d:'sales', p:'СтройЭкспоКрым, Выставка мебели'},
+  {n:'Имя Фамилия', r:'Менеджер по продажам', d:'sales', p:'Ярмарка недвижимости, Безопасность. Крым'},
+  {n:'Имя Фамилия', r:'Маркетолог', d:'marketing', p:'Продвижение всех проектов'},
+];
+const grid = $('#team-grid');
+grid.innerHTML = TEAM.map(t => `
+  <article class="tcard rv" data-d="${t.d}">
+    <div class="tcard__ph"><svg><use href="#i-user"/></svg></div>
+    <div class="tcard__b">
+      <div class="tcard__r">${t.r}</div>
+      <div class="tcard__n">${t.n}</div>
+      <div class="tcard__p">${t.p}</div>
+    </div>
+    <div class="tcard__c">
+      <a href="tel:+79789009090" aria-label="Позвонить"><svg><use href="#i-phone"/></svg></a>
+      <a href="mailto:info@expocrimea.com" aria-label="Написать на почту"><svg><use href="#i-mail"/></svg></a>
+      <a href="#" aria-label="Telegram"><svg><use href="#i-tg"/></svg></a>
+    </div>
+  </article>`).join('');
+
+// Фильтр команды с бегущей плашкой
+const chips = $$('.chip'), ind = $('.chips__ind');
+const moveInd = () => { const on = $('.chip.is-on'); ind.style.width = on.offsetWidth + 'px'; ind.style.transform = `translateX(${on.offsetLeft}px)`; };
+chips.forEach(b => b.addEventListener('click', () => {
+  chips.forEach(c => c.classList.toggle('is-on', c === b));
+  moveInd();
+  let i = 0;
+  $$('.tcard', grid).forEach(p => {
+    p.hidden = b.dataset.f !== 'all' && p.dataset.d !== b.dataset.f;
+    p.classList.remove('pop');
+    if (!p.hidden && !reduce) { void p.offsetWidth; p.style.setProperty('--i', i++); p.classList.add('pop'); }
+  });
+}));
+
+// Меню на мобильном
+const header = $('.header'), burger = $('.burger');
+burger.addEventListener('click', () => {
+  const open = header.classList.toggle('is-open');
+  burger.setAttribute('aria-expanded', open);
+});
+$$('.nav a').forEach(a => a.addEventListener('click', () => header.classList.remove('is-open')));
+
+// Копирование реквизитов
+const toast = $('.toast'); let toastT;
+$$('.cp').forEach(b => b.addEventListener('click', async () => {
+  const v = b.previousElementSibling.textContent.replace(/ /g, ' ').trim();
+  try { await navigator.clipboard.writeText(v); } catch (e) { return; }
+  b.classList.add('ok'); b.innerHTML = '<svg><use href="#i-check"/></svg>';
+  toast.classList.add('on'); clearTimeout(toastT);
+  toastT = setTimeout(() => toast.classList.remove('on'), 1600);
+  setTimeout(() => { b.classList.remove('ok'); b.innerHTML = '<svg><use href="#i-copy"/></svg>'; }, 1600);
+}));
+
+// Отзывы: слайдер с автопрокруткой по полосе
+const slides = $$('.slide'), revN = $('#rev-n'), bar = $('.rev__bar i');
+let cur = 0;
+function go(i) {
+  slides[cur].classList.remove('on');
+  cur = (i + slides.length) % slides.length;
+  slides[cur].classList.add('on');
+  revN.textContent = String(cur + 1).padStart(2, '0');
+  if (!reduce) { bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run'); }
+}
+$('#rev-prev').addEventListener('click', () => go(cur - 1));
+$('#rev-next').addEventListener('click', () => go(cur + 1));
+bar.addEventListener('animationend', () => go(cur + 1));
+
+// Горизонтальная история: закрепление на широких экранах
+const hist = $('.hist'), hpin = $('.hist__pin'), track = $('.hist__track'), hsteps = $$('.hstep');
+let hExtra = 0;
+function layoutHist() {
+  const pin = innerWidth >= 900 && !reduce;
+  document.documentElement.classList.toggle('h-pin', pin);
+  track.style.transform = '';
+  if (!pin) { hist.style.height = ''; hExtra = 0; return; }
+  hExtra = Math.max(0, track.scrollWidth - track.clientWidth);
+  hist.style.height = (hpin.offsetHeight + hExtra) + 'px';
+}
+
+const zoom = $('.zoom'), manifest = $('.manifest__text'), bossPh = $('.boss__ph'), up = $('.fab--up'), prog = $('.progress');
+let words = [];
+function update() {
+  const vh = innerHeight, H = header.offsetHeight, docH = document.documentElement.scrollHeight - vh;
+  prog.style.setProperty('--sp', docH > 0 ? scrollY / docH : 0);
+  header.classList.toggle('is-scrolled', scrollY > 10);
+  up.classList.toggle('is-visible', scrollY > 600);
+  if (reduce) return;
+
+  // Фото раскрывается до полного экрана
+  const zr = zoom.getBoundingClientRect();
+  zoom.style.setProperty('--p', clamp((H - zr.top) / Math.max(1, zr.height - (vh - H)) * 1.25).toFixed(4));
+
+  // Манифест проявляется по словам
+  if (words.length) {
+    const mr = manifest.getBoundingClientRect();
+    const k = clamp((vh * 0.85 - mr.top) / (mr.height + vh * 0.25));
+    const n = Math.round(k * words.length);
+    words.forEach((w, i) => w.classList.toggle('on', i < n));
+  }
+
+  // История едет вбок
+  let hp;
+  if (hExtra) {
+    hp = clamp((H - hist.getBoundingClientRect().top) / hExtra);
+    track.style.transform = `translate3d(${(-hp * hExtra).toFixed(1)}px,0,0)`;
+  } else {
+    hp = track.scrollWidth > track.clientWidth ? track.scrollLeft / (track.scrollWidth - track.clientWidth) : 0;
+  }
+  $('.hist__bar i').style.setProperty('--hp', hp);
+  let best = null, bd = Infinity;
+  hsteps.forEach(s => { const r = s.getBoundingClientRect(), d = Math.abs(r.left - innerWidth * 0.15); if (d < bd) { bd = d; best = s; } });
+  hsteps.forEach(s => s.classList.toggle('is-on', s === best));
+
+  // Красная плашка за фото директора
+  const br = bossPh.getBoundingClientRect();
+  bossPh.style.setProperty('--by', ((br.top + br.height / 2 - vh / 2) / vh * -40).toFixed(1) + 'px');
+}
+
+let ticking = false;
+const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; update(); }); } };
+addEventListener('scroll', onScroll, {passive: true});
+track.addEventListener('scroll', onScroll, {passive: true});
+addEventListener('resize', () => { layoutHist(); moveInd(); update(); });
+addEventListener('load', () => { layoutHist(); moveInd(); update(); });
+layoutHist(); moveInd(); update();
+
+if (!reduce) {
+  document.documentElement.classList.add('js-anim');
+
+  // Манифест: разбиваем на слова
+  (function split(node) {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 1) return split(n);
+      if (n.nodeType !== 3) return;
+      const frag = document.createDocumentFragment();
+      n.textContent.split(/([ \n\t]+)/).forEach(p => {
+        if (!p) return;
+        if (/^[ \n\t]+$/.test(p)) { frag.append(' '); return; }
+        const s = document.createElement('span'); s.className = 'w'; s.textContent = p;
+        frag.append(s); words.push(s);
+      });
+      n.replaceWith(frag);
+    });
+  })(manifest);
+
+  // Отзывы: слова появляются по очереди
+  slides.forEach(sl => {
+    const q = $('blockquote', sl);
+    q.innerHTML = q.textContent.split(/[ \n\t]+/).filter(Boolean).map((w, i) => `<span class="w2" style="--i:${i}">${w}</span>`).join(' ');
+  });
+  bar.classList.add('run');
+
+  // Одометры в «Фактах»
+  $$('.odo').forEach(b => {
+    const txt = b.textContent, nd = txt.replace(/\D/g, '').length;
+    let k = 0;
+    b.setAttribute('aria-label', txt); b.textContent = '';
+    [...txt].forEach(ch => {
+      if (/\d/.test(ch)) {
+        const o = document.createElement('span'), c = document.createElement('span');
+        o.className = 'od'; c.className = 'od__c';
+        c.innerHTML = Array.from({length: 20}, (_, i) => `<i>${i % 10}</i>`).join('');
+        c.dataset.t = 10 + +ch;
+        c.style.transitionDelay = ((nd - 1 - k++) * 0.09) + 's';
+        o.append(c); o.setAttribute('aria-hidden', 'true'); b.append(o);
+      } else {
+        const s = document.createElement('span'); s.className = 'od-s'; s.textContent = ch === ' ' ? ' ' : ch; s.setAttribute('aria-hidden', 'true'); b.append(s);
+      }
+    });
+  });
+
+  // Появление при прокрутке
+  $$('.rv').forEach(el => {
+    if (el.style.getPropertyValue('--d')) return;
+    const sib = [...el.parentElement.children].filter(c => c.classList.contains('rv'));
+    el.style.setProperty('--d', (sib.indexOf(el) % 6) * 0.08 + 's');
+  });
+  $$('.prow').forEach((el, i) => el.style.setProperty('--d', (i % 4) * 0.05 + 's'));
+  // Заголовки со шторкой полностью обрезаны clip-path, поэтому следим за их родителем
+  const watch = new Map();
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    (watch.get(e.target) || []).forEach(el => {
+      el.classList.add('in');
+      $$('.od__c', el).forEach(c => c.style.transform = `translateY(${-c.dataset.t * 5}%)`);
+    });
+  }), {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+  $$('.rv').forEach(el => {
+    const t = el.classList.contains('rv--clip') ? el.parentElement : el;
+    if (!watch.has(t)) { watch.set(t, []); io.observe(t); }
+    watch.get(t).push(el);
+  });
+
+  // Бегущие строки партнёров: повторяем логотипы, чтобы лента не обрывалась
+  $$('.mq').forEach(mq => {
+    const set = [...mq.children];
+    while (mq.scrollWidth < innerWidth * 1.3) set.forEach(n => mq.append(n.cloneNode(true)));
+    [...mq.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden', 'true'); mq.append(c); });
+  });
+  update();
+
+  // Логотип проекта летит за курсором
+  if (fine) {
+    const f = $('.pfloat'), fi = $('img', f);
+    let x = innerWidth / 2, y = innerHeight / 2, tx = x, ty = y, run = false;
+    const loop = () => {
+      x += (tx - x) * 0.16; y += (ty - y) * 0.16;
+      f.style.left = x + 'px'; f.style.top = y + 'px';
+      if (run || Math.abs(tx - x) > .5) requestAnimationFrame(loop);
+    };
+    $$('.prow').forEach(r => {
+      r.addEventListener('mouseenter', e => { fi.src = r.dataset.logo; if (!run) { x = tx = e.clientX; y = ty = e.clientY; } f.classList.add('on'); run = true; requestAnimationFrame(loop); });
+      r.addEventListener('mouseleave', () => { f.classList.remove('on'); run = false; });
+      r.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+    });
+
+    // Магнитная кнопка «Вакансии»
+    const wrap = $('.magnet-wrap'), mg = $('.magnet'), mgs = $('.magnet span');
+    $('.jobs').addEventListener('mousemove', e => {
+      const r = wrap.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+      if (Math.hypot(dx, dy) < 300) { mg.style.transform = `translate(${dx * .3}px,${dy * .3}px)`; mgs.style.transform = `translate(${dx * .12}px,${dy * .12}px)`; }
+      else { mg.style.transform = mgs.style.transform = ''; }
+    });
+    $('.jobs').addEventListener('mouseleave', () => { mg.style.transform = mgs.style.transform = ''; });
+  }
+}
+</script>
+</body>
+</html>
