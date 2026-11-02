@@ -80,12 +80,12 @@ a{color:inherit;text-decoration:none}
 
 /* Факты */
 .facts{position:relative;background:var(--ink-2);color:#fff;overflow:hidden}
-.facts::before{content:"";position:absolute;inset:0;opacity:.07;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.2'%3E%3Cpath d='M-20 80C80 20 160 140 260 90S440 10 620 70'/%3E%3Cpath d='M-20 120C90 60 170 180 270 130S450 50 620 110'/%3E%3Cpath d='M-20 160C100 100 180 220 280 170S460 90 620 150'/%3E%3Cpath d='M-20 240C80 300 200 200 300 260S480 330 620 270'/%3E%3Cpath d='M-20 280C90 340 210 240 310 300S490 370 620 310'/%3E%3Cpath d='M-20 320C100 380 220 280 320 340S500 410 620 350'/%3E%3Cellipse cx='450' cy='210' rx='60' ry='30'/%3E%3Cellipse cx='450' cy='210' rx='100' ry='52'/%3E%3C/g%3E%3C/svg%3E") center/600px repeat}
-.facts__in{position:relative;display:grid;grid-template-columns:180px 1fr;gap:40px;padding-top:80px;padding-bottom:80px}
-.facts__title{font-size:36px;font-weight:600}
-.facts__grid{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:32px 64px}
-.fact b{display:block;font-size:80px;line-height:1;font-weight:500;color:var(--red);white-space:nowrap;font-variant-numeric:tabular-nums}
-.fact span{display:block;margin-top:12px;font-size:18px}
+.facts__in{position:relative;padding-top:80px;padding-bottom:80px}
+.facts__title{font-size:36px;font-weight:600;margin-bottom:40px}
+.facts__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px}
+
+.fact b{display:block;font-size:64px;line-height:1;font-weight:500;color:var(--red);white-space:nowrap;font-variant-numeric:tabular-nums}
+.fact span{display:block;margin-top:14px;font-size:17px;line-height:1.35;color:rgba(255,255,255,.85)}
 
 /* Что мы делаем — карточки 01–04 */
 .cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
@@ -118,6 +118,19 @@ a{color:inherit;text-decoration:none}
 .note{margin-top:32px;font-size:13px;color:var(--muted)}
 
 /* Руководство */
+.ceo{display:grid;grid-template-columns:300px 1fr 340px;background:#fff;border-radius:10px;overflow:hidden}
+.ceo__ph{background:#E9E9E9;display:grid;place-items:center;color:var(--muted-2);min-height:320px}
+.ceo__ph svg{width:96px;height:96px}
+.ceo__b{padding:40px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.ceo__n{font-size:32px;line-height:1.15;font-weight:600}
+.ceo__q{margin-top:14px;padding-top:18px;border-top:1px solid var(--line);font-size:17px;line-height:1.55;color:#444;font-style:italic}
+.ceo__c{padding:40px 36px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:18px;justify-content:center}
+.ceo__ct{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ceo__l{display:flex;align-items:center;gap:14px;font-size:16px;font-weight:500;transition:color .2s}
+.ceo__l:hover{color:var(--red)}
+.ceo__l svg{width:40px;height:40px;padding:10px;border-radius:50%;background:var(--bg);stroke:var(--red);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.ceo__l small{display:block;font-size:12px;font-weight:400;color:var(--muted)}
+.ceo__btn{margin-top:6px;height:46px}
 .leaders{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .leader{background:#fff;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
 .leader__ph{aspect-ratio:4/3;background:#E9E9E9;display:grid;place-items:center;color:var(--muted-2)}
@@ -294,8 +307,7 @@ a{color:inherit;text-decoration:none}
   .cards4,.team{grid-template-columns:repeat(2,1fr)}
   .projects{grid-template-columns:repeat(5,minmax(0,1fr))}
   .timeline{grid-template-columns:repeat(3,1fr);row-gap:40px}
-  .facts__in{grid-template-columns:1fr}
-  .fact b{font-size:64px}
+  .fact b{font-size:52px}
   .partners{grid-template-columns:repeat(5,minmax(0,1fr))}
   .values{grid-template-columns:repeat(2,1fr)}
   .value:nth-child(3){padding-left:0;border-left:0}
@@ -308,7 +320,8 @@ a{color:inherit;text-decoration:none}
   .about__badge{left:16px;bottom:-24px}
   .leaders,.venues,.reviews{grid-template-columns:1fr}
   .projects{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .facts__grid{grid-template-columns:repeat(2,auto)}
+  .facts__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts__grid{gap:32px 24px}
   .jobs{flex-direction:column;align-items:flex-start;padding:40px 32px}
 }
 @media (max-width:640px){
@@ -325,7 +338,6 @@ a{color:inherit;text-decoration:none}
   .hero__btns .btn{flex:1 1 100%}
   .lead,.mission p{font-size:16px}
   .facts__in{padding-top:56px;padding-bottom:56px}
-  .facts__grid{grid-template-columns:1fr;gap:24px}
   .fact b{font-size:52px}
   .fact span{font-size:16px;margin-top:6px}
   .cards4,.values{grid-template-columns:1fr}
@@ -353,6 +365,9 @@ a{color:inherit;text-decoration:none}
   .fab--chat{left:16px}
   .fab--up{right:16px}
 }
+@media (max-width:1200px){.ceo{grid-template-columns:240px 1fr}.ceo__c{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr) auto;align-items:center;padding:24px 40px}.ceo__ct{grid-column:1/-1}.ceo__btn{margin:0}}
+@media (max-width:760px){.ceo{grid-template-columns:1fr}.ceo__ph{min-height:200px}.ceo__c{grid-template-columns:1fr;gap:14px;padding:22px 20px}.ceo__b{padding:22px 20px}.ceo__n{font-size:24px}.ceo__q{font-size:15px}}
+
 /* Телефон: компактнее, карточки листаются свайпом */
 @media (max-width:640px){
   .section{padding:48px 0}
@@ -370,8 +385,9 @@ a{color:inherit;text-decoration:none}
   .about__badge{padding:14px 18px;bottom:-18px}
   .about__badge b{font-size:36px}
   .mission{margin-top:20px;padding:16px 18px}
-  .facts__in{padding-top:40px;padding-bottom:40px;gap:20px}
-  .facts__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+  .facts__in{padding-top:40px;padding-bottom:40px}
+  .facts__title{margin-bottom:20px}
+  .facts__grid{gap:24px 16px}
   .fact b{font-size:34px}
   .fact span{font-size:13px;line-height:1.35}
 
@@ -495,38 +511,8 @@ a{color:inherit;text-decoration:none}
     </div>
   </section>
 
-  <!-- 4. Что мы делаем -->
-  <section class="section">
-    <div class="container">
-      <h2 class="h2">Что мы делаем</h2>
-      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
-      <div class="cards4 swipe">
-        <div class="feat">
-          <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="12" width="30" height="20" rx="1"/><path d="M5 18h30M12 12V7h16v5M14 32v4M26 32v4"/></svg>
-          <p class="feat__t"><b>Выставки:</b> отраслевые экспозиции, где компании показывают продукцию и находят закупщиков, дилеров и партнёров</p>
-          <span class="feat__n">01</span>
-        </div>
-        <div class="feat">
-          <svg class="icon" viewBox="0 0 40 40"><path d="M8 30V14l12-7 12 7v16"/><path d="M4 33h32M14 30v-9h12v9"/><circle cx="20" cy="15" r="2"/></svg>
-          <p class="feat__t"><b>Форумы и конгрессы:</b> деловая программа с экспертами, органами власти и лидерами отраслей</p>
-          <span class="feat__n">02</span>
-        </div>
-        <div class="feat">
-          <svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="15" r="9"/><path d="m14 22-3 13 9-5 9 5-3-13"/><path d="m20 10 1.5 3 3.2.4-2.3 2.2.6 3.2L20 17.3l-3 1.5.6-3.2-2.3-2.2 3.2-.4z"/></svg>
-          <p class="feat__t"><b>Премии и конкурсы:</b> КрымУрбанПремия, Чемпионат национальной кухни и другие профессиональные состязания</p>
-          <span class="feat__n">03</span>
-        </div>
-        <div class="feat">
-          <svg class="icon" viewBox="0 0 40 40"><circle cx="12" cy="13" r="5"/><circle cx="28" cy="13" r="5"/><path d="M3 32c0-5 4-8 9-8s9 3 9 8M19 32c0-5 4-8 9-8s9 3 9 8"/></svg>
-          <p class="feat__t"><b>B2B‑встречи:</b> заранее назначенные переговоры участников с закупщиками, сетями и ритейлерами</p>
-          <span class="feat__n">04</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- 4а. Наши проекты -->
-  <section class="section" id="projects" style="padding-top:0">
+  <section class="section" id="projects">
     <div class="container">
       <h2 class="h2">Наши проекты</h2>
       <p class="lead lead--tight">14 отраслевых выставок, форумов и премий, которые мы проводим каждый год.</p>
@@ -570,33 +556,21 @@ a{color:inherit;text-decoration:none}
   <section class="section">
     <div class="container">
       <h2 class="h2">Руководство</h2>
-      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
-      <div class="leaders swipe">
-        <article class="leader">
-          <div class="leader__ph"><svg><use href="#i-user"/></svg></div>
-          <div class="leader__b">
-            <div class="leader__n">Имя Фамилия</div>
-            <div class="leader__r">Генеральный директор</div>
-            <p class="leader__q">«Короткая цитата руководителя о том, зачем мы делаем выставки и что даём участникам».</p>
-          </div>
-        </article>
-        <article class="leader">
-          <div class="leader__ph"><svg><use href="#i-user"/></svg></div>
-          <div class="leader__b">
-            <div class="leader__n">Имя Фамилия</div>
-            <div class="leader__r">Исполнительный директор</div>
-            <p class="leader__q">«Цитата о подходе к работе с экспонентами и партнёрами».</p>
-          </div>
-        </article>
-        <article class="leader">
-          <div class="leader__ph"><svg><use href="#i-user"/></svg></div>
-          <div class="leader__b">
-            <div class="leader__n">Имя Фамилия</div>
-            <div class="leader__r">Руководитель проектов</div>
-            <p class="leader__q">«Цитата о развитии отраслевых проектов в Крыму».</p>
-          </div>
-        </article>
-      </div>
+      <article class="ceo">
+        <div class="ceo__ph"><svg><use href="#i-user"/></svg></div>
+        <div class="ceo__b">
+          <div class="leader__r">Генеральный директор</div>
+          <div class="ceo__n">Имя Фамилия</div>
+          <p class="ceo__q">«Короткая цитата руководителя о том, зачем мы делаем выставки и что даём участникам».</p>
+        </div>
+        <div class="ceo__c">
+          <div class="ceo__ct">Контакты</div>
+          <a class="ceo__l" href="tel:+79789009090"><svg viewBox="0 0 24 24"><use href="#i-phone"/></svg><span><small>Телефон</small>+7 (978) 900 90 90</span></a>
+          <a class="ceo__l" href="mailto:info@expocrimea.com"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg><span><small>Почта</small>info@expocrimea.com</span></a>
+          <a class="ceo__l" href="#"><svg viewBox="0 0 24 24"><use href="#i-tg"/></svg><span><small>Telegram</small>@username</span></a>
+          <a class="btn ceo__btn" href="#contacts">Написать директору</a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -610,52 +584,9 @@ a{color:inherit;text-decoration:none}
         <button class="chip" data-f="projects">Проекты</button>
         <button class="chip" data-f="sales">Продажи</button>
         <button class="chip" data-f="marketing">Маркетинг</button>
-        <button class="chip" data-f="service">Сервис</button>
       </div>
       <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
       <div class="team swipe" id="team-grid"></div>
-    </div>
-  </section>
-
-  <!-- 8. Площадки -->
-  <section class="section">
-    <div class="container">
-      <h2 class="h2">Наши площадки</h2>
-      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
-      <div class="venues swipe">
-        <article class="venue">
-          <img src="https://expocrimea.com/wp-content/uploads/2026/04/4d7a2309-450x300.jpg" alt="" loading="lazy">
-          <div class="venue__city">Симферополь</div>
-          <div class="venue__n">Выставочные площадки столицы</div>
-          <p class="venue__a"><svg><use href="#i-pin"/></svg>Республика Крым, г. Симферополь</p>
-        </article>
-        <article class="venue">
-          <img src="https://expocrimea.com/wp-content/uploads/2026/03/2026-03-04-16.27.41-450x300.jpg" alt="" loading="lazy">
-          <div class="venue__city">Ялта</div>
-          <div class="venue__n">Отель «Ялта-Интурист»</div>
-          <p class="venue__a"><svg><use href="#i-pin"/></svg>г. Ялта, ул. Дражинского, 50</p>
-        </article>
-        <article class="venue">
-          <img src="https://expocrimea.com/wp-content/uploads/2026/05/ph_0228-450x300.jpg" alt="" loading="lazy">
-          <div class="venue__city">Алушта</div>
-          <div class="venue__n">MORE SPA & Resort 5*</div>
-          <p class="venue__a"><svg><use href="#i-pin"/></svg>г. Алушта, ул. Набережная, 25</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. Как мы работаем -->
-  <section class="section section--white">
-    <div class="container">
-      <h2 class="h2">Как мы работаем</h2>
-      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
-      <div class="values swipe">
-        <div class="value"><div class="value__n">01</div><div class="value__t">Результат для участника</div><p class="value__d">Считаем успехом не площадь стенда, а контракты и контакты, которые компания увозит с выставки.</p></div>
-        <div class="value"><div class="value__n">02</div><div class="value__t">Знаем отрасли изнутри</div><p class="value__d">У каждого проекта свой менеджер, который годами работает с рынком и знает его игроков.</p></div>
-        <div class="value"><div class="value__n">03</div><div class="value__t">Сервис под ключ</div><p class="value__d">Застройка, логистика, деловая программа и продвижение — экспоненту остаётся работать с гостями.</p></div>
-        <div class="value"><div class="value__n">04</div><div class="value__t">Развиваем Крым</div><p class="value__d">Помогаем новым компаниям выйти на рынок полуострова, а крымским — найти партнёров по всей стране.</p></div>
-      </div>
     </div>
   </section>
 
@@ -791,7 +722,6 @@ const TEAM = [
   {n:'Имя Фамилия', r:'Менеджер по продажам', d:'sales', p:'СтройЭкспоКрым, Выставка мебели'},
   {n:'Имя Фамилия', r:'Менеджер по продажам', d:'sales', p:'Ярмарка недвижимости, Безопасность. Крым'},
   {n:'Имя Фамилия', r:'Маркетолог', d:'marketing', p:'Продвижение всех проектов'},
-  {n:'Имя Фамилия', r:'Менеджер по сервису', d:'service', p:'Застройка стендов и логистика'},
 ];
 const grid = document.getElementById('team-grid');
 grid.innerHTML = TEAM.map(t => `
@@ -818,7 +748,7 @@ document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () =
   document.documentElement.classList.add('js-anim');
   const groups = [
     ['.h2, .lead, .note, .partners-label', ''],
-    ['.fact, .feat, .proj, .step, .leader, .person, .venue, .value, .review, .partner, .req, .dl a', ''],
+    ['.fact, .feat, .proj, .step, .leader, .ceo, .person, .venue, .value, .review, .partner, .req, .dl a', ''],
     ['.jobs', 'reveal--zoom'],
     ['.chip, .footer__grid > div, .footer__bottom, .swipe-hint', '']
   ];
@@ -866,8 +796,6 @@ document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () =
     if (!m) return;
     const end = +m[1].replace(/\D/g, ''), tail = m[2], dur = 3200, step = 90;
     const fmt = n => n >= 1000 ? n.toLocaleString('ru-RU').replace(/\s/g, '\u00a0') : String(n);
-    // резервируем ширину итогового числа, чтобы блок не прыгал
-    b.style.minWidth = b.getBoundingClientRect().width + 'px';
     let t0 = performance.now(), last = 0;
     const tick = t => {
       const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
