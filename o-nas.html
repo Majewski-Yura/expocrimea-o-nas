@@ -99,9 +99,8 @@ a{color:inherit;text-decoration:none}
 .projects{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:32px 20px}
 .proj{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 .proj__logo{width:100%;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#fff;padding:14%;display:grid;place-items:center;transition:box-shadow .3s}
-.proj__logo img{width:100%;height:100%;object-fit:contain;transition:transform .3s}
-.proj__logo--text{padding:8%}
-.proj__logo--text span{font-size:15px;line-height:1.15;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--red);text-align:center}
+.proj__logo img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;transition:transform .3s}
+.proj__logo--sm{padding:24%}
 .proj:hover .proj__logo{box-shadow:0 8px 24px rgba(17,17,17,.08)}
 .proj:hover .proj__logo img{transform:scale(1.06)}
 .proj__n{overflow-wrap:anywhere;font-size:14px;font-weight:500;line-height:1.3;transition:color .2s}
@@ -173,9 +172,12 @@ a{color:inherit;text-decoration:none}
 .review__w{font-weight:600;font-size:15px;padding-top:16px;border-top:1px solid var(--line)}
 
 /* Партнёры */
-.partners{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.partner{height:96px;border:1px dashed var(--muted-2);border-radius:var(--radius);display:grid;place-items:center;text-align:center;padding:12px;font-size:13px;color:var(--muted)}
-.partner--fp{border-style:solid;border-color:var(--line);color:var(--ink);font-weight:600}
+.partners-group + .partners-group{margin-top:40px}
+.partners-label{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:16px}
+.partners{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:16px}
+.partner{aspect-ratio:1;border:1px solid var(--line);border-radius:var(--radius);display:grid;place-items:center;padding:8%;background:#fff;transition:border-color .2s,box-shadow .2s}
+.partner:hover{border-color:var(--muted-2);box-shadow:0 8px 24px rgba(17,17,17,.06)}
+.partner img{width:100%;height:auto;aspect-ratio:1;object-fit:contain}
 
 /* Реквизиты */
 .docs{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:stretch}
@@ -224,7 +226,7 @@ a{color:inherit;text-decoration:none}
   .timeline{grid-template-columns:repeat(3,1fr);row-gap:40px}
   .facts__in{grid-template-columns:1fr}
   .fact b{font-size:64px}
-  .partners{grid-template-columns:repeat(3,1fr)}
+  .partners{grid-template-columns:repeat(5,minmax(0,1fr))}
   .values{grid-template-columns:repeat(2,1fr)}
   .value:nth-child(3){padding-left:0;border-left:0}
   .footer__grid{grid-template-columns:1fr 1fr}
@@ -259,7 +261,6 @@ a{color:inherit;text-decoration:none}
   .cards4,.values{grid-template-columns:1fr}
   .projects{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 12px}
   .proj__n{font-size:11px}
-  .proj__logo--text span{font-size:10px}
   .team{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .person{padding:10px 10px 14px}
   .person__n{font-size:15px}
@@ -271,7 +272,7 @@ a{color:inherit;text-decoration:none}
   .timeline{grid-template-columns:1fr;row-gap:28px}
   .timeline::before{left:11px;right:auto;top:0;bottom:0;width:2px;height:auto}
   .step{padding:0 0 0 44px}
-  .partners{grid-template-columns:repeat(2,1fr)}
+  .partners{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
   .req,.dl,.review{padding:24px}
   .req dl{grid-template-columns:1fr}
   .req dt{padding-bottom:0;border-bottom:0}
@@ -399,7 +400,7 @@ a{color:inherit;text-decoration:none}
         <a class="proj" href="https://expocrimea.com/events/agro/"><span class="proj__logo"><img src="logos/agro.png" alt="" loading="lazy"></span><span class="proj__n">АгроЭкспоКрым</span></a>
         <a class="proj" href="https://expocrimea.com/events/rhm/"><span class="proj__logo"><img src="logos/rhm.svg" alt="" loading="lazy"></span><span class="proj__n">РестоОтельМаркет</span></a>
         <a class="proj" href="https://expocrimea.com/events/ros/"><span class="proj__logo"><img src="logos/ros.svg" alt="" loading="lazy"></span><span class="proj__n">РосЭкспоКрым</span></a>
-        <a class="proj" href="https://expocrimea.com/events/chempionat-naczionalnoj-kuhni/"><span class="proj__logo proj__logo--text"><span>Чемпионат<br>национальной<br>кухни</span></span><span class="proj__n">Чемпионат национальной кухни</span></a>
+        <a class="proj" href="https://expocrimea.com/events/chempionat-naczionalnoj-kuhni/"><span class="proj__logo proj__logo--sm"><img src="logos/chnk.svg" alt="" loading="lazy"></span><span class="proj__n">Чемпионат национальной кухни</span></a>
         <a class="proj" href="https://fem.expocrimea.com/"><span class="proj__logo"><img src="logos/fem.svg" alt="" loading="lazy"></span><span class="proj__n">Форум эстетической медицины</span></a>
         <a class="proj" href="https://cuf.expocrimea.com/"><span class="proj__logo"><img src="logos/cuf.svg" alt="" loading="lazy"></span><span class="proj__n">КрымУрбанФорум</span></a>
         <a class="proj" href="https://cuf.expocrimea.com/cua"><span class="proj__logo"><img src="logos/cua.svg" alt="" loading="lazy"></span><span class="proj__n">КрымУрбанПремия</span></a>
@@ -408,7 +409,7 @@ a{color:inherit;text-decoration:none}
         <a class="proj" href="https://expocrimea.com/events/m2/"><span class="proj__logo"><img src="logos/m2.svg" alt="" loading="lazy"></span><span class="proj__n">Ярмарка недвижимости</span></a>
         <a class="proj" href="https://expocrimea.com/events/safety/"><span class="proj__logo"><img src="logos/safety.svg" alt="" loading="lazy"></span><span class="proj__n">Безопасность. Крым</span></a>
         <a class="proj" href="https://expocrimea.com/events/med/"><span class="proj__logo"><img src="logos/med.svg" alt="" loading="lazy"></span><span class="proj__n">Здравоохранение.<wbr>Крым</span></a>
-        <a class="proj" href="https://expocrimea.com/events/efetovskie-chteniya/"><span class="proj__logo proj__logo--text"><span>Ефетовские<br>чтения</span></span><span class="proj__n">Ефетовские чтения</span></a>
+        <a class="proj" href="https://expocrimea.com/events/efetovskie-chteniya/"><span class="proj__logo proj__logo--sm"><img src="logos/efet.svg" alt="" loading="lazy"></span><span class="proj__n">Ефетовские чтения</span></a>
         <a class="proj" href="https://expocrimea.com/events/turistekspo-krym/"><span class="proj__logo"><img src="logos/turist.svg" alt="" loading="lazy"></span><span class="proj__n">ТуристЭкспо. Крым</span></a>
       </div>
     </div>
@@ -546,13 +547,25 @@ a{color:inherit;text-decoration:none}
   <section class="section section--white" id="partners">
     <div class="container">
       <h2 class="h2">Партнёры и поддержка</h2>
-      <div class="partners">
-        <div class="partner partner--fp">Федеральная практика</div>
-        <div class="partner">Логотип министерства</div>
-        <div class="partner">Логотип министерства</div>
-        <div class="partner">Отраслевой союз</div>
-        <div class="partner">Отраслевой союз</div>
-        <div class="partner">Генеральный партнёр</div>
+      <div class="partners-group">
+        <h3 class="partners-label">Официальная поддержка</h3>
+        <div class="partners">
+        <div class="partner"><img src="logos/partners/sovmin.png" alt="Совет министров Республики Крым" title="Совет министров Республики Крым" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/gossovet.png" alt="Государственный совет Республики Крым" title="Государственный совет Республики Крым" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/minpromrf.png" alt="Минпромторг России" title="Минпромторг России" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/minselhoz.png" alt="Минсельхоз России" title="Минсельхоз России" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/minzdravrk.png" alt="Минздрав Республики Крым" title="Минздрав Республики Крым" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/minkurort.png" alt="Минкурортов Республики Крым" title="Минкурортов Республики Крым" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="partners-group">
+        <h3 class="partners-label">Партнёры</h3>
+        <div class="partners">
+        <div class="partner"><img src="logos/partners/delros.png" alt="Деловая Россия" title="Деловая Россия" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/opora.png" alt="Опора России" title="Опора России" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/rspp.png" alt="РСПП" title="РСПП" loading="lazy"></div>
+        <div class="partner"><img src="logos/partners/kfu.png" alt="КФУ им. В. И. Вернадского" title="КФУ им. В. И. Вернадского" loading="lazy"></div>
+        </div>
       </div>
     </div>
   </section>
