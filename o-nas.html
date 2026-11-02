@@ -219,6 +219,51 @@ a{color:inherit;text-decoration:none}
 .fab--up{right:24px;background:#fff;border:1px solid var(--line)}
 .fab--up svg{width:22px;height:22px;stroke:var(--red);fill:none;stroke-width:1.6}
 
+.swipe-hint{display:none}
+.lead--tight{margin:-24px 0 32px}
+
+/* Анимации */
+.header{transition:box-shadow .3s}
+.header.is-scrolled{box-shadow:0 4px 24px rgba(17,17,17,.08)}
+@keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes heroZoom{from{transform:scale(1.08)}to{transform:none}}
+.hero{overflow:hidden}
+.hero__bg{position:absolute;inset:0;background:inherit;animation:heroZoom 2.4s cubic-bezier(.2,.7,.2,1) both}
+.hero::before{z-index:1}
+.hero__in{z-index:2}
+.hero .crumbs,.hero h1,.hero__sub,.hero__btns{animation:heroIn .9s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.15s}
+.hero__sub{animation-delay:.3s}
+.hero__btns{animation-delay:.45s}
+.js-anim .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js-anim .reveal--left{transform:translateX(-40px)}
+.js-anim .reveal--right{transform:translateX(40px)}
+.js-anim .reveal--zoom{transform:scale(.92)}
+.js-anim .reveal.is-in{opacity:1;transform:none}
+.js-anim .timeline::before{transform:scaleX(0);transform-origin:left;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.js-anim .timeline.is-in::before{transform:none}
+.feat .icon{transition:transform .4s}
+.feat:hover .icon{transform:translateY(-4px) rotate(-6deg)}
+.feat,.leader,.venue,.review{transition:transform .3s,box-shadow .3s}
+.feat:hover,.leader:hover,.venue:hover,.review:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(17,17,17,.08)}
+.js-anim .feat.reveal.is-in:hover{transform:translateY(-4px)}
+.venue img{transition:transform .5s}
+.venue{overflow:hidden}
+.venue:hover img{transform:scale(1.04)}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover::after{left:120%}
+.fab--chat{animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(228,26,0,.35)}70%{box-shadow:0 0 0 16px rgba(228,26,0,0)}100%{box-shadow:0 0 0 0 rgba(228,26,0,0)}}
+.fab--up{opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
+.fab--up.is-visible{opacity:1;pointer-events:auto;transform:none}
+@media (max-width:640px){.js-anim .timeline::before{transform:scaleY(0);transform-origin:top}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js-anim .reveal{opacity:1;transform:none}
+  .js-anim .timeline::before{transform:none}
+}
+
 /* Адаптив */
 @media (max-width:1200px){
   .cards4,.team{grid-template-columns:repeat(2,1fr)}
@@ -283,6 +328,68 @@ a{color:inherit;text-decoration:none}
   .fab--chat{left:16px}
   .fab--up{right:16px}
 }
+/* Телефон: компактнее, карточки листаются свайпом */
+@media (max-width:640px){
+  .section{padding:48px 0}
+  .h2,.jobs h2,.facts__title{font-size:24px}
+  .h2{margin-bottom:20px}
+  .lead{font-size:15px}
+  .lead--tight{margin:-12px 0 20px}
+  .hero__in{padding-bottom:48px}
+  .crumbs{margin-bottom:36px}
+  .hero h1{font-size:34px}
+  .hero__sub{font-size:18px;margin-bottom:24px}
+  .hero__btns{gap:10px}
+  .hero__btns .btn{height:46px}
+  .about{gap:40px}
+  .about__badge{padding:14px 18px;bottom:-18px}
+  .about__badge b{font-size:36px}
+  .mission{margin-top:20px;padding:16px 18px}
+  .facts__in{padding-top:40px;padding-bottom:40px;gap:20px}
+  .facts__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+  .fact b{font-size:34px}
+  .fact span{font-size:13px;line-height:1.35}
+
+  .swipe{display:flex!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:4px 16px 8px;scroll-padding:0 16px}
+  .swipe::-webkit-scrollbar{display:none}
+  .swipe>*{flex:0 0 78%;scroll-snap-align:start;min-width:0}
+  .swipe-hint{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin:-8px 0 12px}
+  .swipe-hint svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+  .feat{min-height:0;padding:22px 20px 56px}
+  .feat .icon{margin-bottom:16px}
+  .feat__n{font-size:72px}
+  .team.swipe>*{flex-basis:46%}
+  .leaders.swipe>*{flex-basis:70%}
+  .leader__b{padding:18px}
+  .leader__n{font-size:18px}
+  .venues.swipe>*{flex-basis:82%}
+  .reviews.swipe>*{flex-basis:86%}
+  .review{padding:20px;gap:14px}
+  .values.swipe{border-top:0}
+  .values.swipe>.value{flex-basis:72%;background:var(--bg);border-radius:var(--radius);padding:20px;border:0;margin:0}
+  .timeline.swipe{position:relative}
+  .timeline.swipe::before{display:none}
+  .timeline.swipe>.step{flex-basis:62%;padding:44px 0 0}
+  .timeline.swipe>.step::after{content:"";position:absolute;top:11px;left:24px;right:-12px;height:2px;background:var(--line)}
+  .timeline.swipe>.step:last-child::after{display:none}
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:-8px -16px 16px;padding:0 16px}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;height:36px;padding:0 16px}
+  .partners-group + .partners-group{margin-top:24px}
+  .partners{gap:8px}
+  .req dl{font-size:14px}
+  .req dt,.req dd{padding:8px 0}
+  .jobs{padding:28px 20px}
+  .jobs p{font-size:15px}
+  .footer{padding:48px 0 24px}
+  .footer__grid{gap:28px;padding-bottom:32px}
+  .projects{grid-template-columns:none;grid-template-rows:repeat(2,auto);grid-auto-flow:column;grid-auto-columns:29%;gap:16px 10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -16px;padding:4px 16px 8px;scroll-padding:0 16px}
+  .projects::-webkit-scrollbar,.partners::-webkit-scrollbar{display:none}
+  .proj{scroll-snap-align:start}
+  .partners{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:24%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -16px;padding:2px 16px 6px;scroll-padding:0 16px}
+  .partner{scroll-snap-align:start}
+}
 </style>
 </head>
 <body>
@@ -317,6 +424,7 @@ a{color:inherit;text-decoration:none}
 <main>
   <!-- 1. Первый экран -->
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
     <div class="container hero__in">
       <nav class="crumbs"><a href="https://expocrimea.com/">Главная</a><span>/</span>О компании</nav>
       <h1>О компании</h1>
@@ -366,7 +474,8 @@ a{color:inherit;text-decoration:none}
   <section class="section">
     <div class="container">
       <h2 class="h2">Что мы делаем</h2>
-      <div class="cards4">
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
+      <div class="cards4 swipe">
         <div class="feat">
           <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="12" width="30" height="20" rx="1"/><path d="M5 18h30M12 12V7h16v5M14 32v4M26 32v4"/></svg>
           <p class="feat__t"><b>Выставки:</b> отраслевые экспозиции, где компании показывают продукцию и находят закупщиков, дилеров и партнёров</p>
@@ -395,7 +504,8 @@ a{color:inherit;text-decoration:none}
   <section class="section" id="projects" style="padding-top:0">
     <div class="container">
       <h2 class="h2">Наши проекты</h2>
-      <p class="lead" style="margin:-24px 0 40px">14 отраслевых выставок, форумов и премий, которые мы проводим каждый год.</p>
+      <p class="lead lead--tight">14 отраслевых выставок, форумов и премий, которые мы проводим каждый год.</p>
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
       <div class="projects">
         <a class="proj" href="https://expocrimea.com/events/agro/"><span class="proj__logo"><img src="logos/agro.png" alt="" loading="lazy"></span><span class="proj__n">АгроЭкспоКрым</span></a>
         <a class="proj" href="https://expocrimea.com/events/rhm/"><span class="proj__logo"><img src="logos/rhm.svg" alt="" loading="lazy"></span><span class="proj__n">РестоОтельМаркет</span></a>
@@ -419,7 +529,8 @@ a{color:inherit;text-decoration:none}
   <section class="section section--white">
     <div class="container">
       <h2 class="h2">История</h2>
-      <div class="timeline">
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
+      <div class="timeline swipe">
         <div class="step"><div class="step__y">2010</div><div class="step__t">Основание компании</div><p class="step__d">Первая выставка в Симферополе</p></div>
         <div class="step"><div class="step__y step__y--todo">20__</div><div class="step__t">Первые отраслевые проекты</div><p class="step__d">АгроЭкспоКрым, СтройЭкспоКрым</p></div>
         <div class="step"><div class="step__y step__y--todo">20__</div><div class="step__t">Выход в Ялту</div><p class="step__d">РестоОтельМаркет и Здравоохранение.Крым в «Ялта-Интурист»</p></div>
@@ -434,7 +545,8 @@ a{color:inherit;text-decoration:none}
   <section class="section">
     <div class="container">
       <h2 class="h2">Руководство</h2>
-      <div class="leaders">
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
+      <div class="leaders swipe">
         <article class="leader">
           <div class="leader__ph"><svg><use href="#i-user"/></svg></div>
           <div class="leader__b">
@@ -467,7 +579,7 @@ a{color:inherit;text-decoration:none}
   <section class="section section--white" id="team">
     <div class="container">
       <h2 class="h2">Команда</h2>
-      <p class="lead" style="margin:-24px 0 32px">Найдите менеджера своей выставки и свяжитесь с ним напрямую.</p>
+      <p class="lead lead--tight">Найдите менеджера своей выставки и свяжитесь с ним напрямую.</p>
       <div class="filters" role="tablist">
         <button class="chip is-on" data-f="all">Все</button>
         <button class="chip" data-f="projects">Проекты</button>
@@ -475,7 +587,8 @@ a{color:inherit;text-decoration:none}
         <button class="chip" data-f="marketing">Маркетинг</button>
         <button class="chip" data-f="service">Сервис</button>
       </div>
-      <div class="team" id="team-grid"></div>
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
+      <div class="team swipe" id="team-grid"></div>
     </div>
   </section>
 
@@ -483,7 +596,8 @@ a{color:inherit;text-decoration:none}
   <section class="section">
     <div class="container">
       <h2 class="h2">Наши площадки</h2>
-      <div class="venues">
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
+      <div class="venues swipe">
         <article class="venue">
           <img src="https://expocrimea.com/wp-content/uploads/2026/04/4d7a2309-450x300.jpg" alt="" loading="lazy">
           <div class="venue__city">Симферополь</div>
@@ -510,7 +624,8 @@ a{color:inherit;text-decoration:none}
   <section class="section section--white">
     <div class="container">
       <h2 class="h2">Как мы работаем</h2>
-      <div class="values">
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
+      <div class="values swipe">
         <div class="value"><div class="value__n">01</div><div class="value__t">Результат для участника</div><p class="value__d">Считаем успехом не площадь стенда, а контракты и контакты, которые компания увозит с выставки.</p></div>
         <div class="value"><div class="value__n">02</div><div class="value__t">Знаем отрасли изнутри</div><p class="value__d">У каждого проекта свой менеджер, который годами работает с рынком и знает его игроков.</p></div>
         <div class="value"><div class="value__n">03</div><div class="value__t">Сервис под ключ</div><p class="value__d">Застройка, логистика, деловая программа и продвижение — экспоненту остаётся работать с гостями.</p></div>
@@ -523,7 +638,8 @@ a{color:inherit;text-decoration:none}
   <section class="section">
     <div class="container">
       <h2 class="h2">Отзывы участников</h2>
-      <div class="reviews">
+      <p class="swipe-hint"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Листайте в сторону</p>
+      <div class="reviews swipe">
         <figure class="review">
           <svg class="review__q" viewBox="0 0 32 24"><path d="M0 24V14C0 6 4 1 12 0v5c-4 1-6 4-6 8h6v11zm18 0V14c0-8 4-13 12-14v5c-4 1-6 4-6 8h6v11z"/></svg>
           <blockquote class="review__t">Наша компания занимается оснащением медицинских учреждений качественным оборудованием Samsung! Мы впервые на выставке «Здравоохранение. Крым»! Хочу сказать, что уже много знакомств, контактов. Ялта нас тепло встречает, спасибо организаторам!</blockquote>
@@ -670,6 +786,50 @@ document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () =
   document.querySelectorAll('.chip').forEach(c => c.classList.toggle('is-on', c === b));
   grid.querySelectorAll('.person').forEach(p => p.hidden = b.dataset.f !== 'all' && p.dataset.d !== b.dataset.f);
 }));
+// Анимации: появление блоков при прокрутке, счётчики, шапка
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window) || reduce) return;
+  document.documentElement.classList.add('js-anim');
+  const groups = [
+    ['.h2, .lead, .note, .partners-label', ''],
+    ['.about__text', 'reveal--left'], ['.about__photo', 'reveal--right'],
+    ['.fact, .feat, .proj, .step, .leader, .person, .venue, .value, .review, .partner, .req, .dl a', ''],
+    ['.jobs', 'reveal--zoom'],
+    ['.chip, .footer__grid > div, .footer__bottom, .mission, .swipe-hint', '']
+  ];
+  groups.forEach(([sel, mod]) => document.querySelectorAll(sel).forEach(el => {
+    el.classList.add('reveal'); if (mod) el.classList.add(mod);
+    const i = [...el.parentElement.children].filter(c => c.matches(sel)).indexOf(el);
+    el.style.setProperty('--d', (i % 8) * 0.07 + 's');
+  }));
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('is-in'); io.unobserve(e.target);
+    if (e.target.matches('.fact')) countUp(e.target.querySelector('b'));
+  }), {threshold: 0.15, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal, .timeline').forEach(el => io.observe(el));
+
+  function countUp(b) {
+    const m = b.textContent.match(/^([\d\s\u00a0]+)(.*)$/);
+    if (!m) return;
+    const end = +m[1].replace(/\D/g, ''), tail = m[2], t0 = performance.now(), dur = 1600;
+    const fmt = n => n >= 1000 ? n.toLocaleString('ru-RU').replace(/\s/g, '\u00a0') : String(n);
+    const tick = t => {
+      const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
+      b.textContent = fmt(Math.round(end * e)) + tail;
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const header = document.querySelector('.header'), up = document.querySelector('.fab--up');
+  const onScroll = () => {
+    header.classList.toggle('is-scrolled', scrollY > 10);
+    up.classList.toggle('is-visible', scrollY > 600);
+  };
+  addEventListener('scroll', onScroll, {passive: true}); onScroll();
+})();
 </script>
 </body>
 </html>
