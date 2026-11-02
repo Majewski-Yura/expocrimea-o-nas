@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>О компании — ЭКСПОКРЫМ</title>
+<meta name="description" content="ЭКСПОКРЫМ — конгрессно-выставочная экосистема Крыма с 2010 года. О компании, команда, площадки и реквизиты.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Gilroy берём с сайта; если не загрузится — Manrope */
+@font-face{font-family:'Gilroy';font-weight:400;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-regular.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:500;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-medium.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:600;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-semibold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:700;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-bold.woff2') format('woff2')}
+
+:root{
+  --red:#E41A00; --red-dark:#C21600;
+  --ink:#111111; --ink-2:#222222;
+  --bg:#F2F2F2; --card:#FFFFFF;
+  --muted:#828282; --muted-2:#BDBDBD; --line:#E0E0E0;
+  --radius:8px; --container:1360px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Gilroy','Manrope',system-ui,sans-serif;font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 40px}
+.section{padding:96px 0}
+.section--white{background:#fff}
+.h2{font-size:36px;line-height:1.15;font-weight:600;margin-bottom:40px}
+.h2--center{text-align:center}
+.lead{font-size:18px;color:#444;max-width:760px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 32px;font:inherit;font-size:15px;font-weight:600;border:1px solid var(--red);background:var(--red);color:#fff;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--red-dark);border-color:var(--red-dark)}
+.btn--ghost{background:transparent;border-color:#fff}
+.btn--ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
+.icon{width:40px;height:40px;stroke:var(--red);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* Шапка */
+.header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+.header__in{display:flex;align-items:center;gap:32px;height:88px}
+.logo{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.logo__mark{display:flex;flex-direction:column;align-items:center;gap:2px}
+.logo__mark img{width:48px;height:48px}
+.logo__mark span{font-size:9px;letter-spacing:.14em;color:var(--red);font-weight:600}
+.logo__tag{font-size:15px;line-height:1.25;font-weight:500;max-width:150px}
+.nav{display:flex;gap:40px;margin-left:auto;font-size:14px;font-weight:500}
+.nav a{transition:color .2s}
+.nav a:hover,.nav a[aria-current]{color:var(--red)}
+.header .btn{height:44px;padding:0 28px;font-size:14px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:0;background:none;cursor:pointer}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px auto}
+
+/* Первый экран */
+.hero{position:relative;color:#fff;background:#222 url('https://expocrimea.com/wp-content/uploads/2025/09/ph_0110-1536x1024.jpg') center/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.25) 100%)}
+.hero__in{position:relative;padding-top:40px;padding-bottom:120px}
+.crumbs{font-size:13px;color:rgba(255,255,255,.7);margin-bottom:96px}
+.crumbs a:hover{color:#fff}
+.crumbs span{margin:0 8px}
+.hero h1{font-size:72px;line-height:1;font-weight:600;text-transform:uppercase;letter-spacing:.01em;margin-bottom:16px}
+.hero__sub{font-size:28px;line-height:1.25;font-weight:600;max-width:720px;margin-bottom:40px}
+.hero__btns{display:flex;flex-wrap:wrap;gap:16px}
+
+/* Кто мы */
+.about{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.about__text p{margin-bottom:18px;color:#333}
+.about__text p:last-of-type{margin-bottom:0}
+.mission{margin-top:32px;padding:24px 28px;background:var(--bg);border-left:3px solid var(--red);border-radius:0 var(--radius) var(--radius) 0}
+.mission__label{font-size:13px;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.mission p{font-size:18px;font-weight:500;color:var(--ink);margin:0}
+.about__photo{position:relative}
+.about__photo img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:10px}
+.about__badge{position:absolute;left:-32px;bottom:-32px;background:var(--red);color:#fff;padding:24px 28px;border-radius:var(--radius)}
+.about__badge b{display:block;font-size:56px;line-height:1;font-weight:600}
+.about__badge span{font-size:14px}
+
+/* Факты */
+.facts{position:relative;background:var(--ink-2);color:#fff;overflow:hidden}
+.facts::before{content:"";position:absolute;inset:0;opacity:.07;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.2'%3E%3Cpath d='M-20 80C80 20 160 140 260 90S440 10 620 70'/%3E%3Cpath d='M-20 120C90 60 170 180 270 130S450 50 620 110'/%3E%3Cpath d='M-20 160C100 100 180 220 280 170S460 90 620 150'/%3E%3Cpath d='M-20 240C80 300 200 200 300 260S480 330 620 270'/%3E%3Cpath d='M-20 280C90 340 210 240 310 300S490 370 620 310'/%3E%3Cpath d='M-20 320C100 380 220 280 320 340S500 410 620 350'/%3E%3Cellipse cx='450' cy='210' rx='60' ry='30'/%3E%3Cellipse cx='450' cy='210' rx='100' ry='52'/%3E%3C/g%3E%3C/svg%3E") center/600px repeat}
+.facts__in{position:relative;display:grid;grid-template-columns:180px 1fr;gap:40px;padding-top:80px;padding-bottom:80px}
+.facts__title{font-size:36px;font-weight:600}
+.facts__grid{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:32px 64px}
+.fact b{display:block;font-size:80px;line-height:1;font-weight:500;color:var(--red);white-space:nowrap}
+.fact span{display:block;margin-top:12px;font-size:18px}
+
+/* Что мы делаем — карточки 01–04 */
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.feat{position:relative;overflow:hidden;background:#fff;border-radius:var(--radius);padding:32px 28px 72px;min-height:300px}
+.feat .icon{margin-bottom:28px}
+.feat__t{font-size:15px;line-height:1.6}
+.feat__t b{font-weight:600;text-transform:uppercase}
+.feat__n{position:absolute;right:16px;bottom:-14px;font-size:96px;line-height:1;font-weight:700;color:#F0F0F0;pointer-events:none}
+
+/* История */
+.timeline{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;background:var(--line)}
+.step{position:relative;padding-top:44px}
+.step::before{content:"";position:absolute;top:0;left:0;width:24px;height:24px;border-radius:50%;background:#fff;border:6px solid var(--red)}
+.step__y{font-size:32px;font-weight:600;color:var(--red);line-height:1;margin-bottom:12px}
+.step__y--todo{color:var(--muted-2)}
+.step__t{font-weight:600;margin-bottom:6px}
+.step__d{font-size:14px;color:var(--muted)}
+.note{margin-top:32px;font-size:13px;color:var(--muted)}
+
+/* Руководство */
+.leaders{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.leader{background:#fff;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.leader__ph{aspect-ratio:4/3;background:#E9E9E9;display:grid;place-items:center;color:var(--muted-2)}
+.leader__ph svg{width:72px;height:72px}
+.leader__b{padding:28px;display:flex;flex-direction:column;gap:8px;flex:1}
+.leader__n{font-size:22px;font-weight:600;line-height:1.2}
+.leader__r{font-size:14px;color:var(--red);font-weight:500}
+.leader__q{margin-top:12px;padding-top:16px;border-top:1px solid var(--line);font-size:15px;color:#444;font-style:italic}
+
+/* Команда */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:-16px 0 32px}
+.chip{height:40px;padding:0 20px;border:1px solid var(--line);background:#fff;border-radius:20px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s}
+.chip:hover{border-color:var(--red);color:var(--red)}
+.chip.is-on{background:var(--red);border-color:var(--red);color:#fff}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.person{background:var(--bg);border-radius:var(--radius);padding:16px 16px 20px;display:flex;flex-direction:column}
+.person[hidden]{display:none}
+.person__ph{aspect-ratio:1;border-radius:6px;background:#E4E4E4;display:grid;place-items:center;color:var(--muted-2);margin-bottom:16px}
+.person__ph svg{width:56px;height:56px}
+.person__n{font-size:18px;font-weight:600;line-height:1.25}
+.person__r{font-size:14px;color:var(--muted);margin:4px 0 12px}
+.person__p{overflow-wrap:anywhere;font-size:13px;color:var(--red);display:flex;gap:6px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:14px;flex:1}
+.person__p svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;stroke:var(--red);fill:none;stroke-width:1.8}
+.person__c{display:flex;gap:8px}
+.person__c a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:all .2s}
+.person__c a:hover{background:var(--red);border-color:var(--red)}
+.person__c a:hover svg{stroke:#fff}
+.person__c svg{width:16px;height:16px;stroke:#555;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Площадки */
+.venues{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.venue{background:#fff;border-radius:var(--radius);padding:16px 16px 24px}
+.venue img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:6px;margin-bottom:20px}
+.venue__city{font-size:13px;color:var(--red);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.venue__n{font-size:20px;font-weight:600;margin-bottom:12px}
+.venue__a{display:flex;gap:8px;font-size:14px;color:var(--muted);padding-top:12px;border-top:1px solid var(--line)}
+.venue__a svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;fill:var(--muted)}
+
+/* Ценности */
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.value{padding:32px 28px 0 0}
+.value + .value{padding-left:28px;border-left:1px solid var(--line)}
+.value__n{font-size:14px;font-weight:600;color:var(--red);margin-bottom:16px}
+.value__t{font-size:20px;font-weight:600;margin-bottom:10px;line-height:1.25}
+.value__d{font-size:15px;color:#555}
+
+/* Отзывы */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.review{background:#fff;border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:20px}
+.review__q{width:32px;height:24px;fill:var(--red)}
+.review__t{font-size:15px;color:#333;flex:1}
+.review__w{font-weight:600;font-size:15px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* Партнёры */
+.partners{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.partner{height:96px;border:1px dashed var(--muted-2);border-radius:var(--radius);display:grid;place-items:center;text-align:center;padding:12px;font-size:13px;color:var(--muted)}
+.partner--fp{border-style:solid;border-color:var(--line);color:var(--ink);font-weight:600}
+
+/* Реквизиты */
+.docs{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:stretch}
+.req{background:#fff;border-radius:var(--radius);padding:32px}
+.req dl{display:grid;grid-template-columns:200px 1fr;font-size:15px}
+.req dt,.req dd{padding:12px 0;border-bottom:1px solid var(--line)}
+.req dt{color:var(--muted)}
+.req dd{font-weight:500}
+.req .todo{color:var(--muted-2)}
+.dl{background:#fff;border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:16px}
+.dl a{display:flex;align-items:center;gap:16px;padding:16px;border:1px solid var(--line);border-radius:6px;transition:border-color .2s}
+.dl a:hover{border-color:var(--red)}
+.dl a svg{width:32px;height:32px;flex-shrink:0;stroke:var(--red);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.dl b{display:block;font-weight:600;font-size:15px}
+.dl small{font-size:13px;color:var(--muted)}
+
+/* Вакансии */
+.jobs{background:var(--red);color:#fff;border-radius:10px;padding:56px 64px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.jobs h2{font-size:36px;line-height:1.15;font-weight:600;margin-bottom:12px}
+.jobs p{font-size:18px;opacity:.9;max-width:620px}
+.jobs .btn{background:#fff;color:var(--red);border-color:#fff;flex-shrink:0}
+.jobs .btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* Футер */
+.footer{background:var(--ink);color:#fff;padding:72px 0 32px;font-size:14px}
+.footer__grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:48px;border-bottom:1px solid #2c2c2c}
+.footer h4{font-size:16px;font-weight:600;margin-bottom:20px}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer a{color:#fff;transition:color .2s}
+.footer a:hover{color:var(--red)}
+.footer__about{color:#bdbdbd;max-width:300px;margin-top:20px}
+.footer .logo__tag{color:#fff}
+.footer__bottom{padding-top:24px;color:#828282;font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* Плавающие кнопки */
+.fab{position:fixed;bottom:24px;z-index:40;width:56px;height:56px;display:grid;place-items:center}
+.fab--chat{left:24px;border-radius:50%;background:var(--red);box-shadow:0 0 0 8px rgba(228,26,0,.15)}
+.fab--chat svg{width:24px;height:24px;fill:#fff}
+.fab--up{right:24px;background:#fff;border:1px solid var(--line)}
+.fab--up svg{width:22px;height:22px;stroke:var(--red);fill:none;stroke-width:1.6}
+
+/* Адаптив */
+@media (max-width:1200px){
+  .cards4,.team{grid-template-columns:repeat(2,1fr)}
+  .timeline{grid-template-columns:repeat(3,1fr);row-gap:40px}
+  .facts__in{grid-template-columns:1fr}
+  .fact b{font-size:64px}
+  .partners{grid-template-columns:repeat(3,1fr)}
+  .values{grid-template-columns:repeat(2,1fr)}
+  .value:nth-child(3){padding-left:0;border-left:0}
+  .footer__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:960px){
+  .nav,.header .btn{display:none}
+  .burger{display:block}
+  .about,.docs{grid-template-columns:1fr}
+  .about__badge{left:16px;bottom:-24px}
+  .leaders,.venues,.reviews{grid-template-columns:1fr}
+  .facts__grid{grid-template-columns:repeat(2,auto)}
+  .jobs{flex-direction:column;align-items:flex-start;padding:40px 32px}
+}
+@media (max-width:640px){
+  .container{padding:0 16px}
+  .section{padding:64px 0}
+  .h2,.jobs h2,.facts__title{font-size:28px}
+  .h2{margin-bottom:28px}
+  .header__in{height:72px}
+  .logo__tag{display:none}
+  .hero__in{padding-top:24px;padding-bottom:72px}
+  .crumbs{margin-bottom:56px}
+  .hero h1{font-size:40px}
+  .hero__sub{font-size:20px}
+  .hero__btns .btn{flex:1 1 100%}
+  .lead,.mission p{font-size:16px}
+  .facts__in{padding-top:56px;padding-bottom:56px}
+  .facts__grid{grid-template-columns:1fr;gap:24px}
+  .fact b{font-size:52px}
+  .fact span{font-size:16px;margin-top:6px}
+  .cards4,.values{grid-template-columns:1fr}
+  .team{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .person{padding:10px 10px 14px}
+  .person__n{font-size:15px}
+  .person__r{font-size:13px}
+  .person__p{font-size:12px}
+  .person__c a{width:32px;height:32px}
+  .value,.value + .value{padding:24px 0 0;border-left:0}
+  .value + .value{border-top:1px solid var(--line);margin-top:24px}
+  .timeline{grid-template-columns:1fr;row-gap:28px}
+  .timeline::before{left:11px;right:auto;top:0;bottom:0;width:2px;height:auto}
+  .step{padding:0 0 0 44px}
+  .partners{grid-template-columns:repeat(2,1fr)}
+  .req,.dl,.review{padding:24px}
+  .req dl{grid-template-columns:1fr}
+  .req dt{padding-bottom:0;border-bottom:0}
+  .req dd{padding-top:4px}
+  .jobs{padding:32px 24px}
+  .footer__grid{grid-template-columns:1fr}
+  .fab{width:48px;height:48px;bottom:16px}
+  .fab--chat{left:16px}
+  .fab--up{right:16px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path d="M21.5 3.5 2.5 11l7 2.5m12-10-3.5 17-8.5-7m12-10-12 10m0 0V20l3-3.5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4m0 0h13l-2 4 2 4H4"/></symbol>
+</svg>
+
+<header class="header">
+  <div class="container header__in">
+    <a class="logo" href="https://expocrimea.com/">
+      <span class="logo__mark"><img src="site-source/logo.svg" alt=""><span>ЭКСПОКРЫМ</span></span>
+      <span class="logo__tag">Место встречи профессионалов</span>
+    </a>
+    <nav class="nav">
+      <a href="https://expocrimea.com/#events">Мероприятия</a>
+      <a href="#partners">Партнёры</a>
+      <a href="https://expocrimea.com/#news">Новости</a>
+      <a href="#about" aria-current="page">О компании</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn" href="#contacts">Обратный звонок</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Первый экран -->
+  <section class="hero">
+    <div class="container hero__in">
+      <nav class="crumbs"><a href="https://expocrimea.com/">Главная</a><span>/</span>О компании</nav>
+      <h1>О компании</h1>
+      <p class="hero__sub">Конгрессно-выставочная экосистема Крыма с 2010 года</p>
+      <div class="hero__btns">
+        <a class="btn" href="https://expocrimea.com/#events">Наши мероприятия</a>
+        <a class="btn btn--ghost" href="#contacts">Связаться с нами</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Кто мы -->
+  <section class="section section--white" id="about">
+    <div class="container about">
+      <div class="about__text">
+        <h2 class="h2">Кто мы</h2>
+        <p>ЭКСПОКРЫМ — крупнейший организатор выставок, форумов и деловых событий в Республике Крым. С 2010 года мы собираем на одной площадке производителей, поставщиков, закупщиков и экспертов из разных отраслей: от агропрома и строительства до медицины, туризма и гостеприимства.</p>
+        <p>Сегодня это экосистема из 14 отраслевых проектов, которые проходят в Симферополе, Ялте и Алуште. Мы берём на себя всё: от концепции и деловой программы до застройки стендов, привлечения посетителей и организации B2B‑встреч.</p>
+        <div class="mission">
+          <div class="mission__label">Наша миссия</div>
+          <p>Помочь производителям и поставщикам услуг наладить партнёрские отношения и заключить выгодные контракты.</p>
+        </div>
+      </div>
+      <div class="about__photo">
+        <img src="https://expocrimea.com/wp-content/uploads/2026/10/ph_0062-1024x683.jpg" alt="Мероприятие ЭКСПОКРЫМ" loading="lazy">
+        <div class="about__badge"><b>16</b><span>лет на рынке</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Факты -->
+  <section class="facts">
+    <div class="container facts__in">
+      <h2 class="facts__title">Факты</h2>
+      <div class="facts__grid">
+        <div class="fact"><b>250+</b><span>мероприятий</span></div>
+        <div class="fact"><b>20 000+</b><span>участников и партнёров</span></div>
+        <div class="fact"><b>150 000+</b><span>посетителей</span></div>
+        <div class="fact"><b>400+</b><span>предприятий впервые на крымском рынке</span></div>
+        <div class="fact"><b>14</b><span>отраслевых проектов</span></div>
+        <div class="fact"><b>3</b><span>города проведения</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Что мы делаем -->
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Что мы делаем</h2>
+      <div class="cards4">
+        <div class="feat">
+          <svg class="icon" viewBox="0 0 40 40"><rect x="5" y="12" width="30" height="20" rx="1"/><path d="M5 18h30M12 12V7h16v5M14 32v4M26 32v4"/></svg>
+          <p class="feat__t"><b>Выставки:</b> отраслевые экспозиции, где компании показывают продукцию и находят закупщиков, дилеров и партнёров</p>
+          <span class="feat__n">01</span>
+        </div>
+        <div class="feat">
+          <svg class="icon" viewBox="0 0 40 40"><path d="M8 30V14l12-7 12 7v16"/><path d="M4 33h32M14 30v-9h12v9"/><circle cx="20" cy="15" r="2"/></svg>
+          <p class="feat__t"><b>Форумы и конгрессы:</b> деловая программа с экспертами, органами власти и лидерами отраслей</p>
+          <span class="feat__n">02</span>
+        </div>
+        <div class="feat">
+          <svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="15" r="9"/><path d="m14 22-3 13 9-5 9 5-3-13"/><path d="m20 10 1.5 3 3.2.4-2.3 2.2.6 3.2L20 17.3l-3 1.5.6-3.2-2.3-2.2 3.2-.4z"/></svg>
+          <p class="feat__t"><b>Премии и конкурсы:</b> КрымУрбанПремия, Чемпионат национальной кухни и другие профессиональные состязания</p>
+          <span class="feat__n">03</span>
+        </div>
+        <div class="feat">
+          <svg class="icon" viewBox="0 0 40 40"><circle cx="12" cy="13" r="5"/><circle cx="28" cy="13" r="5"/><path d="M3 32c0-5 4-8 9-8s9 3 9 8M19 32c0-5 4-8 9-8s9 3 9 8"/></svg>
+          <p class="feat__t"><b>B2B‑встречи:</b> заранее назначенные переговоры участников с закупщиками, сетями и ритейлерами</p>
+          <span class="feat__n">04</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. История -->
+  <section class="section section--white">
+    <div class="container">
+      <h2 class="h2">История</h2>
+      <div class="timeline">
+        <div class="step"><div class="step__y">2010</div><div class="step__t">Основание компании</div><p class="step__d">Первая выставка в Симферополе</p></div>
+        <div class="step"><div class="step__y step__y--todo">20__</div><div class="step__t">Первые отраслевые проекты</div><p class="step__d">АгроЭкспоКрым, СтройЭкспоКрым</p></div>
+        <div class="step"><div class="step__y step__y--todo">20__</div><div class="step__t">Выход в Ялту</div><p class="step__d">РестоОтельМаркет и Здравоохранение.Крым в «Ялта-Интурист»</p></div>
+        <div class="step"><div class="step__y step__y--todo">20__</div><div class="step__t">КрымУрбанФорум</div><p class="step__d">Форум и премия о развитии городов и территорий</p></div>
+        <div class="step"><div class="step__y step__y--todo">20__</div><div class="step__t">«Федеральная практика»</div><p class="step__d">ЭКСПОКРЫМ присоединился к федеральному сообществу</p></div>
+      </div>
+      <p class="note">Годы и формулировки этапов уточняются у компании.</p>
+    </div>
+  </section>
+
+  <!-- 6. Руководство -->
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Руководство</h2>
+      <div class="leaders">
+        <article class="leader">
+          <div class="leader__ph"><svg><use href="#i-user"/></svg></div>
+          <div class="leader__b">
+            <div class="leader__n">Имя Фамилия</div>
+            <div class="leader__r">Генеральный директор</div>
+            <p class="leader__q">«Короткая цитата руководителя о том, зачем мы делаем выставки и что даём участникам».</p>
+          </div>
+        </article>
+        <article class="leader">
+          <div class="leader__ph"><svg><use href="#i-user"/></svg></div>
+          <div class="leader__b">
+            <div class="leader__n">Имя Фамилия</div>
+            <div class="leader__r">Исполнительный директор</div>
+            <p class="leader__q">«Цитата о подходе к работе с экспонентами и партнёрами».</p>
+          </div>
+        </article>
+        <article class="leader">
+          <div class="leader__ph"><svg><use href="#i-user"/></svg></div>
+          <div class="leader__b">
+            <div class="leader__n">Имя Фамилия</div>
+            <div class="leader__r">Руководитель проектов</div>
+            <p class="leader__q">«Цитата о развитии отраслевых проектов в Крыму».</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Команда -->
+  <section class="section section--white" id="team">
+    <div class="container">
+      <h2 class="h2">Команда</h2>
+      <p class="lead" style="margin:-24px 0 32px">Найдите менеджера своей выставки и свяжитесь с ним напрямую.</p>
+      <div class="filters" role="tablist">
+        <button class="chip is-on" data-f="all">Все</button>
+        <button class="chip" data-f="projects">Проекты</button>
+        <button class="chip" data-f="sales">Продажи</button>
+        <button class="chip" data-f="marketing">Маркетинг</button>
+        <button class="chip" data-f="service">Сервис</button>
+      </div>
+      <div class="team" id="team-grid"></div>
+    </div>
+  </section>
+
+  <!-- 8. Площадки -->
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Наши площадки</h2>
+      <div class="venues">
+        <article class="venue">
+          <img src="https://expocrimea.com/wp-content/uploads/2026/04/4d7a2309-450x300.jpg" alt="" loading="lazy">
+          <div class="venue__city">Симферополь</div>
+          <div class="venue__n">Выставочные площадки столицы</div>
+          <p class="venue__a"><svg><use href="#i-pin"/></svg>Республика Крым, г. Симферополь</p>
+        </article>
+        <article class="venue">
+          <img src="https://expocrimea.com/wp-content/uploads/2026/03/2026-03-04-16.27.41-450x300.jpg" alt="" loading="lazy">
+          <div class="venue__city">Ялта</div>
+          <div class="venue__n">Отель «Ялта-Интурист»</div>
+          <p class="venue__a"><svg><use href="#i-pin"/></svg>г. Ялта, ул. Дражинского, 50</p>
+        </article>
+        <article class="venue">
+          <img src="https://expocrimea.com/wp-content/uploads/2026/05/ph_0228-450x300.jpg" alt="" loading="lazy">
+          <div class="venue__city">Алушта</div>
+          <div class="venue__n">MORE SPA & Resort 5*</div>
+          <p class="venue__a"><svg><use href="#i-pin"/></svg>г. Алушта, ул. Набережная, 25</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Как мы работаем -->
+  <section class="section section--white">
+    <div class="container">
+      <h2 class="h2">Как мы работаем</h2>
+      <div class="values">
+        <div class="value"><div class="value__n">01</div><div class="value__t">Результат для участника</div><p class="value__d">Считаем успехом не площадь стенда, а контракты и контакты, которые компания увозит с выставки.</p></div>
+        <div class="value"><div class="value__n">02</div><div class="value__t">Знаем отрасли изнутри</div><p class="value__d">У каждого проекта свой менеджер, который годами работает с рынком и знает его игроков.</p></div>
+        <div class="value"><div class="value__n">03</div><div class="value__t">Сервис под ключ</div><p class="value__d">Застройка, логистика, деловая программа и продвижение — экспоненту остаётся работать с гостями.</p></div>
+        <div class="value"><div class="value__n">04</div><div class="value__t">Развиваем Крым</div><p class="value__d">Помогаем новым компаниям выйти на рынок полуострова, а крымским — найти партнёров по всей стране.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Отзывы -->
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Отзывы участников</h2>
+      <div class="reviews">
+        <figure class="review">
+          <svg class="review__q" viewBox="0 0 32 24"><path d="M0 24V14C0 6 4 1 12 0v5c-4 1-6 4-6 8h6v11zm18 0V14c0-8 4-13 12-14v5c-4 1-6 4-6 8h6v11z"/></svg>
+          <blockquote class="review__t">Наша компания занимается оснащением медицинских учреждений качественным оборудованием Samsung! Мы впервые на выставке «Здравоохранение. Крым»! Хочу сказать, что уже много знакомств, контактов. Ялта нас тепло встречает, спасибо организаторам!</blockquote>
+          <figcaption class="review__w">ООО «МедБери»</figcaption>
+        </figure>
+        <figure class="review">
+          <svg class="review__q" viewBox="0 0 32 24"><path d="M0 24V14C0 6 4 1 12 0v5c-4 1-6 4-6 8h6v11zm18 0V14c0-8 4-13 12-14v5c-4 1-6 4-6 8h6v11z"/></svg>
+          <blockquote class="review__t">Наша компания участвует в развитии Крыма! Мы строим в разных городах: Алушта, Симферополь, Феодосия… Выставка нам очень понравилась! Сегодня мы поделились своими идеями, презентовали новые объекты и проекты!</blockquote>
+          <figcaption class="review__w">СЗ «Славянский дом»</figcaption>
+        </figure>
+        <figure class="review">
+          <svg class="review__q" viewBox="0 0 32 24"><path d="M0 24V14C0 6 4 1 12 0v5c-4 1-6 4-6 8h6v11zm18 0V14c0-8 4-13 12-14v5c-4 1-6 4-6 8h6v11z"/></svg>
+          <blockquote class="review__t">Впечатления потрясающие! Здесь много коллег и партнёров из нашей отрасли! Форум — это возможность обменяться опытом, посмотреть новое, продемонстрировать свои достижения!</blockquote>
+          <figcaption class="review__w">Жилой квартал «Просторы Крыма»</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Партнёры -->
+  <section class="section section--white" id="partners">
+    <div class="container">
+      <h2 class="h2">Партнёры и поддержка</h2>
+      <div class="partners">
+        <div class="partner partner--fp">Федеральная практика</div>
+        <div class="partner">Логотип министерства</div>
+        <div class="partner">Логотип министерства</div>
+        <div class="partner">Отраслевой союз</div>
+        <div class="partner">Отраслевой союз</div>
+        <div class="partner">Генеральный партнёр</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Документы и реквизиты -->
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Документы и реквизиты</h2>
+      <div class="docs">
+        <div class="req">
+          <dl>
+            <dt>Полное наименование</dt><dd class="todo">ООО «…» — уточнить</dd>
+            <dt>ИНН / КПП</dt><dd class="todo">0000000000 / 000000000</dd>
+            <dt>ОГРН</dt><dd class="todo">0000000000000</dd>
+            <dt>Юридический адрес</dt><dd class="todo">уточнить</dd>
+            <dt>Фактический адрес</dt><dd>г. Симферополь, ул. Киевская, 41, БЦ «ФАБРИКА», офис 322</dd>
+            <dt>Телефон</dt><dd><a href="tel:+79789009090">+7 (978) 900 90 90</a></dd>
+            <dt>Почта</dt><dd><a href="mailto:info@expocrimea.com">info@expocrimea.com</a></dd>
+          </dl>
+        </div>
+        <div class="dl">
+          <a href="#"><svg viewBox="0 0 32 32"><path d="M8 3h11l7 7v19H8z"/><path d="M19 3v7h7M12 18h10M12 23h7"/></svg><span><b>Карточка предприятия</b><small>PDF</small></span></a>
+          <a href="#"><svg viewBox="0 0 32 32"><path d="M8 3h11l7 7v19H8z"/><path d="M19 3v7h7M12 18h10M12 23h7"/></svg><span><b>Презентация компании</b><small>PDF</small></span></a>
+          <a href="#"><svg viewBox="0 0 32 32"><path d="M8 3h11l7 7v19H8z"/><path d="M19 3v7h7M12 18h10M12 23h7"/></svg><span><b>Типовой договор участника</b><small>DOCX</small></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. Вакансии -->
+  <section class="section section--white" style="padding-top:0;background:var(--bg)">
+    <div class="container">
+      <div class="jobs">
+        <div>
+          <h2>Хотите в команду ЭКСПОКРЫМ?</h2>
+          <p>Мы ищем менеджеров проектов, продажников и маркетологов, которым интересно делать главные деловые события Крыма.</p>
+        </div>
+        <a class="btn" href="https://expocrimea.com/vakansii/">Смотреть вакансии</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contacts">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="https://expocrimea.com/"><span class="logo__mark"><img src="site-source/logo.svg" alt=""><span>ЭКСПОКРЫМ</span></span><span class="logo__tag">Место встречи профессионалов</span></a>
+        <p class="footer__about">Помогаем производителям и поставщикам услуг наладить партнёрские отношения и заключить выгодные контракты.</p>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <ul><li><a href="#about">О компании</a></li><li><a href="#team">Команда</a></li><li><a href="#partners">Партнёры</a></li><li><a href="https://expocrimea.com/vakansii/">Вакансии</a></li></ul>
+      </div>
+      <div>
+        <h4>Участникам</h4>
+        <ul><li><a href="https://expocrimea.com/#events">Мероприятия</a></li><li><a href="https://expocrimea.com/#news">Новости</a></li><li><a href="#">Документы</a></li></ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+79789009090">+7 (978) 900 90 90</a></li>
+          <li><a href="mailto:info@expocrimea.com">info@expocrimea.com</a></li>
+          <li>Республика Крым, г. Симферополь, ул. Киевская, 41, БЦ «ФАБРИКА», офис 322</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom"><span>© 2010–2026 ЭКСПОКРЫМ</span><a href="#">Политика конфиденциальности</a></div>
+  </div>
+</footer>
+
+<a class="fab fab--chat" href="#contacts" aria-label="Написать нам"><svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 5v2h10V8zm0 4v2h7v-2z"/></svg></a>
+<a class="fab fab--up" href="#" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="M12 21V3M5 10l7-7 7 7"/></svg></a>
+
+<script>
+// Данные сотрудников — заменить на реальные
+const TEAM = [
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'АгроЭкспоКрым, РосЭкспоКрым'},
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'РестоОтельМаркет, Чемпионат национальной кухни'},
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'КрымУрбанФорум, КрымУрбанПремия'},
+  {n:'Имя Фамилия', r:'Руководитель проекта', d:'projects', p:'Здравоохранение.Крым, Форум эстетической медицины'},
+  {n:'Имя Фамилия', r:'Менеджер по продажам', d:'sales', p:'СтройЭкспоКрым, Выставка мебели'},
+  {n:'Имя Фамилия', r:'Менеджер по продажам', d:'sales', p:'Ярмарка недвижимости, Безопасность. Крым'},
+  {n:'Имя Фамилия', r:'Маркетолог', d:'marketing', p:'Продвижение всех проектов'},
+  {n:'Имя Фамилия', r:'Менеджер по сервису', d:'service', p:'Застройка стендов и логистика'},
+];
+const grid = document.getElementById('team-grid');
+grid.innerHTML = TEAM.map(t => `
+  <article class="person" data-d="${t.d}">
+    <div class="person__ph"><svg><use href="#i-user"/></svg></div>
+    <div class="person__n">${t.n}</div>
+    <div class="person__r">${t.r}</div>
+    <div class="person__p"><svg viewBox="0 0 24 24"><use href="#i-flag"/></svg><span>${t.p}</span></div>
+    <div class="person__c">
+      <a href="tel:+79789009090" aria-label="Позвонить"><svg viewBox="0 0 24 24"><use href="#i-phone"/></svg></a>
+      <a href="mailto:info@expocrimea.com" aria-label="Написать на почту"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg></a>
+      <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24"><use href="#i-tg"/></svg></a>
+    </div>
+  </article>`).join('');
+
+document.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach(c => c.classList.toggle('is-on', c === b));
+  grid.querySelectorAll('.person').forEach(p => p.hidden = b.dataset.f !== 'all' && p.dataset.d !== b.dataset.f);
+}));
+</script>
+</body>
+</html>
