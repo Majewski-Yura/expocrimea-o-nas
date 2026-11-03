@@ -209,9 +209,9 @@ button{font:inherit;color:inherit}
 .hstep__t{margin-top:28px;font-size:24px;line-height:1.2;font-weight:600}
 .hstep__d{margin-top:10px;color:#555;max-width:380px}
 .hstep__tag{display:inline-block;margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--muted-2);padding:4px 10px;border-radius:999px}
-.hstep--fem .hstep__y::after{background:linear-gradient(180deg,#6EB7DD,#12336A);-webkit-background-clip:text;background-clip:text}
-.hstep--fem.is-on .hstep__y::after{color:transparent}
-.hstep--fem.is-on .hstep__y{color:transparent;-webkit-text-stroke-color:transparent}
+.hstep--grad .hstep__y::after{background:linear-gradient(180deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text}
+.hstep--grad.is-on .hstep__y::after{color:transparent}
+.hstep--grad.is-on .hstep__y{color:transparent;-webkit-text-stroke-color:transparent}
 /* режим закрепления: секция «держит» экран, лента едет вбок */
 .h-pin .hist__pin{position:sticky;top:var(--hdr);height:calc(100vh - var(--hdr));padding:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .h-pin .hist__track{overflow:visible;scroll-snap-type:none}
@@ -631,7 +631,8 @@ button{font:inherit;color:inherit}
         <div class="hstep"><span class="hstep__dot"></span><div class="hstep__y" data-y="2018">2018</div><div class="hstep__t">Диалог с министерствами</div><p class="hstep__d">С 2018 года выстраиваем непрерывную коммуникацию с федеральными и региональными профильными министерствами, госучреждениями и другими организациями</p></div>
         <div class="hstep" style="--c:#A50E1A"><span class="hstep__ics"><img class="hstep__ic" src="logos/cuf.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2022">2022</div><div class="hstep__t">КрымУрбанФорум</div><p class="hstep__d">Конференция по комплексному развитию территорий и Премия в области урбанистики</p></div>
         <div class="hstep"><span class="hstep__dot"></span><div class="hstep__y" data-y="2024">2024</div><div class="hstep__t">Премия «Признание года»</div><p class="hstep__d">Награда в номинации «Лучшее событийное мероприятие»</p></div>
-        <div class="hstep hstep--fem" style="--c:#2F6FA6"><span class="hstep__ics"><img class="hstep__ic" src="logos/fem.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2026">2026</div><div class="hstep__t">Форум эстетической медицины</div><p class="hstep__d">Новый проект экосистемы — теперь 15+ отраслевых событий в трёх городах</p></div>
+        <div class="hstep hstep--grad" style="--c:#2F6FA6;--g1:#6EB7DD;--g2:#12336A"><span class="hstep__ics"><img class="hstep__ic" src="logos/fem.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2025">2025</div><div class="hstep__t">Форум эстетической медицины</div><p class="hstep__d">Первый форум для специалистов эстетической медицины</p></div>
+        <div class="hstep hstep--grad" style="--c:#2C8CDB;--g1:#7AC4FF;--g2:#0067B9"><span class="hstep__ics"><img class="hstep__ic" src="logos/turist.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2025">2025</div><div class="hstep__t">ТуристЭкспо. Крым</div><p class="hstep__d">Выставка туристической отрасли — теперь в экосистеме 15+ отраслевых проектов</p></div>
       </div>
     </div>
   </section>
