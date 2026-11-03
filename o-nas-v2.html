@@ -293,6 +293,11 @@ button{font:inherit;color:inherit}
 /* 10. Партнёры — бегущие строки */
 .part{background:#fff;padding:120px 0}
 .part__label{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:56px 0 20px}
+/* официальная поддержка — сетка 7×2 в цвете, как на слайде */
+.sgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:32px 24px;align-items:center}
+.slogo{display:grid;place-items:center;height:150px}
+.slogo img{max-width:100%;max-height:150px;width:auto;height:auto;object-fit:contain;transition:transform .4s var(--ease)}
+.slogo:hover img{transform:scale(1.06)}
 .mq-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .mq{display:flex;width:max-content;animation:marq 45s linear infinite}
 .mq--rev{animation-direction:reverse;animation-duration:38s}
@@ -376,6 +381,7 @@ button{font:inherit;color:inherit}
   .header.is-open .nav a::after{display:none}
   .bento{grid-template-columns:repeat(2,1fr)}
   .tgrid{grid-template-columns:repeat(3,1fr)}
+  .sgrid{grid-template-columns:repeat(4,1fr)}
   .footer__grid{grid-template-columns:1fr 1fr}
   .boss__grid{gap:64px}
 }
@@ -443,6 +449,9 @@ button{font:inherit;color:inherit}
   .plogo{width:180px;height:100px;padding:16px 20px}
   .plogo img{max-height:60px}
   .part__label{margin:40px 0 16px}
+  .sgrid{grid-template-columns:repeat(2,1fr);gap:24px 16px}
+  .slogo{height:120px}
+  .slogo img{max-height:120px}
   .rq{padding:4px 20px}
   .rq__row{grid-template-columns:1fr 40px;gap:4px 12px}
   .rq__row dt{grid-column:1/-1}
@@ -717,15 +726,23 @@ button{font:inherit;color:inherit}
     <div class="container">
       <h2 class="h2 rv rv--clip">Партнёры<br>и поддержка</h2>
       <div class="part__label rv">Официальная поддержка</div>
+      <div class="sgrid">
+        <div class="slogo rv"><img src="logos/support/minpromrf.png" alt="Минпромторг России" title="Минпромторг России" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minstroy.png" alt="Минстрой России" title="Минстрой России" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minzdravrf.png" alt="Министерство здравоохранения Российской Федерации" title="Министерство здравоохранения Российской Федерации" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minoborony.png" alt="Министерство обороны Российской Федерации" title="Министерство обороны Российской Федерации" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/rosgvardia.png" alt="Федеральная служба войск национальной гвардии Российской Федерации" title="Федеральная служба войск национальной гвардии Российской Федерации" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minselhozrf.png" alt="Министерство сельского хозяйства Российской Федерации" title="Министерство сельского хозяйства Российской Федерации" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/gossovet.png" alt="Государственный совет Республики Крым" title="Государственный совет Республики Крым" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minpromrk.png" alt="Минпромторг Крыма" title="Минпромторг Крыма" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minselhozrk.png" alt="Минсельхоз Республики Крым" title="Минсельхоз Республики Крым" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/mchsrk.png" alt="Главное управление МЧС России по Республике Крым" title="Главное управление МЧС России по Республике Крым" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minekonomrk.png" alt="Министерство экономического развития Республики Крым" title="Министерство экономического развития Республики Крым" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/sovmin.png" alt="Совет министров Республики Крым" title="Совет министров Республики Крым" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minzdravrk.png" alt="Министерство здравоохранения Республики Крым" title="Министерство здравоохранения Республики Крым" loading="lazy"></div>
+        <div class="slogo rv"><img src="logos/support/minkurort.png" alt="Министерство курортов и туризма Республики Крым" title="Министерство курортов и туризма Республики Крым" loading="lazy"></div>
+      </div>
     </div>
-    <div class="mq-wrap rv"><div class="mq">
-      <div class="plogo"><img src="logos/partners/sovmin.png" alt="Совет министров Республики Крым" title="Совет министров Республики Крым"></div>
-      <div class="plogo"><img src="logos/partners/gossovet.png" alt="Государственный совет Республики Крым" title="Государственный совет Республики Крым"></div>
-      <div class="plogo"><img src="logos/partners/minpromrf.png" alt="Минпромторг России" title="Минпромторг России"></div>
-      <div class="plogo"><img src="logos/partners/minselhoz.png" alt="Минсельхоз России" title="Минсельхоз России"></div>
-      <div class="plogo"><img src="logos/partners/minzdravrk.png" alt="Минздрав Республики Крым" title="Минздрав Республики Крым"></div>
-      <div class="plogo"><img src="logos/partners/minkurort.png" alt="Минкурортов Республики Крым" title="Минкурортов Республики Крым"></div>
-    </div></div>
     <div class="container"><div class="part__label rv">Партнёры</div></div>
     <div class="mq-wrap rv"><div class="mq mq--rev">
       <div class="plogo"><img src="logos/partners/delros.png" alt="Деловая Россия" title="Деловая Россия"></div>
