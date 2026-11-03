@@ -142,7 +142,10 @@ button{font:inherit;color:inherit}
 .tile{position:relative;overflow:hidden;border-radius:var(--radius);padding:28px;background:var(--ink-3);display:flex;flex-direction:column;justify-content:space-between;gap:24px;transition:transform .5s var(--ease),background .4s}
 .tile:hover{transform:translateY(-6px)}
 .tile b{display:block;font-size:clamp(48px,4.8vw,80px);line-height:1;font-weight:600;letter-spacing:-.03em;color:var(--red);white-space:nowrap}
-.tile b+span{font-size:16px;color:rgba(255,255,255,.75);max-width:260px}
+.tile b+span{font-size:16px;font-weight:600;color:#fff;max-width:280px}
+.tile b+span small{display:block;margin-top:4px;font-size:14px;font-weight:400;color:rgba(255,255,255,.6)}
+.facts__t{font-size:clamp(32px,4vw,60px);line-height:1.05;font-weight:600;letter-spacing:-.02em;max-width:900px}
+.facts__t em{font-style:normal;color:var(--red)}
 .tile--hero{grid-column:span 2;grid-row:span 2;background:var(--red)}
 .tile--hero b{color:#fff;font-size:clamp(140px,17vw,280px);letter-spacing:-.06em;line-height:.85}
 .tile--hero b+span{color:#fff;font-size:22px;font-weight:600;max-width:none}
@@ -150,7 +153,8 @@ button{font:inherit;color:inherit}
 .tile--hero img{position:absolute;right:-12%;top:-14%;width:72%;opacity:.14;filter:brightness(0) invert(1);animation:spin 60s linear infinite;pointer-events:none}
 .tile--wide{grid-column:span 2}
 .tile--light{background:var(--bg);color:var(--ink)}
-.tile--light b+span{color:#444}
+.tile--light b+span{color:var(--ink)}
+.tile--light b+span small{color:#555}
 .tile--light b{color:var(--ink)}
 .cities{display:flex;flex-wrap:wrap;gap:8px}
 .cities i{font-style:normal;font-size:13px;font-weight:600;padding:6px 12px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff}
@@ -572,8 +576,8 @@ button{font:inherit;color:inherit}
   <section class="facts">
     <div class="container">
       <div class="facts__head">
-        <h2 class="h2 rv rv--clip">Факты</h2>
-        <p class="rv">Цифры, которые за 16 лет сложились в главную деловую площадку полуострова.</p>
+        <h2 class="facts__t rv rv--clip">ЭКСПОКРЫМ —<br><em>16 лет</em> в профессиональных выставках</h2>
+        <p class="rv">Ключевые цифры, которые описывают нас лучше любых эпитетов.</p>
       </div>
       <div class="bento">
         <div class="tile tile--hero rv">
@@ -581,11 +585,11 @@ button{font:inherit;color:inherit}
           <div><b class="odo">16</b><span>лет на рынке</span></div>
           <p>С 2010 года собираем производителей, поставщиков и закупщиков Крыма на одной площадке.</p>
         </div>
-        <div class="tile rv"><b class="odo">250+</b><span>мероприятий</span></div>
-        <div class="tile tile--m2 rv"><b class="odo">20 000+</b><span>участников и партнёров</span></div>
-        <div class="tile tile--wide tile--light rv"><b class="odo">150 000+</b><span>посетителей</span></div>
-        <div class="tile tile--wide rv"><b class="odo">400+</b><span>предприятий впервые вышли на крымский рынок</span></div>
-        <div class="tile rv"><b class="odo">15+</b><span>отраслевых проектов</span></div>
+        <div class="tile rv"><b class="odo">250+</b><span>мероприятий<small>организовано за 16 лет работы</small></span></div>
+        <div class="tile tile--m2 rv"><b class="odo">20K+</b><span>участников<small>и партнёров из разных регионов</small></span></div>
+        <div class="tile tile--wide tile--light rv"><b class="odo">150K+</b><span>посетителей<small>прошли через наши площадки</small></span></div>
+        <div class="tile tile--wide rv"><b class="odo">400+</b><span>предприятий<small>впервые вышли на крымский рынок</small></span></div>
+        <div class="tile rv"><b class="odo">15+</b><span>отраслевых проектов<small>выставки, форумы и премии</small></span></div>
         <div class="tile tile--m2 rv"><b class="odo">3</b><div class="cities"><i>Симферополь</i><i>Ялта</i><i>Алушта</i></div></div>
       </div>
     </div>
