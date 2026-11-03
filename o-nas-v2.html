@@ -17,7 +17,7 @@
 
 :root{
   --red:#E41A00; --red-dark:#C21600;
-  --ink:#111111; --ink-2:#222222; --ink-3:#1C1C1C;
+  --ink:#2B2D30; --ink-2:#35383C; --ink-3:#383B3F; /* графит вместо чёрного */
   --bg:#F2F2F2; --card:#FFFFFF;
   --muted:#828282; --muted-2:#BDBDBD; --line:#E0E0E0;
   --radius:12px; --container:1360px; --gut:40px; --hdr:88px;
@@ -99,7 +99,7 @@ button{font:inherit;color:inherit}
 /* 2. Фото, раскрывающееся при прокрутке */
 .zoom{--p:1;--zx:24%;--zy:10%;position:relative;height:230vh;background:#fff}
 .zoom__stick{position:sticky;top:var(--hdr);height:calc(100vh - var(--hdr));overflow:hidden}
-.zoom__win{position:absolute;inset:0;clip-path:inset(calc((1 - var(--p)) * var(--zy)) calc((1 - var(--p)) * var(--zx)) round calc((1 - var(--p)) * 24px));background:#222}
+.zoom__win{position:absolute;inset:0;clip-path:inset(calc((1 - var(--p)) * var(--zy)) calc((1 - var(--p)) * var(--zx)) round calc((1 - var(--p)) * 24px));background:var(--ink-2)}
 .zoom__win img{width:100%;height:100%;object-fit:cover;transform:scale(calc(1.3 - var(--p) * .3))}
 .zoom__win::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 60%);opacity:var(--p)}
 .zoom__cap{position:absolute;left:0;right:0;bottom:56px;color:#fff;opacity:calc((var(--p) - .55) * 3);transform:translateY(calc((1 - var(--p)) * 80px))}
@@ -504,7 +504,7 @@ button{font:inherit;color:inherit}
       </h1>
       <div class="hero__row">
         <div>
-          <p class="hero__sub">Крупнейший организатор выставок, форумов и деловых событий в Республике Крым. С 2010 года — 14 отраслевых проектов в Симферополе, Ялте и Алуште.</p>
+          <p class="hero__sub">Крупнейший организатор выставок, форумов и деловых событий в Республике Крым. С 2010 года — 15+ отраслевых проектов в Симферополе, Ялте и Алуште.</p>
           <div class="hero__btns">
             <a class="btn" href="https://expocrimea.com/#events">Наши мероприятия</a>
             <a class="btn btn--line" href="#contacts">Связаться с нами</a>
@@ -554,7 +554,7 @@ button{font:inherit;color:inherit}
       <div class="eyebrow rv">Кто мы</div>
       <p class="manifest__text">ЭКСПОКРЫМ — <em>крупнейший организатор</em> выставок, форумов и деловых событий в Республике Крым. Мы собираем на одной площадке производителей, поставщиков, закупщиков и экспертов — от агропрома и строительства до медицины, туризма и гостеприимства.</p>
       <div class="manifest__foot">
-        <p class="rv">Сегодня это экосистема из 14 отраслевых проектов. Мы берём на себя всё: от концепции и деловой программы до застройки стендов, привлечения посетителей и организации B2B‑встреч.</p>
+        <p class="rv">Сегодня это экосистема из 15+ отраслевых проектов. Мы берём на себя всё: от концепции и деловой программы до застройки стендов, привлечения посетителей и организации B2B‑встреч.</p>
         <div class="mission rv" style="--d:.1s">
           <small>Наша миссия</small>
           <p>Помочь производителям и поставщикам услуг наладить партнёрские отношения и заключить выгодные контракты.</p>
@@ -580,7 +580,7 @@ button{font:inherit;color:inherit}
         <div class="tile tile--m2 rv"><b class="odo">20 000+</b><span>участников и партнёров</span></div>
         <div class="tile tile--wide tile--light rv"><b class="odo">150 000+</b><span>посетителей</span></div>
         <div class="tile tile--wide rv"><b class="odo">400+</b><span>предприятий впервые вышли на крымский рынок</span></div>
-        <div class="tile rv"><b class="odo">14</b><span>отраслевых проектов</span></div>
+        <div class="tile rv"><b class="odo">15+</b><span>отраслевых проектов</span></div>
         <div class="tile tile--m2 rv"><b class="odo">3</b><div class="cities"><i>Симферополь</i><i>Ялта</i><i>Алушта</i></div></div>
       </div>
     </div>
@@ -591,7 +591,7 @@ button{font:inherit;color:inherit}
     <div class="container">
       <div class="pidx__head">
         <h2 class="h2 rv rv--clip">Наши<br>проекты</h2>
-        <p class="rv">14 отраслевых выставок, форумов и премий, которые мы проводим каждый год.</p>
+        <p class="rv">15+ отраслевых выставок, форумов и премий, которые мы проводим каждый год.</p>
       </div>
       <ol class="plist">
         <li><a class="prow rv" href="https://expocrimea.com/events/agro/" data-logo="logos/agro.png"><span class="prow__n">01</span><span class="prow__logo"><img src="logos/agro.png" alt="" loading="lazy"></span><span class="prow__t">АгроЭкспоКрым</span><span class="prow__a"><svg><use href="#i-arrow"/></svg></span></a></li>
@@ -620,7 +620,7 @@ button{font:inherit;color:inherit}
         <h2 class="h2 rv rv--clip">История</h2>
         <div class="hist__meta rv">
           <div class="hist__bar"><i></i></div>
-          <p>Годы рассчитаны по номерам выпусков выставок</p>
+          <p>Годы рассчитаны по номерам выпусков выставок</p>
         </div>
       </div>
       <div class="hist__track">
@@ -628,9 +628,10 @@ button{font:inherit;color:inherit}
         <div class="hstep" style="--c:#00305B"><span class="hstep__ics"><img class="hstep__ic" src="logos/rhm.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2012">2012</div><div class="hstep__t">РестоОтельМаркет</div><p class="hstep__d">Первая выставка оснащения отельного и ресторанного бизнеса</p></div>
         <div class="hstep" style="--c:#42924B"><span class="hstep__ics"><img class="hstep__ic" src="logos/agro.png" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2013">2013</div><div class="hstep__t">АгроЭкспоКрым</div><p class="hstep__d">Первая выставка для аграриев полуострова</p></div>
         <div class="hstep" style="--c:#00305B"><span class="hstep__ics"><img class="hstep__ic" src="logos/ros.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2014">2014</div><div class="hstep__t">Выход в Ялту</div><p class="hstep__d">Выставки переезжают в «Ялта-Интурист», стартует РосЭкспоКрым — выставка российских производителей</p></div>
-        <div class="hstep" style="--c:#A50E1A"><span class="hstep__ics"><img class="hstep__ic" src="logos/cuf.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2022">2022</div><div class="hstep__t">КрымУрбанФорум</div><p class="hstep__d">Форум и премия о развитии городов и территорий</p></div>
-        <div class="hstep hstep--todo"><span class="hstep__dot"></span><div class="hstep__y" data-y="20??">20??</div><div class="hstep__t">«Федеральная практика»</div><p class="hstep__d">ЭКСПОКРЫМ присоединился к федеральному сообществу</p><span class="hstep__tag">Год уточняется</span></div>
-        <div class="hstep hstep--fem" style="--c:#2F6FA6"><span class="hstep__ics"><img class="hstep__ic" src="logos/fem.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2026">2026</div><div class="hstep__t">Форум эстетической медицины</div><p class="hstep__d">Новый проект экосистемы — теперь 14 отраслевых событий в трёх городах</p></div>
+        <div class="hstep"><span class="hstep__dot"></span><div class="hstep__y" data-y="2018">2018</div><div class="hstep__t">Диалог с министерствами</div><p class="hstep__d">С 2018 года выстраиваем непрерывную коммуникацию с федеральными и региональными профильными министерствами, госучреждениями и другими организациями</p></div>
+        <div class="hstep" style="--c:#A50E1A"><span class="hstep__ics"><img class="hstep__ic" src="logos/cuf.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2022">2022</div><div class="hstep__t">КрымУрбанФорум</div><p class="hstep__d">Конференция по комплексному развитию территорий и Премия в области урбанистики</p></div>
+        <div class="hstep"><span class="hstep__dot"></span><div class="hstep__y" data-y="2024">2024</div><div class="hstep__t">Премия «Признание года»</div><p class="hstep__d">Награда в номинации «Лучшее событийное мероприятие»</p></div>
+        <div class="hstep hstep--fem" style="--c:#2F6FA6"><span class="hstep__ics"><img class="hstep__ic" src="logos/fem.svg" alt="" aria-hidden="true"></span><div class="hstep__y" data-y="2026">2026</div><div class="hstep__t">Форум эстетической медицины</div><p class="hstep__d">Новый проект экосистемы — теперь 15+ отраслевых событий в трёх городах</p></div>
       </div>
     </div>
   </section>
