@@ -138,8 +138,9 @@ button{font:inherit;color:inherit}
 .mf-do>p{margin-top:24px}
 /* Ступенчатая компоновка: миссия выше и правее, «Берём на себя всё» ниже и левее */
 .manifest__foot--stag{grid-template-columns:repeat(12,1fr);gap:0;row-gap:0;border-top:0;padding-top:0}
-.manifest__foot--stag .mission{grid-column:6/13;grid-row:1;padding:56px 64px 64px}
-.manifest__foot--stag .mission p{font-size:clamp(28px,3.1vw,48px);line-height:1.12;letter-spacing:-.02em}
+.manifest__foot--stag .mission{grid-column:1/-1;grid-row:1;padding:72px 80px 80px}
+.manifest__foot--stag .mission p{font-size:clamp(28px,4.2vw,64px);line-height:1.08;letter-spacing:-.025em;max-width:1150px}
+.manifest__foot--stag .mission::before{font-size:340px;right:64px;top:-60px}
 .manifest__foot--stag .mf-do{grid-column:1/9;grid-row:2;margin-top:64px}
 .manifest__foot--stag .mf-k{font-size:clamp(40px,5.4vw,88px);line-height:.95;font-weight:600;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink)}
 .manifest__foot--stag .mf-k em{font-style:normal;color:var(--red)}
@@ -403,6 +404,7 @@ button{font:inherit;color:inherit}
   .manifest__foot{gap:40px}
   .mission,.manifest__foot--stag .mission{padding:36px 28px 40px;border-radius:16px}
   .manifest__foot--stag .mission,.manifest__foot--stag .mf-do{grid-column:1/-1}
+  .manifest__foot--stag .mission::before{font-size:160px;right:16px;top:-24px}
   .manifest__foot--stag .mf-do{margin-top:48px}
   .steps li:not(:last-child)::after{display:none}
   .manifest__foot--stag .steps li>span{height:48px;font-size:15px}
