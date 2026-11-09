@@ -1318,3 +1318,15 @@ a.cg-m__h:hover{color:var(--red)}
   .tsl__nav{left:var(--gut);right:var(--gut);bottom:20px;justify-content:space-between}
   .tsl__btn{width:48px;height:48px}
 }
+
+/* «Команда» на десктопе: заголовок, фильтры и слайдер вместе ровно на один экран */
+@media (min-width:901px){
+  .team-s{display:flex;flex-direction:column;height:calc(100svh - var(--hdr));min-height:640px;max-height:1000px;padding-top:48px}
+  .team-s .team__head{margin-bottom:28px}
+  .team-s .tsl{flex:1;min-height:0;display:flex;margin-top:0}
+  .team-s .tsl__track{flex:1}
+  .team-s .tslide{height:auto}
+  .team-s>.container{width:100%}
+  .team-s .tslide__n{font-size:clamp(44px,5vw,88px)}
+  .team-s .tslide__tag{margin-top:32px}
+}
