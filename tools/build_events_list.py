@@ -58,6 +58,12 @@ def build():
         months[-1][1].append(c)
     nxt = cards[0]
     nxt_iso = f'{nxt["year"]}-{nxt["mon"]:02d}-{nxt["day"]:02d}'
+    # цвет карточки «Ближайшее» — цвет мероприятия с его страницы (--ev), иначе красный
+    color = ''
+    if not nxt['href'].startswith('http'):
+        ev = (ROOT / nxt['href'][3:]).read_text(encoding='utf-8')
+        m = re.search(r'<body[^>]*style="--ev:([^";]+)', ev)
+        color = f' style="--ev:{m.group(1)}"' if m else ''
 
     chips = '\n'.join(f'          <button class="chip" data-f="{c}">{c} <small>{sum(x["city"] == c for x in cards)}</small></button>' for c in cities)
     rows = []
@@ -87,7 +93,7 @@ def build():
       <h1 class="hero__title"><span class="ln" style="--i:0"><span>Календарь</span></span><span class="ln ln--indent" style="--i:1"><span><em>{year}</em></span></span></h1>
       <div class="cal-h">
         <p class="hero-n__lead">{len(cards)} {plural(len(cards), ['выставка, форум и премия', 'выставки, форума и премии', 'выставок, форумов и премий'])} в {', '.join(x.replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште') for x in cities[:-1])} и {cities[-1].replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште')}.</p>
-        <a class="cal-next" href="{nxt['href']}"{' target="_blank" rel="noopener"' if nxt['href'].startswith('http') else ''}>
+        <a class="cal-next"{color} href="{nxt['href']}"{' target="_blank" rel="noopener"' if nxt['href'].startswith('http') else ''}>
           <small>Ближайшее</small>
           <b>{nxt['name']}</b>
           <span>{nxt['date']} · {nxt['city']}</span>

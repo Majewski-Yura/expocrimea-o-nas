@@ -1088,8 +1088,8 @@ a.ct__big:hover{opacity:.8}
 
 /* ===== Календарь мероприятий ===== */
 .cal-h{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
-.cal-next{display:grid;gap:6px;min-width:340px;padding:28px 32px;border-radius:20px;background:var(--red);color:#fff;transition:transform .5s var(--ease),background .3s}
-.cal-next:hover{transform:translateY(-4px);background:var(--red-dark)}
+.cal-next{display:grid;gap:6px;min-width:340px;padding:28px 32px;border-radius:20px;background:var(--ev,var(--red));color:#fff;transition:transform .5s var(--ease),background .3s}
+.cal-next:hover{transform:translateY(-4px);background:color-mix(in srgb,var(--ev,var(--red)) 85%,#000)}
 .cal-next small{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
 .cal-next b{font-size:28px;line-height:1.1;font-weight:600}
 .cal-next>span{font-size:15px;opacity:.9}
