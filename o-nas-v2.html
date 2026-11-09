@@ -488,7 +488,9 @@ function update() {
 
   // Фото раскрывается до полного экрана
   const zr = zoom.getBoundingClientRect();
-  zoom.style.setProperty('--p', clamp((H - zr.top) / Math.max(1, zr.height - (vh - H)) * 1.25).toFixed(4));
+  // коллаж начинает собираться, когда блок поднялся на 60% экрана, а не только когда прилип к шапке
+  const lead = vh * .6;
+  zoom.style.setProperty('--p', clamp((H + lead - zr.top) / Math.max(1, zr.height - (vh - H) + lead) * 1.25).toFixed(4));
 
   // Манифест проявляется по словам
   if (words.length) {
