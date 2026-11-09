@@ -161,7 +161,7 @@ button{font:inherit;color:inherit}
 .manifest__foot--stag .mission{grid-column:1/-1;grid-row:1;padding:72px 80px 80px}
 .manifest__foot--stag .mission p{font-size:clamp(28px,4.2vw,64px);line-height:1.08;letter-spacing:-.025em;max-width:1150px}
 .manifest__foot--stag .mf-do{grid-column:1/-1;grid-row:2;margin-top:128px}
-.manifest__foot--stag .mf-k{font-size:clamp(40px,5.4vw,88px);line-height:.95;font-weight:600;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink)}
+.manifest__foot--stag .mf-k{font-size:clamp(36px,5vw,72px);line-height:.98;font-weight:600;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
 .manifest__foot--stag .mf-k em{font-style:normal;color:var(--red)}
 .manifest__foot--stag .steps{margin-top:32px}
 
