@@ -118,10 +118,32 @@ button{font:inherit;color:inherit}
 .manifest__text .w.on{opacity:1}
 .manifest__foot{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:96px;padding-top:40px;border-top:1px solid var(--line)}
 .manifest__foot p{font-size:18px;color:#444;max-width:560px}
-.mission{position:relative;padding-left:32px}
-.mission::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:4px;background:var(--red);transform-origin:top;transform:scaleY(var(--m,1));transition:transform 1.2s var(--ease) .2s}
-.mission small{display:block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
-.mission p{font-size:clamp(20px,1.9vw,26px);line-height:1.3;font-weight:600;color:var(--ink)}
+.mission{--mc:var(--red);position:relative;overflow:hidden;align-self:start;padding:48px 56px 52px;border-radius:20px;background:radial-gradient(420px circle at var(--mx,85%) var(--my,10%),color-mix(in srgb,var(--mc) 14%,transparent),transparent 70%),var(--bg);transition:transform .6s var(--ease)}
+.mission::before{content:"«";position:absolute;right:28px;top:-34px;font-size:220px;line-height:1;font-weight:700;color:var(--mc);opacity:.12;transform:translateY(calc((1 - var(--m,1)) * 40px)) rotate(calc((1 - var(--m,1)) * -12deg));transition:transform 1.4s var(--ease) .2s}
+.mission small{position:relative;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mc);margin-bottom:20px}
+.mission small::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--mc);box-shadow:0 0 0 0 color-mix(in srgb,var(--mc) 40%,transparent);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.mission p{position:relative;font-size:clamp(22px,2.2vw,32px);line-height:1.25;font-weight:600;letter-spacing:-.01em;color:var(--ink);max-width:none}
+.mission mark{background:linear-gradient(color-mix(in srgb,var(--mc) 22%,transparent),color-mix(in srgb,var(--mc) 22%,transparent)) 0 88%/calc(var(--m,1) * 100%) 38% no-repeat;color:inherit;transition:background-size 1.2s var(--ease) .5s}
+.mission mark+mark,.mission p mark:last-of-type{transition-delay:.9s}
+.mission:hover,.js-anim .mission.rv.in:hover{transform:translateY(-4px)}
+.steps{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:10px 6px;margin-top:24px}
+.steps li{display:inline-flex;align-items:center;gap:6px}
+.steps li>span{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px 0 8px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:15px;font-weight:600;transition:background .3s,color .3s,border-color .3s}
+.steps li>span b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--bg);font-size:12px;color:var(--red);transition:background .3s,color .3s}
+.steps li:hover>span{background:var(--red);border-color:var(--red);color:#fff}
+.steps li:hover>span b{background:#fff}
+.steps li:not(:last-child)::after{content:"";width:14px;height:14px;background:var(--muted-2);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
+.mf-k{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mf-do>p{margin-top:24px}
+/* Ступенчатая компоновка: миссия выше и правее, «Берём на себя всё» ниже и левее */
+.manifest__foot--stag{grid-template-columns:repeat(12,1fr);gap:0;row-gap:0;border-top:0;padding-top:0}
+.manifest__foot--stag .mission{grid-column:6/13;grid-row:1;padding:56px 64px 64px}
+.manifest__foot--stag .mission p{font-size:clamp(28px,3.1vw,48px);line-height:1.12;letter-spacing:-.02em}
+.manifest__foot--stag .mf-do{grid-column:1/9;grid-row:2;margin-top:64px}
+.manifest__foot--stag .mf-k{font-size:clamp(40px,5.4vw,88px);line-height:.95;font-weight:600;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink)}
+.manifest__foot--stag .mf-k em{font-style:normal;color:var(--red)}
+.manifest__foot--stag .steps{margin-top:32px}
 
 /* 4. Цифры — бенто */
 .facts{background:var(--ink);color:#fff;padding:120px 0}
@@ -361,6 +383,8 @@ button{font:inherit;color:inherit}
 .js-anim .rv--clip.in{clip-path:inset(-25% -5% -25% -5%)}
 .js-anim .mission{--m:0}
 .js-anim .mission.in{--m:1}
+.js-anim .steps li{opacity:0;transform:translateY(16px) scale(.94);transition:opacity .6s var(--ease),transform .8s var(--ease);transition-delay:calc(.25s + var(--i,0) * .12s)}
+.js-anim .in .steps li{opacity:1;transform:none}
 
 @media (max-width:1100px){
   .nav,.header .btn{display:none}
@@ -377,6 +401,12 @@ button{font:inherit;color:inherit}
 @media (max-width:900px){
   .hero__row,.manifest__foot,.boss__grid,.rev__grid,.req__grid,.jobs__in,.pidx__head{grid-template-columns:1fr}
   .manifest__foot{gap:40px}
+  .mission,.manifest__foot--stag .mission{padding:36px 28px 40px;border-radius:16px}
+  .manifest__foot--stag .mission,.manifest__foot--stag .mf-do{grid-column:1/-1}
+  .manifest__foot--stag .mf-do{margin-top:48px}
+  .steps li:not(:last-child)::after{display:none}
+  .manifest__foot--stag .steps li>span{height:48px;font-size:15px}
+  .mission::before{font-size:160px;right:16px;top:-24px}
   .boss__ph{max-width:420px}
   .rev__grid{gap:24px}
   .rev__num{margin-top:16px}
@@ -626,8 +656,7 @@ button{font:inherit;color:inherit}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .tags span{display:inline-flex;align-items:center;height:40px;padding:0 18px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:600;transition:background .3s,color .3s,border-color .3s}
 .tags span:hover{background:var(--ev);border-color:var(--ev);color:#fff}
-.e-about .mission::before{background:var(--ev)}
-.e-about .mission small{color:var(--ev)}
+.e-about .mission{--mc:var(--ev)}
 .e-offer{display:flex;gap:16px;align-items:center;margin-top:32px;padding:20px 24px;border-radius:var(--radius);background:color-mix(in srgb,var(--ev) 10%,#fff);font-weight:600}
 .e-offer svg{width:28px;height:28px;flex-shrink:0;stroke:var(--ev);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 

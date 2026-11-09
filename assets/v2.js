@@ -187,6 +187,13 @@ if (lazyIf.length) {
   lazyIf.forEach(f => lo.observe(f));
 }
 
+// Карточка миссии: мягкое световое пятно следует за курсором
+if (fine && !reduce) $$('.mission').forEach(m => m.addEventListener('pointermove', e => {
+  const r = m.getBoundingClientRect();
+  m.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+  m.style.setProperty('--my', (e.clientY - r.top) + 'px');
+}));
+
 // Статья: копирование ссылки
 $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { return; }
