@@ -224,7 +224,7 @@ button{font:inherit;color:inherit}
 .hist__meta p{font-size:13px;color:var(--muted)}
 .hist__bar{width:240px;height:2px;background:var(--line);position:relative}
 .hist__bar i{position:absolute;inset:0;background:var(--red);transform-origin:0 50%;transform:scaleX(var(--hp,0))}
-.hist__track{display:flex;padding:0 var(--gut);scroll-padding-inline:var(--gut);will-change:transform;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.hist__track{display:flex;padding:28px var(--gut) 0;margin-top:-28px;scroll-padding-inline:var(--gut);will-change:transform;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .hist__track::-webkit-scrollbar{display:none}
 .hstep{flex:0 0 min(520px,78vw);padding-right:56px;position:relative;scroll-snap-align:start}
 .hstep::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--muted-2)}
