@@ -105,7 +105,8 @@ button{font:inherit;color:inherit}
 .zoom__cap span{display:block;margin-top:16px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 
 /* Бегущие ленты */
-.bands{position:relative;height:240px;background:#fff;overflow:hidden}
+/* ленты наезжают на нижний край блока выше: верхняя часть прозрачная */
+.bands{position:relative;z-index:3;height:240px;margin-top:-100px;background:linear-gradient(transparent 100px,#fff 100px);overflow:hidden}
 .band{position:absolute;left:-5%;width:110%;white-space:nowrap;padding:20px 0;font-size:clamp(20px,2.4vw,32px);font-weight:600;text-transform:uppercase;letter-spacing:-.01em;color:#fff}
 .band--red{background:var(--red);top:72px;transform:rotate(-3deg);z-index:2}
 .band--dark{background:#E2E2E2;color:#4A4D52;top:84px;transform:rotate(2.5deg)}
@@ -467,7 +468,7 @@ button{font:inherit;color:inherit}
   .zoom{height:200vh}
   .collage{gap:6px;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr);grid-template-areas:"a a" "b c" "d e" "f h" "g g"}
   .zoom__cap{bottom:32px}
-  .bands{height:180px}
+  .bands{height:180px;margin-top:-76px;background:linear-gradient(transparent 76px,#fff 76px)}
   .band--red{top:52px}
   .band--dark{top:62px}
   .band{padding:14px 0}
