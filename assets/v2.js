@@ -40,17 +40,16 @@ if (vid) {
   });
 }
 
-// Крупное «ЭКСПОКРЫМ» на видео: уменьшаем шрифт, если слово не влезает в ширину
-const heroT = $('.hero-v .hero__title');
-if (heroT) {
-  const fitHero = () => {
-    heroT.style.fontSize = '';
-    const ln = $('.ln', heroT), word = $('.ln > span', heroT), k = ln.clientWidth / word.offsetWidth;
-    if (k < 1) heroT.style.fontSize = parseFloat(getComputedStyle(heroT).fontSize) * k * .98 + 'px';
+// Крупные заголовки: уменьшаем шрифт, если самая длинная строка не влезает в ширину
+$$('.hero__title').forEach(t => {
+  const fit = () => {
+    t.style.fontSize = '';
+    const k = Math.min(...$$('.ln', t).map(ln => { const w = $(':scope > span', ln); return w ? ln.clientWidth / w.offsetWidth : 1; }));
+    if (k < 1) t.style.fontSize = parseFloat(getComputedStyle(t).fontSize) * k * .98 + 'px';
   };
-  fitHero(); addEventListener('resize', fitHero);
-  if (document.fonts) document.fonts.ready.then(fitHero);
-}
+  fit(); addEventListener('resize', fit);
+  if (document.fonts) document.fonts.ready.then(fit);
+});
 
 // Подписка: форма-заглушка до переноса на сайт
 $$('.sub__f').forEach(f => f.addEventListener('submit', e => { e.preventDefault(); f.closest('.sub').classList.add('is-sent'); }));

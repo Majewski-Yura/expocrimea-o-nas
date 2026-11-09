@@ -9,7 +9,7 @@
   --ink:#2B2D30; --ink-2:#35383C; --ink-3:#383B3F; /* графит вместо чёрного */
   --bg:#F2F2F2; --card:#FFFFFF;
   --muted:#828282; --muted-2:#BDBDBD; --line:#E0E0E0;
-  --radius:12px; --container:1360px; --gut:40px; --hdr:88px;
+  --radius:12px; --container:100vw; --gut:clamp(40px,4vw,80px); /* контент на всю ширину экрана */ --hdr:88px;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -94,6 +94,9 @@ button{font:inherit;color:inherit}
 /* каждое фото влетает в сетку по своей доле прокрутки */
 .ct{--t:clamp(0, (var(--p) - var(--k) * .07) / .3, 1);margin:0;overflow:hidden;border-radius:4px;background:var(--ink-2);opacity:var(--t);transform:translate(calc((1 - var(--t)) * var(--fx)), calc((1 - var(--t)) * var(--fy))) rotate(calc((1 - var(--t)) * var(--r))) scale(calc(.8 + var(--t) * .2));will-change:transform}
 .ct img{width:100%;height:100%;object-fit:cover}
+/* у «Контактов» свой блок .ct с отступами — в коллаже их не должно быть */
+.collage .ct{position:relative;padding:0;background:var(--ink-2)}
+.collage .ct img{position:absolute;inset:0}
 .ct:nth-child(1){grid-area:a}.ct:nth-child(2){grid-area:b}.ct:nth-child(3){grid-area:c}.ct:nth-child(4){grid-area:d}
 .ct:nth-child(5){grid-area:e}.ct:nth-child(6){grid-area:f}.ct:nth-child(7){grid-area:g}.ct:nth-child(8){grid-area:h}
 .zoom__stick::after{content:"";position:absolute;inset:0;background:rgba(43,45,48,.62);opacity:calc((var(--p) - .78) * 5);pointer-events:none}
