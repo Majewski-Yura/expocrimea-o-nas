@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/v2.css?v=20261163">
+<link rel="stylesheet" href="assets/v2.css?v=20261170">
 </head>
 <body>
 
@@ -432,8 +432,10 @@ grid.innerHTML = TEAM.map((t, i) => `
 // Слайдер команды: один сотрудник на экран, стрелки, свайп, счётчик; фильтр ведёт к первому сотруднику отдела
 const tSlides = $$('.tslide', grid), tCnt = $('.tsl__cnt b');
 $('.tsl__cnt').lastChild.textContent = ' / ' + String(tSlides.length).padStart(2, '0');
-const tCur = () => Math.round(grid.scrollLeft / grid.clientWidth);
-const tGo = i => grid.scrollTo({left: Math.max(0, Math.min(tSlides.length - 1, i)) * grid.clientWidth, behavior: reduce ? 'auto' : 'smooth'});
+// шаг — ширина фрейма плюс зазор: соседние фреймы выглядывают по бокам
+const tStep = () => tSlides.length > 1 ? tSlides[1].offsetLeft - tSlides[0].offsetLeft : grid.clientWidth;
+const tCur = () => Math.round(grid.scrollLeft / tStep());
+const tGo = i => grid.scrollTo({left: Math.max(0, Math.min(tSlides.length - 1, i)) * tStep(), behavior: reduce ? 'auto' : 'smooth'});
 $$('.tsl__btn').forEach(b => b.addEventListener('click', () => tGo(tCur() + +b.dataset.dir)));
 const chips = $$('.chip'), ind = $('.chips__ind');
 const moveInd = () => { const on = $('.chip.is-on'); ind.style.width = on.offsetWidth + 'px'; ind.style.transform = `translateX(${on.offsetLeft}px)`; };
