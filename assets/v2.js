@@ -194,6 +194,35 @@ if (fine && !reduce) $$('.mission').forEach(m => m.addEventListener('pointermove
   m.style.setProperty('--my', (e.clientY - r.top) + 'px');
 }));
 
+// Страница партнёров: рубрики, поиск и подгрузка порциями
+const pgrid = $('#pgrid');
+if (pgrid) {
+  const cards = [...pgrid.children], tabs = $('[data-ptabs]'), ind = $('.chips__ind', tabs), btns = $$('.chip', tabs);
+  const more = $('[data-pmore]'), count = $('[data-pcount]'), empty = $('.pl__empty'), q = $('[data-psearch]');
+  const STEP = 48;
+  let f = 'all', shown = STEP;
+  const moveInd = () => { const on = $('.chip.is-on', tabs); ind.style.width = on.offsetWidth + 'px'; ind.style.transform = `translateX(${on.offsetLeft}px)`; };
+  const render = (anim) => {
+    const term = q.value.trim().toLowerCase();
+    const match = cards.filter(c => (f === 'all' || c.dataset.f === f) && (!term || c.dataset.n.includes(term)));
+    cards.forEach(c => { c.hidden = true; c.classList.remove('pop'); });
+    match.slice(0, shown).forEach((c, i) => {
+      c.hidden = false;
+      if (anim && !reduce && i >= shown - STEP) { c.style.setProperty('--i', (i % STEP) % 24); void c.offsetWidth; c.classList.add('pop'); }
+    });
+    empty.hidden = match.length > 0;
+    more.hidden = match.length <= shown;
+    count.textContent = match.length ? `Показано ${Math.min(shown, match.length)} из ${match.length}` : '';
+  };
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(c => c.classList.toggle('is-on', c === b)); f = b.dataset.f; shown = STEP; moveInd(); render(true);
+  }));
+  q.addEventListener('input', () => { shown = STEP; render(false); });
+  more.addEventListener('click', () => { shown += STEP; render(true); });
+  new ResizeObserver(moveInd).observe(tabs); addEventListener('load', moveInd); moveInd();
+  render(false);
+}
+
 // Статья: копирование ссылки
 $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { return; }
