@@ -478,6 +478,7 @@ button{font:inherit;color:inherit}
   .band--dark{top:62px}
   .band{padding:14px 0}
   .manifest,.facts,.pidx,.team-s,.rev,.part,.req-s,.jobs{padding:80px 0}
+  .team-s{padding-bottom:0}
   .boss{padding:80px 0 96px}
   .hist__pin{padding:80px 0 72px}
   .manifest__foot{margin-top:56px}
