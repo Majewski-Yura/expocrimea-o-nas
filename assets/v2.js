@@ -3,6 +3,8 @@ const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [..
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+// Корень сайта: скрипт лежит в assets/, страницы — на разной глубине
+const SITE_ROOT = new URL('..', document.currentScript ? document.currentScript.src : location.href).href;
 
 // Меню на мобильном
 const header = $('.header'), burger = $('.burger');
@@ -339,7 +341,7 @@ if (chat && window.HTMLDialogElement) {
       <label><span>Имя</span><input name="name" required autocomplete="name"></label>
       <label><span>Телефон</span><input name="phone" type="tel" required autocomplete="tel"></label>
       <label><span>Сообщение</span><textarea name="msg" rows="4"></textarea></label>
-      <label class="ct-form__ok"><input type="checkbox" required> <span>Даю согласие на обработку персональных данных</span></label>
+      <label class="ct-form__ok"><input type="checkbox" required> <span>Даю согласие на <a href="${SITE_ROOT}politika/index.html" target="_blank">обработку персональных данных</a></span></label>
       <button class="btn" type="submit">Отправить</button>
     </form>`;
   document.body.append(dlg);
@@ -362,3 +364,15 @@ $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
   const t = b.textContent; b.textContent = 'Скопировано'; b.classList.add('is-done');
   setTimeout(() => { b.textContent = t; b.classList.remove('is-done'); }, 1800);
 }));
+
+// Оглавление (политика): подсвечиваем раздел, который сейчас на экране
+const tocLinks = $$('.pp__toc nav a');
+if (tocLinks.length) {
+  const secs = tocLinks.map(a => $(a.getAttribute('href')));
+  const spy = () => {
+    let cur = 0;
+    secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * 0.35) cur = i; });
+    tocLinks.forEach((a, i) => a.classList.toggle('is-on', i === cur));
+  };
+  addEventListener('scroll', spy, {passive: true}); spy();
+}

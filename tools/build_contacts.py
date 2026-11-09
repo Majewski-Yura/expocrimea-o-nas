@@ -95,7 +95,7 @@ def build():
           <label><span>Имя</span><input name="name" required autocomplete="name"></label>
           <label><span>Телефон</span><input name="phone" type="tel" required autocomplete="tel"></label>
           <label><span>Сообщение</span><textarea name="msg" rows="4"></textarea></label>
-          <label class="ct-form__ok"><input type="checkbox" required> <span>Даю согласие на обработку персональных данных</span></label>
+          <label class="ct-form__ok"><input type="checkbox" required> <span>Даю согласие на <a href="../politika/index.html" target="_blank">обработку персональных данных</a></span></label>
           <button class="btn" type="submit">Отправить</button>
         </form>
       </div>
