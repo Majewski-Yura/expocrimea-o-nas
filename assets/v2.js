@@ -190,12 +190,31 @@ if (lazyIf.length) {
   lazyIf.forEach(f => lo.observe(f));
 }
 
-// Карточка миссии: мягкое световое пятно следует за курсором
-if (fine && !reduce) $$('.mission').forEach(m => m.addEventListener('pointermove', e => {
-  const r = m.getBoundingClientRect();
-  m.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-  m.style.setProperty('--my', (e.clientY - r.top) + 'px');
-}));
+// Карточки миссии: красное пятно плывёт при прокрутке, а под курсором следует за ним
+const missions = $$('.mission');
+if (missions.length && !reduce) {
+  const hovered = new Set();
+  const glide = () => missions.forEach(m => {
+    if (hovered.has(m)) return;
+    const r = m.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    const k = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+    m.style.setProperty('--mx', (90 - k * 75).toFixed(1) + '%');
+    m.style.setProperty('--my', (5 + k * 85).toFixed(1) + '%');
+  });
+  let glideTick = false;
+  addEventListener('scroll', () => { if (!glideTick) { glideTick = true; requestAnimationFrame(() => { glideTick = false; glide(); }); } }, {passive: true});
+  glide();
+  if (fine) missions.forEach(m => {
+    m.addEventListener('pointermove', e => {
+      hovered.add(m);
+      const r = m.getBoundingClientRect();
+      m.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      m.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+    m.addEventListener('pointerleave', () => { hovered.delete(m); glide(); });
+  });
+}
 
 // Бегущие строки логотипов: едут сами с одной скоростью, листаются стрелками и рукой (мышью и пальцем)
 const MQ_SPEED = 50; // пикселей в секунду
