@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/v2.css?v=20261109">
+<link rel="stylesheet" href="assets/v2.css?v=20261110">
 </head>
 <body>
 
@@ -35,7 +35,7 @@
     <nav class="nav">
       <a href="#events">Мероприятия</a>
       <a href="#partners">Партнёры</a>
-      <a href="#news">Новости</a>
+      <a href="news/index.html">Новости</a>
       <a href="o-nas-v2.html">О компании</a>
       <a href="#contacts">Контакты</a>
     </nav>
@@ -258,25 +258,33 @@
         <a class="lnk rv" href="https://expocrimea.com/news/" target="_blank" rel="noopener">Все новости<span><svg><use href="#i-arrow"/></svg></span></a>
       </div>
       <div class="ngrid">
-        <a class="ncard rv" href="https://expocrimea.com/news/krym-urban-forum-2026/" target="_blank" rel="noopener">
-          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/05/ph_0228-450x300.jpg" alt="" loading="lazy"></span>
-          <span class="ncard__d">17 октября</span>
-          <span class="ncard__t">Крым Урбан Форум — 2026: главные вопросы развития девелопмента Юга России</span>
+        <a class="ncard rv" data-f="urban" href="news/krym-urban-forum-2026.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/10/ph_0062-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">17 октября 2026</span><span class="ncard__tag">Крым Урбан Форум</span></span>
+          <span class="ncard__t">Крым Урбан Форум – 2026: главные вопросы развития девелопмента Юга России</span>
+          </span>
         </a>
-        <a class="ncard rv" href="https://expocrimea.com/news/ves-potenczial-prodovolstviya-i-promyshlennosti-rossii-na-rosekspokrym/" target="_blank" rel="noopener">
-          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/04/4d7a2309-450x300.jpg" alt="" loading="lazy"></span>
-          <span class="ncard__d">30 мая</span>
+        <a class="ncard rv" data-f="agro" href="news/ves-potenczial-prodovolstviya-i-promyshlennosti-rossii-na-rosekspokrym.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/05/ph_0228-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">30 мая 2026</span><span class="ncard__tag">РосЭкспоКрым</span></span>
           <span class="ncard__t">Весь потенциал продовольствия и промышленности России на «РосЭкспоКрым»</span>
+          </span>
         </a>
-        <a class="ncard rv" href="https://expocrimea.com/news/fem-2026-nachalo-bolshoj-professionalnoj-istorii/" target="_blank" rel="noopener">
-          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/04/img_4488-450x300.png" alt="" loading="lazy"></span>
-          <span class="ncard__d">14 апреля</span>
-          <span class="ncard__t">ФЭМ-2026: начало большой профессиональной истории!</span>
+        <a class="ncard rv" data-f="med" href="news/fem-2026-nachalo-bolshoj-professionalnoj-istorii.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/04/4d7a2309-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">14 апреля 2026</span><span class="ncard__tag">Форум эстетической медицины</span></span>
+          <span class="ncard__t">ФЭМ-2026: начало большой профессиональной истории!</span>
+          </span>
         </a>
-        <a class="ncard rv" href="https://expocrimea.com/news/dostizheniya-dlya-industrii-gostepriimstva-predstavili-na-restootelmarket/" target="_blank" rel="noopener">
-          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/03/2026-03-04-16.27.41-450x300.jpg" alt="" loading="lazy"></span>
-          <span class="ncard__d">4 марта</span>
+        <a class="ncard rv" data-f="hosp" href="news/dostizheniya-dlya-industrii-gostepriimstva-predstavili-na-restootelmarket.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/04/img_4488-300x200.png" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">23 марта 2026</span><span class="ncard__tag">РестоОтельМаркет</span></span>
           <span class="ncard__t">Достижения для индустрии гостеприимства представили на «РестоОтельМаркет»</span>
+          </span>
         </a>
       </div>
     </div>
@@ -308,7 +316,7 @@
           <figcaption>Жилой квартал «Просторы Крыма»</figcaption>
         </figure>
         <figure class="slide">
-          <blockquote>Республика Крым — это огромная инвестиционная площадка, которая в ближайшее время выйдет на совершенно другой уровень! На форуме люди объединились, чтобы эффективно взаимодействовать друг с другом и, конечно, найти партнёров!</blockquote>
+          <blockquote>Республика Крым — это огромная инвестиционная площадка, которая в ближайшее время выйдет на совершенно другой уровень! На форуме люди объединились, чтобы эффективно взаимодействовать друг с другом и, конечно, найти партнёров!</blockquote>
           <figcaption>ГК «Точно»</figcaption>
         </figure>
       </div>
@@ -380,7 +388,7 @@
       </div>
       <div>
         <h4>Участникам</h4>
-        <ul><li><a href="#events">Мероприятия</a></li><li><a href="#news">Новости</a></li><li><a href="#">Документы</a></li></ul>
+        <ul><li><a href="#events">Мероприятия</a></li><li><a href="news/index.html">Новости</a></li><li><a href="#">Документы</a></li></ul>
       </div>
       <div>
         <h4>Контакты</h4>
@@ -397,6 +405,6 @@
 
 <a class="fab fab--chat" href="#contacts" aria-label="Написать нам"><svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 5v2h10V8zm0 4v2h7v-2z"/></svg></a>
 <a class="fab fab--up" href="#" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="M12 21V3M5 10l7-7 7 7"/></svg></a>
-<script src="assets/v2.js?v=20261109"></script>
+<script src="assets/v2.js?v=20261110"></script>
 </body>
 </html>

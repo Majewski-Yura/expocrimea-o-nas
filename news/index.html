@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новости — ЭКСПОКРЫМ</title>
+<meta name="description" content="Новости ЭКСПОКРЫМ: итоги выставок, анонсы мероприятий и события отраслей Крыма.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/v2.css?v=20261110">
+</head>
+<body class="page-news">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path d="M21.5 3.5 2.5 11l7 2.5m12-10-3.5 17-8.5-7m12-10-12 10m0 0V20l3-3.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 32 32"><path d="M8 3h11l7 7v19H8z"/><path d="M19 3v7h7M12 18h10M12 23h7"/></symbol>
+  <symbol id="i-snd" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></symbol>
+</svg>
+<div class="progress" aria-hidden="true"></div>
+<header class="header">
+  <div class="container header__in">
+    <a class="logo" href="../index.html">
+      <span class="logo__mark"><img src="../site-source/logo.svg" alt=""><span>ЭКСПОКРЫМ</span></span>
+      <span class="logo__tag">Место встречи профессионалов</span>
+    </a>
+    <nav class="nav">
+      <a href="../index.html#events">Мероприятия</a>
+      <a href="#partners">Партнёры</a>
+      <a href="../news/index.html" aria-current="page">Новости</a>
+      <a href="../o-nas-v2.html">О компании</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn" href="#contacts">Обратный звонок</a>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero hero-n">
+    <div class="container">
+      <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Новости</nav>
+      <div class="eyebrow">Пресс-центр ЭКСПОКРЫМ</div>
+      <h1 class="hero__title"><span class="ln" style="--i:0"><span>Новости</span></span><span class="ln ln--indent" style="--i:1"><span><em>и события</em></span></span></h1>
+      <p class="hero-n__lead">Итоги выставок, анонсы, деловая программа и жизнь отраслей Крыма — от организатора крупнейших выставок полуострова.</p>
+    </div>
+  </section>
+
+  <section class="nl">
+    <div class="container">
+      <div class="nl__bar">
+        <div class="chips chips--scroll rv" role="tablist" data-for="#news-grid">
+          <span class="chips__ind"></span>
+          <button class="chip is-on" role="tab" data-f="all">Все</button>
+          <button class="chip" role="tab" data-f="agro">АПК</button>
+          <button class="chip" role="tab" data-f="hosp">Гостеприимство</button>
+          <button class="chip" role="tab" data-f="urban">Стройка</button>
+          <button class="chip" role="tab" data-f="med">Медицина</button>
+          <button class="chip" role="tab" data-f="company">Компания</button>
+        </div>
+        <a class="lnk rv" href="https://t.me/expocrimea" target="_blank" rel="noopener">Наш телеграм<span><svg><use href="#i-arrow"/></svg></span></a>
+      </div>
+      <div class="ngrid ngrid--all" id="news-grid">
+        <a class="ncard ncard--big rv" data-f="urban" href="../news/krym-urban-forum-2026.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/10/ph_0062.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">17 октября 2026</span><span class="ncard__tag">Крым Урбан Форум</span></span>
+          <span class="ncard__t">Крым Урбан Форум – 2026: главные вопросы развития девелопмента Юга России</span>
+          <span class="ncard__l">17 октября, Ялта. В Крыму завершился «Крым Урбан Форум» — профессиональная площадка, объединившая представителей девелоперского сообщества, архитекторов, экспертов и участников рынка недвижимости. Мероприятие охватило…</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="agro" href="../news/ves-potenczial-prodovolstviya-i-promyshlennosti-rossii-na-rosekspokrym.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/05/ph_0228-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">30 мая 2026</span><span class="ncard__tag">РосЭкспоКрым</span></span>
+          <span class="ncard__t">Весь потенциал продовольствия и промышленности России на «РосЭкспоКрым»</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="med" href="../news/fem-2026-nachalo-bolshoj-professionalnoj-istorii.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/04/4d7a2309-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">14 апреля 2026</span><span class="ncard__tag">Форум эстетической медицины</span></span>
+          <span class="ncard__t">ФЭМ-2026: начало большой профессиональной истории!</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="hosp" href="../news/dostizheniya-dlya-industrii-gostepriimstva-predstavili-na-restootelmarket.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/04/img_4488-300x200.png" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">23 марта 2026</span><span class="ncard__tag">РестоОтельМаркет</span></span>
+          <span class="ncard__t">Достижения для индустрии гостеприимства представили на «РестоОтельМаркет»</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="agro" href="../news/dostizheniya-i-potenczial-apk-predstavili-na-agroekspokrym.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2026/03/2026-03-04-16.27.41-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">16 февраля 2026</span><span class="ncard__tag">АгроЭкспоКрым</span></span>
+          <span class="ncard__t">Достижения и потенциал АПК представили на АгроЭкспоКрым</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="urban" href="../news/krym-urban-forum-2025-delovye-kontakty-vektory-razvitiya-stroitelnosti-otrasli-i-drugie-itogi.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/09/ph_0110-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">12 сентября 2025</span><span class="ncard__tag">Крым Урбан Премия</span></span>
+          <span class="ncard__t">Крым Урбан Форум 2025: Деловые контакты, векторы развития строительной отрасли и другие итоги!</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="urban" href="../news/uznajte-vsyu-pravdu-o-remonte-na-strojekspokrym.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/08/1600h900-11-300x169.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">29 августа 2025</span><span class="ncard__tag">Крым Урбан Форум</span></span>
+          <span class="ncard__t">Узнайте всю правду о ремонте на СтройЭкспоКрым!</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="company" href="../news/ekspokrym-prisoedinilsya-k-federalnoj-praktike.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/08/ibps72zduoulycekcticdsculmxovrsvrxotm3zkdagluldnhojrlpm3s9h7qqf-1-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">26 августа 2025</span><span class="ncard__tag">ЭКСПОКРЫМ</span></span>
+          <span class="ncard__t">ЭКСПОКРЫМ присоединился к «Федеральной Практике»</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="hosp" href="../news/15-17-oktyabrya-v-yalte-projdet-turistekspo-krym-2025.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/06/turistekspokrym-1600h900_2-300x169.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">18 июня 2025</span><span class="ncard__tag">ТуристЭкспо. Крым</span></span>
+          <span class="ncard__t">15-17 октября в Ялте пройдет ТуристЭкспо. Крым 2025</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="urban" href="../news/luchshie-obekty-rynka-nedvizhimosti-kryma-podtverdyat-svoj-status-na-krymurbanpremii.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/06/2025-06-08-00.54.20-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">8 июня 2025</span><span class="ncard__tag">Крым Урбан Премия</span></span>
+          <span class="ncard__t">Лучшие объекты рынка недвижимости Крыма подтвердят свой статус на КрымУрбанПремии!</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="agro" href="../news/itogi-rosekspokrym2025.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2021/09/3-5-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">3 июня 2025</span><span class="ncard__tag">РосЭкспоКрым</span></span>
+          <span class="ncard__t">Старт новых контрактов и возможностей для российских производителей: итоги РосЭкспоКрым!</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="hosp" href="../news/restootelmarket-i-turizmekspokrym-3-dnya-na-odnoj-volne-s-industriej-gostepriimstva-i-turizma.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2021/08/img_1731-300x200.webp" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">22 апреля 2025</span><span class="ncard__tag">РестоОтельМаркет</span></span>
+          <span class="ncard__t">«РестоОтельМаркет» и «ТуризмЭкспоКрым»: 3 дня на одной волне с индустрией гостеприимства и туризма</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="hosp" href="../news/v-yalte-sostoitsya-glavnoe-sobytie-industrii-turizma-i-gostepriimstva.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/04/2025-04-23-15.56.43-300x169.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">10 апреля 2025</span><span class="ncard__tag">РестоОтельМаркет</span></span>
+          <span class="ncard__t">В Ялте состоится главное событие индустрии туризма и гостеприимства!</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="hosp" href="../news/chuvstvujte-sebya-kak-doma-kakie-trendy-stoit-uchest-v-sfere-gostepriimstva.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/03/freepik_the_style_is_candid_image_photography_with_natural_13048-300x205.jpeg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">4 марта 2025</span><span class="ncard__tag">РестоОтельМаркет</span></span>
+          <span class="ncard__t">Чувствуйте себя как дома: какие тренды стоит учесть в сфере гостеприимства?</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="agro" href="../news/innovaczii-partnerstvo-i-vektory-razvitiya-biznesa-agroekspokrym-v-2025-godu.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2021/08/ot8v9f0yf4q-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">20 февраля 2025</span><span class="ncard__tag">АгроЭкспоКрым</span></span>
+          <span class="ncard__t">Инновации, партнерство и векторы развития бизнеса: «АгроЭкспоКрым» в 2025 году!</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="hosp" href="../news/transformacziya-turisticheskogo-biznesa-chto-zhdyot-industriyu-gostepriimstva-v-rossii-v-2025.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2025/02/img_6664-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">18 февраля 2025</span><span class="ncard__tag">РестоОтельМаркет</span></span>
+          <span class="ncard__t">Трансформация туристического бизнеса: что ждёт индустрию гостеприимства в России в 2025?</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="company" href="../news/krym-perehodit-na-avtomaticheskuyu-usn.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2024/12/woman-with-face-protection-standing-with-arms-crossed-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">20 декабря 2024</span><span class="ncard__tag">ЭКСПОКРЫМ</span></span>
+          <span class="ncard__t">Крым переходит на автоматическую УСН</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="company" href="../news/sdaetsya-zemelnyj-uchastok-pod-vash-biznes-hvoya.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2024/10/img_2441-300x169.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">25 октября 2024</span><span class="ncard__tag">ЭКСПОКРЫМ</span></span>
+          <span class="ncard__t">Сдается земельный участок под ваш бизнес – ХВОЯ</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="agro" href="../news/rekordnyh-urozhaev.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2024/10/u7riyzepl75qlzj94pt69w91c5ofs338-300x225.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">16 октября 2024</span><span class="ncard__tag">АгроЭкспоКрым</span></span>
+          <span class="ncard__t">«Мишустин: сельское хозяйство России достигло рекордных урожаев в 2024 году»</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="agro" href="../news/eksport-produkczii-apk.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2024/10/close-up-person-with-green-apple-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">15 октября 2024</span><span class="ncard__tag">АгроЭкспоКрым</span></span>
+          <span class="ncard__t">В России планируют в 1,5 раза увеличить экспорт продукции АПК к 2030 году</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="agro" href="../news/proizvoditelej-selhoztehniki.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2024/10/qa8q6u15aeru0uckisn3ruaix8m1b6oj-e1728908955873-300x265.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">14 октября 2024</span><span class="ncard__tag">АгроЭкспоКрым</span></span>
+          <span class="ncard__t">В Госдуме разработают инициативы для поддержки производителей сельхозтехники</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="company" href="../news/v-krymu-proshla-konferencziya-novye-gorizonty.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2024/10/konfa-foto-1-300x225.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">11 октября 2024</span><span class="ncard__tag">ЭКСПОКРЫМ</span></span>
+          <span class="ncard__t">В Крыму прошла конференция «Новые горизонты»</span>
+          </span>
+        </a>
+        <a class="ncard rv" data-f="company" href="../news/kompaniya-ekspokrym-poluchila-premiyu-priznanie-goda.html">
+          <span class="ncard__ph"><img src="https://expocrimea.com/wp-content/uploads/2024/10/grgzg_yeqwo-300x200.jpg" alt="" loading="lazy"></span>
+          <span class="ncard__b">
+          <span class="ncard__m"><span class="ncard__d">1 октября 2024</span><span class="ncard__tag">ЭКСПОКРЫМ</span></span>
+          <span class="ncard__t">Компания ЭКСПОКРЫМ получила премию «Признание года»</span>
+          </span>
+        </a>
+      </div>
+      <p class="nl__arch">Новости до&nbsp;октября 2024 года — в&nbsp;<a href="https://expocrimea.com/news/page/3/" target="_blank" rel="noopener">архиве старого сайта</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contacts">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="../index.html"><span class="logo__mark"><img src="../site-source/logo.svg" alt=""><span>ЭКСПОКРЫМ</span></span><span class="logo__tag">Место встречи профессионалов</span></a>
+        <p class="footer__about">Помогаем производителям и поставщикам услуг наладить партнёрские отношения и заключить выгодные контракты.</p>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <ul><li><a href="../o-nas-v2.html">О компании</a></li><li><a href="../o-nas-v2.html#team">Команда</a></li><li><a href="#partners">Партнёры</a></li><li><a href="https://expocrimea.com/vakansii/">Вакансии</a></li></ul>
+      </div>
+      <div>
+        <h4>Участникам</h4>
+        <ul><li><a href="../index.html#events">Мероприятия</a></li><li><a href="../news/index.html">Новости</a></li><li><a href="#">Документы</a></li></ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+79789009090">+7 (978) 900 90 90</a></li>
+          <li><a href="mailto:info@expocrimea.com">info@expocrimea.com</a></li>
+          <li>Республика Крым, г. Симферополь, ул. Киевская, 41, БЦ «ФАБРИКА», офис 322</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom"><span>© 2010–2026 ЭКСПОКРЫМ</span><a href="#">Политика конфиденциальности</a></div>
+  </div>
+</footer>
+
+<a class="fab fab--chat" href="#contacts" aria-label="Написать нам"><svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 5v2h10V8zm0 4v2h7v-2z"/></svg></a>
+<a class="fab fab--up" href="#" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="M12 21V3M5 10l7-7 7 7"/></svg></a>
+<script src="../assets/v2.js?v=20261110"></script>
+</body>
+</html>

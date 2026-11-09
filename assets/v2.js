@@ -186,3 +186,10 @@ if (lazyIf.length) {
   const lo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.src = e.target.dataset.src; lo.unobserve(e.target); } }), {rootMargin: '300px'});
   lazyIf.forEach(f => lo.observe(f));
 }
+
+// Статья: копирование ссылки
+$$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { return; }
+  const t = b.textContent; b.textContent = 'Скопировано'; b.classList.add('is-done');
+  setTimeout(() => { b.textContent = t; b.classList.remove('is-done'); }, 1800);
+}));
