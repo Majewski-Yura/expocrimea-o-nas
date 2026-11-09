@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/v2.css?v=20261170">
+<link rel="stylesheet" href="assets/v2.css?v=20261171">
 </head>
 <body>
 
@@ -416,7 +416,7 @@ const grid = $('#team-grid');
 const fmtTel = t => t.replace(/^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/, '+7 ($1) $2-$3-$4');
 grid.innerHTML = TEAM.map((t, i) => `
   <article class="tslide" data-d="${t.d}" aria-label="${t.n.replace('<br>', ' ')}">
-    ${t.ph ? `<img class="tslide__ph" src="team/${t.ph}.jpg" alt="" loading="${i < 2 ? 'eager' : 'lazy'}">` : `<div class="tslide__ph tslide__ph--none"><svg><use href="#i-user"/></svg></div>`}
+    ${t.ph ? `<img class="tslide__bg" src="team/${t.ph}.jpg" alt="" aria-hidden="true" loading="${i < 2 ? 'eager' : 'lazy'}"><img class="tslide__ph" src="team/${t.ph}.jpg" alt="" loading="${i < 2 ? 'eager' : 'lazy'}">` : `<div class="tslide__ph tslide__ph--none"><svg><use href="#i-user"/></svg></div>`}
     <span class="tslide__dpt">${DEP[t.d]}</span>
     <div class="tslide__b">
       <h3 class="tslide__n">${t.n}</h3>
