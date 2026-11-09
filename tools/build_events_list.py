@@ -92,7 +92,7 @@ def build():
       <div class="cal-h">
         <div class="cal-h__l">
         <div class="eyebrow">Каталог мероприятий</div>
-        <h1 class="hero__title"><span class="ln" style="--i:0"><span>Календарь</span></span><span class="ln ln--indent" style="--i:1"><span><em>{year}</em></span></span></h1>
+        <h1 class="hero__title"><span class="ln" style="--i:0"><span>Календарь</span></span><span class="ln" style="--i:1"><span><em>{year}</em></span></span></h1>
         <p class="hero-n__lead">{len(cards)} {plural(len(cards), ['выставка, форум и премия', 'выставки, форума и премии', 'выставок, форумов и премий'])} в {', '.join(x.replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште') for x in cities[:-1])} и {cities[-1].replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште')}.</p>
         </div>
         <a class="cal-next"{color} href="{nxt['href']}"{' target="_blank" rel="noopener"' if nxt['href'].startswith('http') else ''}>
