@@ -1,8 +1,8 @@
 /* Версия 2: та же палитра и шрифты, смелее компоновка и анимации */
-@font-face{font-family:'Gilroy';font-weight:400;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-regular.woff2') format('woff2')}
-@font-face{font-family:'Gilroy';font-weight:500;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-medium.woff2') format('woff2')}
-@font-face{font-family:'Gilroy';font-weight:600;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-semibold.woff2') format('woff2')}
-@font-face{font-family:'Gilroy';font-weight:700;font-display:swap;src:url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-bold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:400;font-display:swap;src:local('Gilroy-Regular'),local('Gilroy Regular'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-regular.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:500;font-display:swap;src:local('Gilroy-Medium'),local('Gilroy Medium'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-medium.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:600;font-display:swap;src:local('Gilroy-SemiBold'),local('Gilroy SemiBold'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-semibold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:700;font-display:swap;src:local('Gilroy-Bold'),local('Gilroy Bold'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-bold.woff2') format('woff2')}
 
 :root{
   --red:#E41A00; --red-dark:#C21600;
@@ -13,7 +13,8 @@
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* место под полосу прокрутки всегда занято: шапка не сдвигается между длинными и короткими страницами */
+html{scroll-behavior:smooth;scrollbar-gutter:stable}
 body{font-family:'Gilroy','Manrope',system-ui,sans-serif;font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -104,7 +105,7 @@ button{font:inherit;color:inherit}
 .bands{position:relative;height:240px;background:#fff;overflow:hidden}
 .band{position:absolute;left:-5%;width:110%;white-space:nowrap;padding:20px 0;font-size:clamp(20px,2.4vw,32px);font-weight:600;text-transform:uppercase;letter-spacing:-.01em;color:#fff}
 .band--red{background:var(--red);top:72px;transform:rotate(-3deg);z-index:2}
-.band--dark{background:var(--ink);top:84px;transform:rotate(2.5deg)}
+.band--dark{background:#E2E2E2;color:#4A4D52;top:84px;transform:rotate(2.5deg)}
 .band__track{display:inline-flex;animation:marq 60s linear infinite}
 .band--dark .band__track{animation-direction:reverse;animation-duration:70s}
 .band__track span{display:inline-flex;align-items:center;gap:28px;padding-right:28px}
@@ -532,7 +533,7 @@ button{font:inherit;color:inherit}
 .hero-v::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,45,48,.35) 0%,rgba(43,45,48,.2) 35%,rgba(43,45,48,.9) 100%)}
 .hero-v .container{position:relative;z-index:1;width:100%;padding-top:120px;padding-bottom:64px}
 .hero-v .eyebrow{color:#fff}
-.hero-v .hero__title{font-size:clamp(64px,13.4vw,232px);line-height:.86;letter-spacing:-.04em}
+.hero-v .hero__title{font-size:clamp(64px,13.4vw,212px);line-height:.86;letter-spacing:-.04em}
 .hero-v .hero__row{margin-top:40px}
 .hero-v .hero__sub{color:rgba(255,255,255,.85)}
 .hero-v .btn--line{color:#fff;border-color:rgba(255,255,255,.7)}
