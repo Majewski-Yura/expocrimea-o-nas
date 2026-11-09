@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/v2.css?v=20261158">
+<link rel="stylesheet" href="assets/v2.css?v=20261160">
 </head>
 <body>
 
@@ -418,7 +418,6 @@ grid.innerHTML = TEAM.map((t, i) => `
   <article class="tslide" data-d="${t.d}" aria-label="${t.n.replace('<br>', ' ')}">
     ${t.ph ? `<img class="tslide__ph" src="team/${t.ph}.jpg" alt="" loading="${i < 2 ? 'eager' : 'lazy'}">` : `<div class="tslide__ph tslide__ph--none"><svg><use href="#i-user"/></svg></div>`}
     <div class="tslide__b">
-      <span class="tslide__dep"><b>${String(i + 1).padStart(2, '0')}</b>${DEP[t.d]}</span>
       <h3 class="tslide__n">${t.n}</h3>
       <p class="tslide__r">${t.r}</p>
       <span class="tslide__tag">Контакты</span>
