@@ -1210,4 +1210,4 @@ a.ct__big:hover{opacity:.8}
 .ft-soc svg{width:20px;height:20px;fill:currentColor}
 /* контакты в подвале с иконками */
 .ft-ct li{display:flex;align-items:flex-start;gap:10px}
-.ft-ic{flex:0 0 16px;width:16px;height:16px;margin-top:2px;fill:none;stroke:var(--red);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ft-ic{flex:0 0 16px;width:16px;height:16px;margin-top:2px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
