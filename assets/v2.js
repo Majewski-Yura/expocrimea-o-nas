@@ -265,6 +265,21 @@ if (pgrid) {
   render(false);
 }
 
+// Контакты: открыт ли офис сейчас (по времени Симферополя, UTC+3)
+$$('[data-open]').forEach(el => {
+  const d = new Date(Date.now() + 3 * 36e5), day = d.getUTCDay(), m = d.getUTCHours() * 60 + d.getUTCMinutes();
+  const open = day >= 1 && day <= 5 && m >= 540 && m < 1020;
+  el.textContent = open ? 'Сейчас открыто' : 'Сейчас закрыто';
+  el.classList.toggle('is-open', open);
+});
+// Контакты: форма без сервера собирает письмо и открывает почтовую программу
+$$('form[data-mailto]').forEach(f => f.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = n => (f.elements[n].value || '').trim();
+  const body = `Имя: ${v('name')}\nТелефон: ${v('phone')}\n\n${v('msg')}`;
+  location.href = `mailto:${f.dataset.mailto}?subject=${encodeURIComponent('Обратная связь с сайта')}&body=${encodeURIComponent(body)}`;
+}));
+
 // Статья: копирование ссылки
 $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) { return; }
