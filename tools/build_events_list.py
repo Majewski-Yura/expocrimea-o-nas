@@ -89,10 +89,12 @@ def build():
   <section class="hero hero-n">
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Мероприятия</nav>
-      <div class="eyebrow">Каталог мероприятий</div>
-      <h1 class="hero__title"><span class="ln" style="--i:0"><span>Календарь</span></span><span class="ln ln--indent" style="--i:1"><span><em>{year}</em></span></span></h1>
       <div class="cal-h">
+        <div class="cal-h__l">
+        <div class="eyebrow">Каталог мероприятий</div>
+        <h1 class="hero__title"><span class="ln" style="--i:0"><span>Календарь</span></span><span class="ln ln--indent" style="--i:1"><span><em>{year}</em></span></span></h1>
         <p class="hero-n__lead">{len(cards)} {plural(len(cards), ['выставка, форум и премия', 'выставки, форума и премии', 'выставок, форумов и премий'])} в {', '.join(x.replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште') for x in cities[:-1])} и {cities[-1].replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште')}.</p>
+        </div>
         <a class="cal-next"{color} href="{nxt['href']}"{' target="_blank" rel="noopener"' if nxt['href'].startswith('http') else ''}>
           <small>Ближайшее</small>
           <b>{nxt['name']}</b>

@@ -1087,7 +1087,9 @@ a.ct__big:hover{opacity:.8}
 }
 
 /* ===== Календарь мероприятий ===== */
-.cal-h{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.cal-h{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center}
+.cal-h .hero-n__lead{margin-top:32px}
+.cal-next{animation:fadeUp .9s var(--ease) .6s both}
 .cal-next{display:grid;gap:6px;min-width:340px;padding:28px 32px;border-radius:20px;background:var(--ev,var(--red));color:#fff;transition:transform .5s var(--ease),background .3s}
 .cal-next:hover{transform:translateY(-4px);background:color-mix(in srgb,var(--ev,var(--red)) 85%,#000)}
 .cal-next small{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
@@ -1112,6 +1114,7 @@ a.ct__big:hover{opacity:.8}
   .cal .egrid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:767px){
+  .cal-h{grid-template-columns:1fr;gap:32px}
   .cal-next{min-width:0;width:100%;padding:24px}
   .cal-next b{font-size:24px}
   .cal-s{padding:40px 0 80px}
@@ -1125,3 +1128,4 @@ a.ct__big:hover{opacity:.8}
   .cal .egrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;margin:0;padding:0}
   .cal .ecard{flex:none}
 }
+@media (max-width:900px){.cal-h{grid-template-columns:1fr;gap:32px}.cal-next{justify-self:start}}
