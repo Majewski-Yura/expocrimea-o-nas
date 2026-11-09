@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/v2.css?v=20261171">
+<link rel="stylesheet" href="assets/v2.css?v=20261172">
 </head>
 <body>
 
@@ -245,22 +245,8 @@
           <h2 class="h2 rv rv--clip">Команда</h2>
           <p class="rv">Найдите менеджера своей выставки и свяжитесь с ним напрямую.</p>
         </div>
-        <div class="chips rv" role="tablist">
-          <span class="chips__ind" aria-hidden="true"></span>
-          <button class="chip is-on" data-f="all">Все</button>
-          <button class="chip" data-f="sales">Продажи</button>
-          <button class="chip" data-f="marketing">Маркетинг</button>
-          <button class="chip" data-f="projects">Проекты</button>
-        </div>
       </div>
-    </div>
-    <div class="tsl">
-      <div class="tsl__track" id="team-grid"></div>
-      <div class="tsl__nav">
-        <button class="tsl__btn" type="button" data-dir="-1" aria-label="Предыдущий сотрудник"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-        <span class="tsl__cnt"><b>01</b> / 09</span>
-        <button class="tsl__btn" type="button" data-dir="1" aria-label="Следующий сотрудник"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
+      <div class="tgroups" id="team-grid"></div>
     </div>
   </section>
 
@@ -413,49 +399,22 @@ const TEAM = [
   {n:'Валерия<br>Турышева', r:'Координатор деловых мероприятий', d:'projects', ph:'turysheva', t:'+79785300525', m:'media@expocrimea.com'},
 ];
 const grid = $('#team-grid');
-const fmtTel = t => t.replace(/^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/, '+7 ($1) $2-$3-$4');
-grid.innerHTML = TEAM.map((t, i) => `
-  <article class="tslide" data-d="${t.d}" aria-label="${t.n.replace('<br>', ' ')}">
-    ${t.ph ? `<img class="tslide__bg" src="team/${t.ph}.jpg" alt="" aria-hidden="true" loading="${i < 2 ? 'eager' : 'lazy'}"><img class="tslide__ph" src="team/${t.ph}.jpg" alt="" loading="${i < 2 ? 'eager' : 'lazy'}">` : `<div class="tslide__ph tslide__ph--none"><svg><use href="#i-user"/></svg></div>`}
-    <span class="tslide__dpt">${DEP[t.d]}</span>
-    <div class="tslide__b">
-      <h3 class="tslide__n">${t.n}</h3>
-      <p class="tslide__r">${t.r}</p>
-      <span class="tslide__tag">Контакты</span>
-      <div class="tslide__c">
-        <a href="tel:${t.t}"><svg><use href="#i-phone"/></svg>${fmtTel(t.t)}</a>
-        <a href="mailto:${t.m}"><svg><use href="#i-mail"/></svg>${t.m}</a>
+const card = t => `
+  <article class="tcard rv">
+    ${t.ph ? `<div class="tcard__ph"><img src="team/${t.ph}.jpg" alt="" loading="lazy"></div>` : `<div class="tcard__ph tcard__ph--none"><svg><use href="#i-user"/></svg></div>`}
+    <div class="tcard__b">
+      <div class="tcard__n">${t.n}</div>
+      <div class="tcard__r">${t.r}</div>
+      <div class="tcard__c">
+        <a href="tel:${t.t}" aria-label="Позвонить"><svg><use href="#i-phone"/></svg></a>
+        <a href="mailto:${t.m}" aria-label="Написать на почту"><svg><use href="#i-mail"/></svg></a>
       </div>
     </div>
-  </article>`).join('');
-
-// Слайдер команды: один сотрудник на экран, стрелки, свайп, счётчик; фильтр ведёт к первому сотруднику отдела
-const tSlides = $$('.tslide', grid), tCnt = $('.tsl__cnt b');
-$('.tsl__cnt').lastChild.textContent = ' / ' + String(tSlides.length).padStart(2, '0');
-// шаг — ширина фрейма плюс зазор: соседние фреймы выглядывают по бокам
-const tStep = () => tSlides.length > 1 ? tSlides[1].offsetLeft - tSlides[0].offsetLeft : grid.clientWidth;
-const tCur = () => Math.round(grid.scrollLeft / tStep());
-const tGo = i => grid.scrollTo({left: Math.max(0, Math.min(tSlides.length - 1, i)) * tStep(), behavior: reduce ? 'auto' : 'smooth'});
-$$('.tsl__btn').forEach(b => b.addEventListener('click', () => tGo(tCur() + +b.dataset.dir)));
-const chips = $$('.chip'), ind = $('.chips__ind');
-const moveInd = () => { const on = $('.chip.is-on'); ind.style.width = on.offsetWidth + 'px'; ind.style.transform = `translateX(${on.offsetLeft}px)`; };
-let tTick = false;
-grid.addEventListener('scroll', () => {
-  if (tTick) return; tTick = true;
-  requestAnimationFrame(() => {
-    tTick = false;
-    const i = tCur();
-    tCnt.textContent = String(i + 1).padStart(2, '0');
-    tSlides.forEach((el, k) => el.classList.toggle('is-on', k === i));
-  });
-}, {passive: true});
-tSlides[0] && tSlides[0].classList.add('is-on');
-chips.forEach(b => b.addEventListener('click', () => {
-  chips.forEach(c => c.classList.toggle('is-on', c === b));
-  moveInd();
-  const i = b.dataset.f === 'all' ? 0 : tSlides.findIndex(el => el.dataset.d === b.dataset.f);
-  if (i >= 0) tGo(i);
-}));
+  </article>`;
+grid.innerHTML = Object.keys(DEP).map(d => {
+  const ppl = TEAM.filter(t => t.d === d);
+  return `<div class="tgroup"><h3 class="tgroup__h rv">${DEP[d]}<small>${ppl.length}</small></h3><div class="tgrid">${ppl.map(card).join('')}</div></div>`;
+}).join('');
 
 // Меню на мобильном
 const header = $('.header'), burger = $('.burger');
@@ -547,9 +506,9 @@ let ticking = false;
 const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; update(); }); } };
 addEventListener('scroll', onScroll, {passive: true});
 track.addEventListener('scroll', onScroll, {passive: true});
-addEventListener('resize', () => { layoutHist(); moveInd(); update(); });
-addEventListener('load', () => { layoutHist(); moveInd(); update(); });
-layoutHist(); moveInd(); update();
+addEventListener('resize', () => { layoutHist(); update(); });
+addEventListener('load', () => { layoutHist(); update(); });
+layoutHist(); update();
 
 if (!reduce) {
   document.documentElement.classList.add('js-anim');
