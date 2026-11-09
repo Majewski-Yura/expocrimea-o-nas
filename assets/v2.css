@@ -1230,3 +1230,18 @@ a.cg-m__h:hover{color:var(--red)}
 .cg-m__cd em{font-style:normal}
 @media (max-width:1100px){.cg{width:100%}}
 @media (max-width:767px){.cg{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.cg-m{min-height:96px;padding:10px}.cg-l{width:30px;height:30px}.cg-l img{width:22px;height:22px}}
+
+/* всплывающая форма по кнопке чата */
+.pop-f{margin:auto;padding:0;border:0;background:none;width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;border-radius:20px}
+.pop-f::backdrop{background:rgba(43,45,48,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.pop-f[open]{animation:popIn .45s var(--ease)}
+.pop-f[open]::backdrop{animation:fadeIn .3s ease}
+.pop-f .ct-form{position:relative}
+.pop-f__x{position:absolute;right:16px;top:16px;width:40px;height:40px;border:0;border-radius:50%;background:var(--bg);display:grid;place-items:center;cursor:pointer;transition:background .3s,transform .4s var(--ease)}
+.pop-f__x:hover{background:var(--red);transform:rotate(90deg)}
+.pop-f__x svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.pop-f__x:hover svg{stroke:#fff}
+.pop-f h2{padding-right:48px}
+@keyframes popIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){.pop-f[open],.pop-f[open]::backdrop{animation:none}}
