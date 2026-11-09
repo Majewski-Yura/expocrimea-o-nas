@@ -11,6 +11,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # запуск с -I не добавляет папку скрипта
+import event_data  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 U = 'https://expocrimea.com/wp-content/uploads/'
 NB = ' '
@@ -35,7 +38,7 @@ EVENTS = {
         'tasks': ['Дилерство', 'Представительство', 'Контракты', 'Прямые поставки', 'Инвестиции', 'Субсидии', 'Инновации', 'Кадровые ресурсы'],
         'mission_label': 'Почему Крым',
         'mission': 'Плодородные земли, благоприятный климат и государственная поддержка делают Крым центром притяжения для аграриев со всей России.',
-        'offer': 'Для крымских производителей действует спецпредложение на участие.',
+        'offer': ['Для крымских производителей действует спецпредложение на участие.'],
         'nums_title': 'АгроЭкспоКрым-2025 <em>в цифрах</em>',
         'nums': [('15', 'лет выставке', 'XV юбилейная выставка пройдёт в 2027 году.'),
                  ('200+', 'успешных компаний', 'экспонентов из Крыма и регионов России'),
@@ -88,15 +91,30 @@ ICONS = {
     'flask': '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/>',
 }
 
-# Карточки «Другие мероприятия» — порядок как на главной
+ICONS.update(event_data.ICONS_EXTRA)
+
+# Расписание 2027 — порядок как на главной. slug=None: страница на отдельном сайте, ведём туда
 ALL = [
     ('АгроЭкспоКрым', 'agro', 'https://expocrimea.com/events/agro/', '2021/08/1000h800-1-2.jpg', '10–12 февраля', 'Симферополь'),
-    ('РестоОтельМаркет', None, 'https://expocrimea.com/events/rhm/', '2021/08/frame-1241.png', '25–27 марта', 'Ялта, «Ялта-Интурист»'),
-    ('РосЭкспоКрым', None, 'https://expocrimea.com/events/ros/', '2021/09/frame-1243.png', '25–27 марта', 'Ялта, «Ялта-Интурист»'),
-    ('Чемпионат национальной кухни', None, 'https://expocrimea.com/events/chempionat-naczionalnoj-kuhni/', '2026/10/group-10.jpg', '25–26 марта', 'Ялта, «Ялта-Интурист»'),
+    ('РестоОтельМаркет', 'rhm', 'https://expocrimea.com/events/rhm/', '2021/08/frame-1241.png', '25–27 марта', 'Ялта, «Ялта-Интурист»'),
+    ('РосЭкспоКрым', 'ros', 'https://expocrimea.com/events/ros/', '2021/09/frame-1243.png', '25–27 марта', 'Ялта, «Ялта-Интурист»'),
+    ('Чемпионат национальной кухни', 'chempionat-naczionalnoj-kuhni', 'https://expocrimea.com/events/chempionat-naczionalnoj-kuhni/', '2026/10/group-10.jpg', '25–26 марта', 'Ялта, «Ялта-Интурист»'),
     ('Форум эстетической медицины', None, 'https://fem.expocrimea.com/', '2025/10/1000h800_4-1.png', '8–9 апреля', 'Алушта, MORE SPA & Resort 5*'),
     ('КрымУрбанФорум', None, 'https://cuf.expocrimea.com/', '2022/05/1000-h-801-1.jpg', '8–10 сентября', 'Симферополь'),
+    ('СтройЭкспоКрым', 'stroy', 'https://expocrimea.com/events/stroy/', '2021/09/img_2463.webp', '8–10 сентября', 'Симферополь'),
+    ('Выставка мебели', 'mvmk', 'https://expocrimea.com/events/mvmk/', '2021/09/frame-1229.png', '8–10 сентября', 'Симферополь'),
+    ('Ярмарка недвижимости', 'm2', 'https://expocrimea.com/events/m2/', '2022/01/frame-1233.png', '8–10 сентября', 'Симферополь'),
+    ('Безопасность. Крым', 'safety', 'https://expocrimea.com/events/safety/', '2021/08/frame-1227.png', '8–10 сентября', 'Симферополь'),
+    ('КрымУрбанПремия', None, 'https://cuf.expocrimea.com/cua', '2021/10/frame-1237.png', '9 сентября', 'Симферополь'),
+    ('Здравоохранение.Крым', 'med', 'https://expocrimea.com/events/med/', '2021/09/1000h800_1-3.png', '23–25 сентября', 'Ялта, «Ялта-Интурист»'),
+    ('Ефетовские чтения', 'efetovskie-chteniya', 'https://expocrimea.com/events/efetovskie-chteniya/', '2026/03/1000h800_2-2.png', '24–25 сентября', 'Ялта, «Ялта-Интурист»'),
+    ('ТуристЭкспо. Крым', 'turistekspo-krym', 'https://expocrimea.com/events/turistekspo-krym/', '2025/03/1000h800-3-1-e1775042579557.jpg', '14–16 октября', 'Ялта, «Ялта-Интурист»'),
 ]
+BUILT = [s for _, s, *_ in ALL if s]
+
+
+def get_event(slug):
+    return EVENTS[slug] if slug in EVENTS else event_data.from_json(slug)
 
 
 def esc(s):
@@ -108,7 +126,7 @@ def shared_parts():
     s = (ROOT / 'index.html').read_text(encoding='utf-8')
     head = s[:s.index('</head>')]
     sprite = s[s.index('<svg width="0"'):s.index('</svg>', s.index('<svg width="0"')) + 6]
-    sprite = sprite.replace('</svg>', '  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></symbol>\n  <symbol id="i-pin2" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>\n</svg>')
+    sprite = sprite.replace('</svg>', '  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></symbol>\n  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V6M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></symbol>\n</svg>')
     header = s[s.index('<header class="header">'):s.index('</header>') + 9]
     footer = s[s.index('<footer'):s.index('</footer>') + 9]
     fabs = s[s.index('<a class="fab fab--chat"'):s.index('<script src="assets/v2.js')]
@@ -127,57 +145,177 @@ def logo_strip(items):
     return '\n'.join(f'      <div class="plogo"><img src="{esc(u)}" alt="{esc(n)}" title="{esc(n)}" loading="lazy"></div>' for u, n, *_ in items)
 
 
+def partner_groups(e):
+    if 'partner_groups' in e:
+        g = e['partner_groups']
+        return [('Официальная поддержка', g['support'], ''), ('Партнёры', g['partners'], ' mq--rev'), ('Информационные партнёры', g['info'], '')]
+    pj = json.loads((ROOT / e['partners_json']).read_text(encoding='utf-8'))
+    clean = lambda lst: [(u, re.sub(r'^(>\s*)?(Сайт |Официальный сайт )?', '', n).split(' <div')[0].strip()) for u, n, *_ in lst]
+    return [('Официальная поддержка', clean(pj.get('Официальная поддержка:', [])), ''),
+            ('Официальные партнёры', clean(pj.get('Партнер загородной жизни', []) + pj.get('Официальные партнеры:', [])), ' mq--rev'),
+            ('Информационные партнёры', clean(pj.get('Информационные партнеры:', [])), '')]
+
+
 def build(slug):
-    e = EVENTS[slug]
+    e = get_event(slug)
     head, sprite, header, footer, fabs = shared_parts()
     head = re.sub(r'<title>[^<]*</title>', f'<title>{e["name"]}{NB}— ЭКСПОКРЫМ</title>', head)
-    head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(e["eyebrow"])} {esc(e["name"])}: {esc(e["dates"])}, {esc(e["city"])}.">', head)
+    head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(e["eyebrow"])}. {esc(e["name"])}: {esc(e["dates"])}, {esc(e["city"])}.">', head)
 
-    lines = '\n'.join(f'        <span class="ln{" ln--indent" if i else ""}"><span style="--i:{i}">{t}</span></span>' for i, t in enumerate(e['title_lines']))
-    tasks = ''.join(f'<span>{t}</span>' for t in e['tasks'])
-    n0 = e['nums'][0]
-    tiles = [f'''        <div class="tile tile--hero rv">
+    lines = '\n'.join(f'        <span class="ln{" ln--indent" if i % 2 else ""}"><span style="--i:{i}">{t}</span></span>' for i, t in enumerate(e['title_lines']))
+    tasks = f'<div class="tags">{"".join(f"<span>{t}</span>" for t in e["tasks"])}</div>' if e.get('tasks') else ''
+    mission = f'<div class="mission"><small>{e["mission_label"]}</small><p>{e["mission"]}</p></div>' if e.get('mission') else ''
+    offer = ''.join(f'<div class="e-offer"><svg viewBox="0 0 24 24"><use href="#{"i-bed" if "проживание" in o else "i-gift"}"/></svg>{o}</div>' for o in e.get('offer') or [])
+
+    # 4. Цифры: большая плитка + до четырёх обычных, без пустых клеток
+    sec_nums = ''
+    if e.get('nums'):
+        n0, rest = e['nums'][0], e['nums'][1:5]
+        tiles = [f'''        <div class="tile tile--hero rv">
           <img src="../site-source/logo.svg" alt="" aria-hidden="true">
           <div><b class="odo">{n0[0]}</b><span>{n0[1]}</span></div>
           <p>{n0[2]}</p>
         </div>''']
-    for k, (v, t, d) in enumerate(e['nums'][1:]):
-        cls = ' tile--light' if k == 2 else ''
-        tiles.append(f'        <div class="tile{cls} rv"><b class="odo">{v}</b><span>{t}<small>{d}</small></span></div>')
-    icons = e.get('expo_icons') or []
-    mark = lambda k: (f'<svg class="prow__ic" viewBox="0 0 24 24" aria-hidden="true">{ICONS[icons[k]]}</svg>' if k < len(icons) else f'{k + 1:02d}')
-    expo = '\n'.join(f'        <li><div class="prow rv"><span class="prow__n">{mark(k)}</span><span class="prow__t">{t}</span><span class="prow__a"></span></div></li>' for k, t in enumerate(e['expo']))
-    aud = '\n'.join(f'''        <div class="aud__c rv"><span class="aud__n">{k + 1:02d}</span><span class="aud__t">{t}</span><p class="aud__d">{d}</p></div>''' for k, (t, d) in enumerate(e['aud']))
-    who = ''.join(f'<li>{w}</li>' for w in e['who'])
-    docs = '\n'.join(f'          <a class="doc rv" href="{esc(h)}" target="_blank" rel="noopener"><svg class="doc__i"><use href="#i-doc"/></svg><span><b>{t}</b><small>{f}</small></span><svg class="doc__a" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></svg></a>' for t, f, h in e['docs'])
-    vids = '\n'.join(f'        <div class="vid rv"><iframe data-src="{esc(v)}" title="Видео {e["name"]} {k + 1}" allow="clipboard-write; autoplay" allowfullscreen loading="lazy"></iframe></div>' for k, v in enumerate(e['videos']))
-    gal = '\n'.join(f'        <figure><img src="{U}{g}" alt="" loading="lazy"></figure>' for g in e['gallery'])
-    points = ''.join(f'<li>{p}</li>' for p in e['venue_points'])
+        for k, (v, t, d) in enumerate(rest):
+            wide = len(rest) == 2 or (len(rest) == 3 and k == 2) or len(rest) == 1
+            cls = (' tile--wide' if wide else '') + (' tile--light' if k == 2 or (len(rest) == 2 and k == 1) else '')
+            small = f'<small>{d}</small>' if d else ''
+            tiles.append(f'        <div class="tile{cls} rv"><b class="odo">{v}</b><span>{t}{small}</span></div>')
+        sec_nums = f'''
+  <!-- 4. Цифры -->
+  <section class="facts e-num">
+    <div class="container">
+      <div class="facts__head">
+        <h2 class="facts__t rv rv--clip">{e['nums_title']}</h2>
+        <p class="rv">Итоги прошлых выставок — аргументы для участия в следующей.</p>
+      </div>
+      <div class="bento">
+{chr(10).join(tiles)}
+      </div>
+    </div>
+  </section>
+'''
 
-    pj = json.loads((ROOT / e['partners_json']).read_text(encoding='utf-8'))
-    support = pj.get('Официальная поддержка:', [])
-    partners = pj.get('Партнер загородной жизни', []) + pj.get('Официальные партнеры:', [])
-    info = pj.get('Информационные партнеры:', [])
-    clean = lambda lst: [(u, re.sub(r'^(>\s*)?(Сайт |Официальный сайт )?', '', n).split(' <div')[0].strip()) for u, n, *_ in lst]
-    groups = [('Официальная поддержка', clean(support), ''), ('Официальные партнёры', clean(partners), ' mq--rev'), ('Информационные партнёры', clean(info), '')]
-    part = '\n'.join(f'''    <div class="container"><div class="part__label rv">{lab}</div></div>
+    # 5. Экспозиции
+    sec_expo = ''
+    if e.get('expo'):
+        icons = e.get('expo_icons') or []
+        mark = lambda k: (f'<svg class="prow__ic" viewBox="0 0 24 24" aria-hidden="true">{ICONS[icons[k]]}</svg>' if k < len(icons) else f'{k + 1:02d}')
+        rows = '\n'.join(f'        <li><div class="prow rv"><span class="prow__n">{mark(k)}</span><span class="prow__t">{t}</span><span class="prow__a"></span></div></li>' for k, t in enumerate(e['expo']))
+        n = len(e['expo'])
+        word = 'тематический раздел' if n % 10 == 1 and n % 100 != 11 else ('тематических раздела' if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14 else 'тематических разделов')
+        sec_expo = f'''
+  <!-- 5. Экспозиции -->
+  <section class="pidx e-expo">
+    <div class="container">
+      <div class="pidx__head">
+        <h2 class="h2 rv rv--clip">Экспозиции<br>выставки</h2>
+        <p class="rv">{n} {word} — найдите свой и забронируйте стенд.</p>
+      </div>
+      <ol class="plist">
+{rows}
+      </ol>
+    </div>
+  </section>
+'''
+
+    # 6. Кому стоит прийти: карточки, если есть; иначе — целевая аудитория крупным списком
+    sec_aud = ''
+    who = ''.join(f'<li>{w}</li>' for w in e.get('who') or [])
+    if e.get('aud'):
+        cards = '\n'.join(f'''        <div class="aud__c rv"><span class="aud__n">{k + 1:02d}</span><span class="aud__t">{t}</span><p class="aud__d">{d}</p></div>''' for k, (t, d) in enumerate(e['aud']))
+        sec_aud = f'''
+  <!-- 6. Кому стоит прийти -->
+  <section class="aud">
+    <div class="container">
+      <h2 class="h2 rv rv--clip">Кому стоит<br>прийти</h2>
+      <div class="aud__grid">
+{cards}
+      </div>
+      <div class="aud__who rv"><small>Целевая аудитория</small><ul>{who}</ul></div>
+    </div>
+  </section>
+'''
+    elif who:
+        sec_aud = f'''
+  <!-- 6. Целевая аудитория -->
+  <section class="aud">
+    <div class="container">
+      <h2 class="h2 rv rv--clip">Кому стоит<br>прийти</h2>
+      <ul class="who-big rv">{who}</ul>
+    </div>
+  </section>
+'''
+
+    # 7. Документы
+    sec_docs = ''
+    if e.get('docs'):
+        docs = '\n'.join(f'          <a class="doc rv" href="{esc(h)}" target="_blank" rel="noopener"><svg class="doc__i"><use href="#i-doc"/></svg><span><b>{t}</b><small>{f}</small></span><svg class="doc__a" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></svg></a>' for t, f, h in e['docs'])
+        sec_docs = f'''
+  <!-- 7. Участникам -->
+  <section class="e-docs">
+    <div class="container">
+      <h2 class="h2 rv rv--clip">Участникам<br>и партнёрам</h2>
+      <div class="docs">
+{docs}
+      </div>
+    </div>
+  </section>
+'''
+
+    # 8. Как это было
+    sec_was = ''
+    if e.get('videos') or e.get('gallery'):
+        nv = len(e.get('videos') or [])
+        vids = '\n'.join(f'        <div class="vid rv"><iframe data-src="{esc(v)}" title="Видео {e["name"]} {k + 1}" allow="clipboard-write; autoplay" allowfullscreen loading="lazy"></iframe></div>' for k, v in enumerate(e.get('videos') or []))
+        gal = '\n'.join(f'        <figure><img src="{U}{g}" alt="" loading="lazy"></figure>' for g in e.get('gallery') or [])
+        sec_was = f'''
+  <!-- 8. Как это было -->
+  <section class="e-was">
+    <div class="container">
+      <div class="eyebrow rv">Как это было</div>
+      <h2 class="h2 rv rv--clip">{e['name'].replace('.', '.<wbr>')}<br>в кадре</h2>
+      {f'<div class="vids vids--{nv}">{chr(10)}{vids}{chr(10)}      </div>' if nv else ''}
+      {f'<div class="gal rv">{chr(10)}{gal}{chr(10)}      </div>' if gal else ''}
+    </div>
+  </section>
+'''
+
+    points = ''.join(f'<li>{p}</li>' for p in e.get('venue_points') or [])
+    points = f'<ul class="venue2__list">{points}</ul>' if points else ''
+
+    groups = partner_groups(e)
+    sec_part = ''
+    if any(items for _, items, _ in groups):
+        strips = '\n'.join(f'''    <div class="container"><div class="part__label rv">{lab}</div></div>
     <div class="mq-wrap rv"><div class="mq{rev}">
 {logo_strip(items)}
     </div></div>''' for lab, items, rev in groups if items)
+        sec_part = f'''
+  <!-- 10. Партнёры -->
+  <section class="part e-part" id="partners">
+    <div class="container"><h2 class="h2 rv rv--clip">Партнёры<br>выставки</h2></div>
+{strips}
+  </section>
+'''
 
+    tel, tel_t = e.get('cta_phone') or ('+79789009090', '+7 (978) 900 90 90')
+
+    # 12. Другие мероприятия — следующие четыре по расписанию
+    idx = next(k for k, a in enumerate(ALL) if a[1] == slug)
     more = []
-    for n, s2, h, i, d, a in ALL:
-        if s2 == slug:
-            continue
-        href = f'{s2}.html' if s2 in EVENTS else h
-        ext = '' if s2 in EVENTS else ' target="_blank" rel="noopener"'
+    for n, s2, h, i, d, a in (ALL[idx + 1:] + ALL[:idx])[:4]:
+        href = f'{s2}.html' if s2 in BUILT else h
+        ext = '' if s2 in BUILT else ' target="_blank" rel="noopener"'
         more.append(f'''        <a class="ecard rv" href="{href}"{ext}>
           <span class="ecard__ph"><img src="{U}{i}" alt="" loading="lazy"></span>
           <span class="ecard__date">{d.replace(' ', NB)} 2027</span>
           <span class="ecard__go"><svg><use href="#i-arrow"/></svg></span>
           <span class="ecard__b"><span class="ecard__n">{n}</span><span class="ecard__a">{a}</span></span>
         </a>''')
-    more = '\n'.join(more[:4])
+    more = '\n'.join(more)
+
+    bgnum = f'\n    <div class="hero__bgnum" aria-hidden="true">{e["bgnum"]}</div>' if e.get('bgnum') else ''
 
     body = f'''</head>
 <body class="page-ev" style="--ev:{e['color']}">
@@ -190,8 +328,7 @@ def build(slug):
 
 <main>
   <!-- 1. Первый экран -->
-  <section class="hero hero-e">
-    <div class="hero__bgnum" aria-hidden="true">{e['bgnum']}</div>
+  <section class="hero hero-e">{bgnum}
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="../index.html#events">Мероприятия</a><span>/</span>{e['name']}</nav>
       <div class="eyebrow">{e['eyebrow']}</div>
@@ -209,7 +346,7 @@ def build(slug):
         <a class="seal e-seal" href="#about" aria-label="Листайте вниз">
           <svg class="seal__ring" viewBox="0 0 168 168" aria-hidden="true">
             <defs><path id="ring" d="M84 84m-70 0a70 70 0 1 1 140 0a70 70 0 1 1-140 0"/></defs>
-            <text><textPath href="#ring">{e['name']} • {e['dates']} • {e['name']} • </textPath></text>
+            <text><textPath href="#ring">{e['name']} • {e['dates']} • </textPath></text>
           </svg>
           <span class="seal__core"><img src="{e['logo']}" alt=""></span>
         </a>
@@ -232,82 +369,21 @@ def build(slug):
   <!-- 3. О выставке -->
   <section class="manifest e-about" id="about">
     <div class="container">
-      <div class="eyebrow rv">О выставке</div>
+      <div class="eyebrow rv">О мероприятии</div>
       <p class="manifest__text">{e['about']}</p>
       <div class="manifest__foot">
         <div class="rv">
           <p>{e['about_p']}</p>
-          <div class="tags">{tasks}</div>
+          {tasks}
         </div>
         <div class="rv" style="--d:.1s">
-          <div class="mission"><small>{e['mission_label']}</small><p>{e['mission']}</p></div>
-          <div class="e-offer"><svg viewBox="0 0 24 24"><use href="#i-gift"/></svg>{e['offer']}</div>
+          {mission}
+          {offer}
         </div>
       </div>
     </div>
   </section>
-
-  <!-- 4. Цифры -->
-  <section class="facts e-num">
-    <div class="container">
-      <div class="facts__head">
-        <h2 class="facts__t rv rv--clip">{e['nums_title']}</h2>
-        <p class="rv">Итоги прошлой выставки — аргументы для участия в следующей.</p>
-      </div>
-      <div class="bento">
-{chr(10).join(tiles)}
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Экспозиции -->
-  <section class="pidx e-expo">
-    <div class="container">
-      <div class="pidx__head">
-        <h2 class="h2 rv rv--clip">Экспозиции<br>выставки</h2>
-        <p class="rv">{len(e['expo'])} тематических разделов: от техники и орошения до готовой продукции и науки.</p>
-      </div>
-      <ol class="plist">
-{expo}
-      </ol>
-    </div>
-  </section>
-
-  <!-- 6. Кому стоит прийти -->
-  <section class="aud">
-    <div class="container">
-      <h2 class="h2 rv rv--clip">Кому стоит<br>прийти</h2>
-      <div class="aud__grid">
-{aud}
-      </div>
-      <div class="aud__who rv"><small>Целевая аудитория</small><ul>{who}</ul></div>
-    </div>
-  </section>
-
-  <!-- 7. Участникам -->
-  <section class="e-docs">
-    <div class="container">
-      <h2 class="h2 rv rv--clip">Участникам<br>и партнёрам</h2>
-      <div class="docs">
-{docs}
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. Как это было -->
-  <section class="e-was">
-    <div class="container">
-      <div class="eyebrow rv">Как это было</div>
-      <h2 class="h2 rv rv--clip">{e['name']}<br>в кадре</h2>
-      <div class="vids">
-{vids}
-      </div>
-      <div class="gal rv">
-{gal}
-      </div>
-    </div>
-  </section>
-
+{sec_nums}{sec_expo}{sec_aud}{sec_docs}{sec_was}
   <!-- 9. Место проведения -->
   <section class="venue2">
     <div class="container">
@@ -317,19 +393,13 @@ def build(slug):
         <div class="rv">
           <div class="venue2__t">{e['venue_title']}</div>
           <p class="venue2__a">{e['venue_addr']}</p>
-          <ul class="venue2__list">{points}</ul>
+          {points}
           <a class="btn btn--line" href="{esc(e['venue_map'])}" target="_blank" rel="noopener">Показать на карте</a>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- 10. Партнёры -->
-  <section class="part e-part" id="partners">
-    <div class="container"><h2 class="h2 rv rv--clip">Партнёры<br>выставки</h2></div>
-{part}
-  </section>
-
+{sec_part}
   <!-- 11. Заявка -->
   <section class="e-cta" id="apply">
     <img class="jobs__bg" src="../site-source/logo.svg" alt="" aria-hidden="true">
@@ -338,7 +408,7 @@ def build(slug):
         <h2 class="rv rv--clip">{e['cta_title'][0]}<br>{e['cta_title'][1]}</h2>
         <p class="rv">{e['cta_text']}</p>
         <div class="e-cta__c rv">
-          <a class="chip-l" href="tel:+79789009090"><svg><use href="#i-phone"/></svg>+7 (978) 900 90 90</a>
+          <a class="chip-l" href="tel:{tel}"><svg><use href="#i-phone"/></svg>{tel_t}</a>
           <a class="chip-l" href="mailto:info@expocrimea.com?subject={esc(e['name'])}"><svg><use href="#i-mail"/></svg>info@expocrimea.com</a>
         </div>
       </div>
@@ -373,5 +443,5 @@ def build(slug):
 
 
 if __name__ == '__main__':
-    for slug in (sys.argv[1:] or EVENTS):
+    for slug in (sys.argv[1:] or BUILT):
         build(slug)

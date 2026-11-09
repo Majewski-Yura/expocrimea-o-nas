@@ -744,3 +744,17 @@ button{font:inherit;color:inherit}
   .e-expo .prow__n{display:block;font-size:12px}
   .e-expo .prow__t{font-size:16px}
 }
+
+/* Мероприятия: целевая аудитория без карточек, разное число видео */
+.who-big{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:48px}
+.who-big li{padding:14px 22px;border-radius:999px;background:#fff;font-size:clamp(15px,1.3vw,18px);font-weight:500;transition:background .3s,color .3s}
+.who-big li:hover{background:var(--ev);color:#fff}
+.vids--1{grid-template-columns:1fr;grid-template-rows:auto}
+.vids--1 .vid:first-child{grid-row:auto;aspect-ratio:16/9}
+.vids--2{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+.vids--2 .vid:first-child{grid-row:auto;aspect-ratio:16/9}
+@media (max-width:767px){
+  .who-big{margin-top:32px;gap:8px}
+  .who-big li{padding:10px 16px}
+  .vids--2{grid-template-columns:1fr}
+}
