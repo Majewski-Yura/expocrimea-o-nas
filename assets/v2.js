@@ -141,14 +141,6 @@ if (!reduce) {
     watch.get(t).push(el);
   });
 
-  // Бегущие строки логотипов: одна скорость для всех строк, сколько бы логотипов в них ни было
-  const MQ_SPEED = 50; // пикселей в секунду
-  $$('.mq').forEach(mq => {
-    const set = [...mq.children];
-    while (mq.scrollWidth < innerWidth * 1.3) set.forEach(n => mq.append(n.cloneNode(true)));
-    [...mq.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden', 'true'); mq.append(c); });
-    mq.style.animationDuration = (mq.scrollWidth / 2 / MQ_SPEED).toFixed(1) + 's';
-  });
 
   // Магнитная кнопка
   const wrap = $('.magnet-wrap');
@@ -193,6 +185,56 @@ if (fine && !reduce) $$('.mission').forEach(m => m.addEventListener('pointermove
   m.style.setProperty('--mx', (e.clientX - r.left) + 'px');
   m.style.setProperty('--my', (e.clientY - r.top) + 'px');
 }));
+
+// Бегущие строки логотипов: едут сами с одной скоростью, листаются стрелками и рукой (мышью и пальцем)
+const MQ_SPEED = 50; // пикселей в секунду
+$$('.mq').forEach(mq => {
+  const wrap = mq.parentElement, dir = mq.classList.contains('mq--rev') ? 1 : -1;
+  const set = [...mq.children];
+  while (mq.scrollWidth < innerWidth * 1.3) set.forEach(n => mq.append(n.cloneNode(true)));
+  [...mq.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.setAttribute('tabindex', '-1'); mq.append(c); });
+  mq.classList.add('mq--js');
+  const half = () => mq.scrollWidth / 2;
+  let x = dir > 0 ? -half() : 0, hover = false, drag = null, moved = 0, nudge = null, last = performance.now();
+  const wrapX = () => { const h = half(); if (x <= -h) x += h; if (x > 0) x -= h; };
+  const paint = () => { wrapX(); mq.style.transform = `translate3d(${x}px,0,0)`; };
+  const frame = t => {
+    const dt = Math.min(64, t - last) / 1000; last = t;
+    if (nudge) {
+      const k = Math.min(1, (t - nudge.t0) / 600), e = 1 - Math.pow(1 - k, 3);
+      x = nudge.from + nudge.by * e; if (k === 1) nudge = null;
+    } else if (!drag && !hover && !reduce) x += dir * MQ_SPEED * dt;
+    paint(); requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+  // Стрелки
+  const nav = document.createElement('div'); nav.className = 'mq-nav';
+  nav.innerHTML = '<button type="button" class="mq-btn mq-btn--prev" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button type="button" class="mq-btn mq-btn--next" aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>';
+  const box = document.createElement('div'); box.className = 'mq-box' + (wrap.classList.contains('rv') ? '' : '');
+  wrap.before(box); box.append(wrap, nav);
+  const step = () => Math.max(260, wrap.clientWidth * 0.6);
+  nav.children[0].addEventListener('click', () => { nudge = {from: x, by: step(), t0: performance.now()}; });
+  nav.children[1].addEventListener('click', () => { nudge = {from: x, by: -step(), t0: performance.now()}; });
+  // Пауза под курсором
+  wrap.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hover = true; });
+  wrap.addEventListener('pointerleave', () => { hover = false; });
+  // Перетаскивание
+  mq.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    drag = {x0: e.clientX, y0: e.clientY, from: x, id: e.pointerId, axis: null}; moved = 0; nudge = null;
+  });
+  addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+    if (!drag.axis && Math.hypot(dx, dy) > 6) { drag.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'; if (drag.axis === 'x') { mq.setPointerCapture(e.pointerId); mq.classList.add('is-drag'); } }
+    if (drag.axis === 'y') { drag = null; return; }
+    if (drag.axis === 'x') { moved = Math.abs(dx); x = drag.from + dx; }
+  });
+  const end = () => { if (drag) { mq.classList.remove('is-drag'); drag = null; } };
+  addEventListener('pointerup', end); addEventListener('pointercancel', end);
+  mq.addEventListener('click', e => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } moved = 0; }, true);
+  mq.addEventListener('dragstart', e => e.preventDefault());
+});
 
 // Страница партнёров: рубрики, поиск и подгрузка порциями
 const pgrid = $('#pgrid');

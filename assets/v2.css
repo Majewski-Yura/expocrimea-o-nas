@@ -329,8 +329,21 @@ button{font:inherit;color:inherit}
 .mq{display:flex;width:max-content;animation:marq 45s linear infinite}
 .mq--rev{animation-direction:reverse;animation-duration:38s}
 .mq-wrap:hover .mq{animation-play-state:paused}
-.plogo{flex:0 0 auto;width:240px;height:128px;margin-right:16px;background:var(--bg);border-radius:var(--radius);display:grid;place-items:center;padding:20px 28px}
-.plogo img{max-height:80px;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.7;transition:filter .35s,opacity .35s,transform .35s var(--ease)}
+.mq.mq--js{animation:none;will-change:transform;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.mq.mq--js.is-drag{cursor:grabbing}
+.mq--js img{pointer-events:none}
+.mq-box{position:relative}
+.mq-nav{transition:opacity .6s}
+.js-anim .mq-box:has(.rv:not(.in)) .mq-nav{opacity:0}
+.mq-nav{position:absolute;inset:0;pointer-events:none;display:flex;justify-content:space-between;align-items:center;padding:0 max(16px,calc((100vw - var(--container)) / 2 + var(--gut) - 26px))}
+.mq-btn{pointer-events:auto;width:52px;height:52px;border-radius:50%;border:1px solid var(--ink);background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(43,45,48,.08);opacity:0;transform:scale(.85);transition:opacity .3s,transform .4s var(--ease),background .3s,border-color .3s,color .3s;color:var(--ink)}
+.mq-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mq-box:hover .mq-btn,.mq-btn:focus-visible{opacity:1;transform:none}
+.mq-btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+@media (hover:none){.mq-btn{opacity:1;transform:none}}
+@media (max-width:767px){.mq-btn{width:38px;height:38px;box-shadow:0 4px 14px rgba(43,45,48,.12)}.mq-btn svg{width:16px;height:16px}.mq-nav{padding:0 8px}}
+.plogo{flex:0 0 auto;width:280px;height:156px;margin-right:16px;background:var(--bg);border-radius:var(--radius);display:grid;place-items:center;padding:20px 28px}
+.plogo img{max-height:104px;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.7;transition:filter .35s,opacity .35s,transform .35s var(--ease)}
 .plogo:hover img{filter:none;opacity:1;transform:scale(1.06)}
 
 /* 11. Реквизиты */
@@ -487,8 +500,8 @@ button{font:inherit;color:inherit}
   .boss__q{margin-top:40px}
   .boss__c{margin-top:32px}
   .chip-l{flex:1 1 100%}
-  .plogo{width:180px;height:100px;padding:16px 20px}
-  .plogo img{max-height:60px}
+  .plogo{width:200px;height:116px;padding:14px 18px}
+  .plogo img{max-height:76px}
   .part__label{margin:40px 0 16px}
   .sgrid{grid-template-columns:repeat(2,1fr);gap:24px 16px}
   .slogo{height:120px}
@@ -741,7 +754,7 @@ button{font:inherit;color:inherit}
 /* Партнёры мероприятия — все группы бегущими строками */
 .e-part .part__label:first-of-type{margin-top:48px}
 .e-part .plogo{background:#fff;border:1px solid var(--line)}
-.e-part .plogo img{max-height:84px}
+.e-part .plogo img{max-height:104px}
 
 /* Призыв */
 .e-cta{position:relative;background:var(--ev);color:#fff;padding:120px 0;overflow:hidden}

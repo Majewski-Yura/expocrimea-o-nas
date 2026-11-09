@@ -11,6 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_event import ROOT, esc, shared_parts  # noqa: E402
+from link_logos import norm, url_map  # noqa: E402
 
 RAW = json.loads((ROOT / 'site-source' / 'partners' / 'partners.json').read_text(encoding='utf-8'))
 CATS = [('gos', 'Государственные'), ('assoc', 'Ассоциации'), ('media', 'СМИ'), ('biz', 'Компании')]
@@ -36,7 +37,10 @@ def plural(n, forms):
 
 
 def build():
+    urls = url_map()
     items = [dict(i, c=cat(i['cat']), name=clean(i['name'])) for i in RAW if i['img'] and i['name']]
+    for i in items:
+        i['url'] = i['url'].strip() or urls.get(norm(i['name']), '')
     order = {'gos': 0, 'assoc': 1, 'biz': 2, 'media': 3}
     items.sort(key=lambda i: order[i['c']])  # государственные сверху, внутри групп — порядок старого сайта
     cnt = {c: sum(i['c'] == c for i in items) for c, _ in CATS}
