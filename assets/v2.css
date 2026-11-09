@@ -1218,7 +1218,7 @@ a.ct__big:hover{opacity:.8}
 
 /* календарная сетка в шапке «Мероприятий»: 12 месяцев с логотипами */
 .cg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:560px;max-width:100%;animation:fadeUp .9s var(--ease) .6s both}
-.cg-m{display:flex;flex-direction:column;gap:10px;min-height:118px;padding:12px;border-radius:14px;background:var(--bg);transition:background .3s}
+.cg-m{display:flex;flex-direction:column;gap:10px;min-height:118px;padding:12px;border-radius:14px;background:transparent;border:1px solid var(--line);transition:border-color .3s}
 .cg-m__h{display:flex;align-items:baseline;gap:6px;font-size:13px;font-weight:600;color:var(--ink)}
 .cg-m__h b{font-size:20px;line-height:1;font-weight:700;letter-spacing:-.02em}
 a.cg-m__h:hover{color:var(--red)}
@@ -1226,9 +1226,9 @@ a.cg-m__h:hover{color:var(--red)}
 .cg-l{display:grid;place-items:center;width:31px;height:31px;padding:3px;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .35s var(--ease),box-shadow .3s}
 .cg-l img{width:25px;height:25px;object-fit:contain}
 .cg-l:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 8px 18px rgba(0,0,0,.12)}
-.cg-m--empty{background:transparent;border:1px dashed var(--line)}
+.cg-m:has(a.cg-m__h):hover{border-color:var(--muted-2)}
 .cg-m--empty .cg-m__h{color:var(--muted-2)}
-.cg-m--next{background:#fff;box-shadow:inset 0 0 0 2px var(--red)}
+.cg-m--next{border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red)}
 .cg-m__cd{margin-top:auto;font-size:12px;color:var(--red);font-weight:600}
 .cg-m__cd em{font-style:normal}
 @media (max-width:1100px){.cg{width:100%}}
