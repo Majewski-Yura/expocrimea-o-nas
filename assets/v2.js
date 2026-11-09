@@ -141,11 +141,13 @@ if (!reduce) {
     watch.get(t).push(el);
   });
 
-  // Бегущие строки логотипов
+  // Бегущие строки логотипов: одна скорость для всех строк, сколько бы логотипов в них ни было
+  const MQ_SPEED = 50; // пикселей в секунду
   $$('.mq').forEach(mq => {
     const set = [...mq.children];
     while (mq.scrollWidth < innerWidth * 1.3) set.forEach(n => mq.append(n.cloneNode(true)));
     [...mq.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden', 'true'); mq.append(c); });
+    mq.style.animationDuration = (mq.scrollWidth / 2 / MQ_SPEED).toFixed(1) + 's';
   });
 
   // Магнитная кнопка

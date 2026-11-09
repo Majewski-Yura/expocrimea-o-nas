@@ -639,6 +639,8 @@ button{font:inherit;color:inherit}
 .e-expo .prow{cursor:default}
 .e-expo .prow::before{background:var(--ev)}
 .e-expo .prow__a{display:none}
+.e-expo .prow__ic{display:block;width:56px;height:56px;fill:none;stroke:var(--ev);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s,transform .5s var(--ease)}
+.e-expo .prow:hover .prow__ic{stroke:#fff;transform:scale(1.12) rotate(-6deg)}
 
 /* Кому стоит прийти */
 .aud{background:var(--bg);padding:120px 0}
@@ -736,8 +738,9 @@ button{font:inherit;color:inherit}
   .venue2__grid{margin-top:40px;gap:28px}
   .e-more .egrid{margin-top:40px}
   .e-about{padding-top:8px}
-  .e-expo .prow{grid-template-columns:28px 1fr;gap:12px}
+  .e-expo .prow{grid-template-columns:32px 1fr;gap:14px}
+  .e-expo .prow__ic{width:30px;height:30px}
   .e-expo .prow__logo{display:none}
   .e-expo .prow__n{display:block;font-size:12px}
-  .e-expo .prow__t{font-size:16px;overflow-wrap:anywhere}
+  .e-expo .prow__t{font-size:16px}
 }

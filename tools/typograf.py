@@ -29,7 +29,11 @@ def main(path):
         t = fix(part)
         nxt = parts[k + 1] if k + 1 < len(parts) else ''
         if BLOCK_END.match(nxt) and len(t.split()) > 3:
-            t = re.sub(r' (\S{1,12})(\s*)$', NB + r'\1\2', t)
+            # последнее слово привязываем к предыдущему, только если пара короткая,
+            # иначе длинная склейка не помещается в узкую строку и рвётся
+            m = re.search(r'(\S+) (\S{1,12})(\s*)$', t)
+            if m and len(m.group(1)) + len(m.group(2)) <= 20:
+                t = t[:m.start()] + m.group(1) + NB + m.group(2) + m.group(3)
         out.append(t)
     open(path, 'w', encoding='utf-8').write(''.join(out))
 

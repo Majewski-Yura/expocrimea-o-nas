@@ -46,6 +46,8 @@ EVENTS = {
                  'Животноводство, ветеринария, комбикорма, пчеловодство', 'Виноделие и виноградарство', 'Аквакультура',
                  'Оборудование для пищевой и перерабатывающей промышленности', 'Готовая сельхозпродукция, продукты питания',
                  'Научная и исследовательская деятельность'],
+        # иконка на каждую экспозицию, по порядку — ключи из ICONS
+        'expo_icons': ['tractor', 'drop', 'sprout', 'cow', 'grapes', 'fish', 'factory', 'wheat', 'flask'],
         'aud': [('Фермерам', 'Новые технологии, которые помогут увеличить урожайность и снизить затраты.'),
                 ('Агрохолдингам', 'Надёжные поставщики оборудования и технологий для эффективности бизнеса.'),
                 ('Инвесторам', 'Перспективные проекты и вход в динамично развивающийся рынок АПК Крыма.'),
@@ -73,6 +75,19 @@ EVENTS = {
     },
 }
 
+# Линейные иконки экспозиций (viewBox 0 0 24 24, обводка задаётся в CSS)
+ICONS = {
+    'tractor': '<circle cx="7" cy="16.5" r="3.5"/><circle cx="18" cy="18" r="2"/><path d="M3.5 13V8h6l2 6h6.5l2 4M9.5 8V4.5h4.5V14M14 11h4"/>',
+    'drop': '<path d="M12 3s-5.5 6.2-5.5 10.5a5.5 5.5 0 0 0 11 0C17.5 9.2 12 3 12 3z"/><path d="M9.5 14a2.5 2.5 0 0 0 2.5 2.5"/>',
+    'sprout': '<path d="M12 21v-9"/><path d="M12 12C12 8 9.5 5.5 5 5.5c0 4 2.5 6.5 7 6.5zM12 14.5c0-4 2.5-6.5 7-6.5 0 4-2.5 6.5-7 6.5z"/><path d="M8 21h8"/>',
+    'cow': '<path d="M4 6.5 7.5 8h9L20 6.5"/><path d="M7.5 8v6.5a4.5 4.5 0 0 0 9 0V8"/><path d="M10 17.5h4"/><circle cx="10.2" cy="11.5" r=".6"/><circle cx="13.8" cy="11.5" r=".6"/>',
+    'grapes': '<circle cx="9" cy="10" r="2"/><circle cx="13" cy="10" r="2"/><circle cx="11" cy="13.5" r="2"/><circle cx="15" cy="13.5" r="2"/><circle cx="13" cy="17" r="2"/><path d="M11 8c0-2.5 1.5-4 4-5M13 6.5l3-.5"/>',
+    'fish': '<path d="M3 12c2.8-3.8 6.8-5 10.5-4.2 2.3.5 4.3 2 5.5 4.2-1.2 2.2-3.2 3.7-5.5 4.2C9.8 17 5.8 15.8 3 12z"/><path d="M19 12l2.5-3v6z"/><circle cx="8" cy="11" r=".6"/>',
+    'factory': '<path d="M3 21V11l5 3v-3l5 3v-3l5 3V4h3v17z"/><path d="M7 18h2M12 18h2M17 18h1"/>',
+    'wheat': '<path d="M12 21V5"/><path d="M12 9c-2-1-3-2.8-3-5 2 1 3 2.8 3 5zM12 9c2-1 3-2.8 3-5-2 1-3 2.8-3 5zM12 14c-2-1-3-2.8-3-5 2 1 3 2.8 3 5zM12 14c2-1 3-2.8 3-5-2 1-3 2.8-3 5z"/>',
+    'flask': '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/>',
+}
+
 # Карточки «Другие мероприятия» — порядок как на главной
 ALL = [
     ('АгроЭкспоКрым', 'agro', 'https://expocrimea.com/events/agro/', '2021/08/1000h800-1-2.jpg', '10–12 февраля', 'Симферополь'),
@@ -96,7 +111,8 @@ def shared_parts():
     sprite = sprite.replace('</svg>', '  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></symbol>\n  <symbol id="i-pin2" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>\n</svg>')
     header = s[s.index('<header class="header">'):s.index('</header>') + 9]
     footer = s[s.index('<footer'):s.index('</footer>') + 9]
-    fabs = s[s.index('<a class="fab fab--chat"'):s.index('<script src="assets/v2.js">')]
+    fabs = s[s.index('<a class="fab fab--chat"'):s.index('<script src="assets/v2.js')]
+    ver = re.search(r'assets/v2\.js(\?v=\d+)?', s).group(1) or ''
 
     def fix(x):
         x = x.replace('src="site-source/', 'src="../site-source/').replace('href="assets/', 'href="../assets/')
@@ -104,7 +120,7 @@ def shared_parts():
         x = x.replace('href="#events"', 'href="../index.html#events"').replace('href="#news"', 'href="../index.html#news"')
         return x
     header = fix(header).replace('<a href="../index.html#events">', '<a href="../index.html#events" aria-current="page">', 1)
-    return fix(head), sprite, header, fix(footer), fix(fabs)
+    return fix(head), sprite, header, fix(footer), fix(fabs) + f'<script src="../assets/v2.js{ver}"></script>'
 
 
 def logo_strip(items):
@@ -128,7 +144,9 @@ def build(slug):
     for k, (v, t, d) in enumerate(e['nums'][1:]):
         cls = ' tile--light' if k == 2 else ''
         tiles.append(f'        <div class="tile{cls} rv"><b class="odo">{v}</b><span>{t}<small>{d}</small></span></div>')
-    expo = '\n'.join(f'        <li><div class="prow rv"><span class="prow__n">{k + 1:02d}</span><span class="prow__logo"><img src="{e["logo"]}" alt="" loading="lazy"></span><span class="prow__t">{t}</span><span class="prow__a"></span></div></li>' for k, t in enumerate(e['expo']))
+    icons = e.get('expo_icons') or []
+    mark = lambda k: (f'<svg class="prow__ic" viewBox="0 0 24 24" aria-hidden="true">{ICONS[icons[k]]}</svg>' if k < len(icons) else f'{k + 1:02d}')
+    expo = '\n'.join(f'        <li><div class="prow rv"><span class="prow__n">{mark(k)}</span><span class="prow__t">{t}</span><span class="prow__a"></span></div></li>' for k, t in enumerate(e['expo']))
     aud = '\n'.join(f'''        <div class="aud__c rv"><span class="aud__n">{k + 1:02d}</span><span class="aud__t">{t}</span><p class="aud__d">{d}</p></div>''' for k, (t, d) in enumerate(e['aud']))
     who = ''.join(f'<li>{w}</li>' for w in e['who'])
     docs = '\n'.join(f'          <a class="doc rv" href="{esc(h)}" target="_blank" rel="noopener"><svg class="doc__i"><use href="#i-doc"/></svg><span><b>{t}</b><small>{f}</small></span><svg class="doc__a" viewBox="0 0 24 24"><path d="M7 7l10 10M17 8v9H8"/></svg></a>' for t, f, h in e['docs'])
@@ -344,7 +362,7 @@ def build(slug):
 
 {footer}
 
-{fabs}<script src="../assets/v2.js"></script>
+{fabs}
 </body>
 </html>
 '''
