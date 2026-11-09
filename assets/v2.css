@@ -270,7 +270,12 @@ button{font:inherit;color:inherit}
 .chip-l svg{width:18px;height:18px;stroke:var(--red);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
 /* 8. Команда */
-.team-s{background:var(--bg);padding:120px 0}
+.team-s{background:var(--ink);color:#fff;padding:120px 0 0}
+/* шапка «Команды» на графите, сливается со слайдами */
+.team-s .team__head p{color:rgba(255,255,255,.7)}
+.team-s .chips{background:rgba(255,255,255,.08)}
+.team-s .chip{color:rgba(255,255,255,.85)}
+.team-s .chip.is-on{color:#fff}
 .team__head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:48px;flex-wrap:wrap}
 .team__head p{color:#444;font-size:18px;margin-top:20px;max-width:520px}
 .chips{position:relative;display:inline-flex;gap:4px;padding:4px;background:#fff;border-radius:999px}
