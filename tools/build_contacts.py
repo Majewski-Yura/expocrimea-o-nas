@@ -16,12 +16,14 @@ ADDR = 'Республика Крым, г. Симферополь, ул. Кие�
 ADDR_Q = 'Симферополь, улица Киевская, 41'
 MAIL = 'info@expocrimea.com'
 PHONES = [('+79789009090', '+7 (978) 900 90 90', ''), ('+74954450208', '+7 (495) 445-02-08', '')]
-SOC = [('Телеграм', 'https://t.me/expocrimea/', 'i-tg'), ('ВКонтакте', 'https://vk.com/expocrimea', 'i-vk'), ('Rutube', 'https://rutube.ru/channel/42066549/', 'i-play')]
+SOC = [('Телеграм', 'https://t.me/expocrimea/', 'i-tgf'), ('MAX', 'https://max.ru/id9102171932_biz', 'i-max'), ('ВКонтакте', 'https://vk.com/expocrimea', 'i-vk'), ('Rutube', 'https://rutube.ru/channel/42066549/', 'i-play')]
 
 ICONS = '''  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
-  <symbol id="i-vk" viewBox="0 0 24 24"><path d="M3 7h3.2c.4 3.6 2 5.5 3.3 5.9V7h3v3.4c1.3-.1 2.6-1.7 3.1-3.4h2.9c-.4 2.1-1.9 3.8-3 4.5 1.1.5 2.9 2 3.5 4.5h-3.2c-.5-1.6-1.8-2.8-3.3-3V16h-.4C6.9 16 3.2 13 3 7z"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4"/><path d="m10 9 5 3-5 3z"/></symbol>
+  <symbol id="i-vk" viewBox="0 0 24 24"><path d="M12.8 18.2C6.2 18.2 2.4 13.7 2.2 6h3.3c.1 5.6 2.6 8 4.6 8.5V6h3.1v4.9c1.9-.2 3.9-2.4 4.6-4.9h3.1c-.5 3-2.7 5.2-4.3 6.1 1.6.7 4.1 2.6 5 6.1h-3.4c-.7-2.3-2.6-4.1-5-4.4v4.4z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.5 3h13A3.5 3.5 0 0 1 22 6.5v11a3.5 3.5 0 0 1-3.5 3.5h-13A3.5 3.5 0 0 1 2 17.5v-11A3.5 3.5 0 0 1 5.5 3zM10 8.3v7.4l6.2-3.7z"/></symbol>
+  <symbol id="i-tgf" viewBox="0 0 24 24"><path d="M21.9 4.6 18.7 19.7c-.2 1.1-.9 1.3-1.8.8l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6.1 13.2l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6l19.1-7.4c.9-.3 1.7.2 1.4 1.9z"/></symbol>
+  <symbol id="i-max" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.2 2C6.5 2 2.3 6.1 2.3 11.6c0 2.6.6 4.6 1.5 6.6.5 1.2.1 2.4-.2 3.4-.2.6.4 1.1 1 .8 1.3-.6 2.6-1.4 3.7-1.2 1.2.5 2.5.8 3.9.8 5.6 0 9.9-4.3 9.9-9.6S17.8 2 12.2 2zm.1 5a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2z"/></symbol>
   <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
 '''
 
@@ -35,7 +37,9 @@ def build():
     phones = '\n'.join(f'            <a class="ct__big" href="tel:{t}">{h}</a>' + (f'<small>{note}</small>' if note else '') for t, h, note in PHONES)
     soc = '\n'.join(f'          <a class="ct-soc rv" href="{u}" target="_blank" rel="noopener"><span class="st__ic"><svg><use href="#{ic}"/></svg></span><b>{n}</b><span class="ct-soc__go"><svg><use href="#i-arrow"/></svg></span></a>' for n, u, ic in SOC)
     route = 'https://yandex.ru/maps/?rtext=~44.953602%2C34.119784'
-    mapsrc = 'https://yandex.ru/map-widget/v1/?ll=34.119784%2C44.953602&z=16&pt=34.119784%2C44.953602%2Cpm2rdl'  # Киевская, 41 — координаты из Яндекс Карт
+    # Киевская, 41 — координаты из Яндекс Карт. Виджет Яндекса без Конструктора карт показывает рекламу, поэтому карта OpenStreetMap
+    mapsrc = 'https://www.openstreetmap.org/export/embed.html?bbox=34.1128%2C44.9500%2C34.1268%2C44.9572&layer=mapnik&marker=44.953602%2C34.119784'
+    ymap = 'https://yandex.ru/maps/?pt=34.119784,44.953602&z=17&l=map'
     html = f'''{head}</head>
 <body class="page-contacts">
 {sprite}
@@ -84,7 +88,7 @@ def build():
       </div>
 
       <div class="ct__row2">
-        <div class="ct-map rv"><iframe data-src="{mapsrc}" title="Офис ЭКСПОКРЫМ на карте" loading="lazy" allowfullscreen></iframe></div>
+        <div class="ct-map rv"><iframe data-src="{mapsrc}" title="Офис ЭКСПОКРЫМ на карте" loading="lazy"></iframe><a class="ct-map__open" href="{ymap}" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Открыть в Яндекс Картах</a></div>
         <form class="ct-form rv" id="form" data-mailto="{MAIL}">
           <h2>Напишите нам</h2>
           <p>Ответим в рабочее время. Письмо откроется в вашей почтовой программе.</p>

@@ -134,11 +134,11 @@ def shared_parts():
 
     def fix(x):
         x = x.replace('src="site-source/', 'src="../site-source/').replace('href="assets/', 'href="../assets/')
-        x = x.replace('href="news/', 'href="../news/').replace('href="partners/', 'href="../partners/').replace('href="vakansii/', 'href="../vakansii/').replace('href="kontakty/', 'href="../kontakty/').replace('href="events/', 'href="../events/')
+        x = x.replace('href="news/', 'href="../news/').replace('href="partners/', 'href="../partners/').replace('href="vakansii/', 'href="../vakansii/').replace('href="kontakty/', 'href="../kontakty/').replace('href="meropriyatiya/', 'href="../meropriyatiya/').replace('href="events/', 'href="../events/')
         x = x.replace('href="index.html"', 'href="../index.html"').replace('href="o-nas-v2.html', 'href="../o-nas-v2.html')
         x = x.replace('href="#events"', 'href="../index.html#events"').replace('href="#news"', 'href="../index.html#news"')
         return x
-    header = fix(header).replace('<a href="../index.html#events">', '<a href="../index.html#events" aria-current="page">', 1)
+    header = fix(header).replace('<a href="../meropriyatiya/index.html">', '<a href="../meropriyatiya/index.html" aria-current="page">', 1)
     return fix(head), sprite, header, fix(footer), fix(fabs) + f'<script src="../assets/v2.js{ver}"></script>'
 
 

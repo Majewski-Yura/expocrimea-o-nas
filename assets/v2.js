@@ -265,6 +265,28 @@ if (pgrid) {
   render(false);
 }
 
+// Календарь мероприятий: фильтр по городу прячет карточки и пустые месяцы
+$$('.chips[data-cal]').forEach(box => {
+  const btns = $$('.chip', box), ind = $('.chips__ind', box), cal = $(box.dataset.cal);
+  const words = n => (n % 100 > 10 && n % 100 < 15) ? 'событий' : n % 10 === 1 ? 'событие' : (n % 10 > 1 && n % 10 < 5) ? 'события' : 'событий';
+  const moveInd = () => { const on = $('.chip.is-on', box); ind.style.width = on.offsetWidth + 'px'; ind.style.transform = `translateX(${on.offsetLeft}px)`; };
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(c => c.classList.toggle('is-on', c === b)); moveInd();
+    let i = 0;
+    $$('.cal-m', cal).forEach(m => {
+      let n = 0;
+      $$('.ecard', m).forEach(c => {
+        const on = b.dataset.f === 'all' || c.dataset.f === b.dataset.f;
+        c.hidden = !on; c.classList.remove('pop', 'rv'); c.classList.add('in');
+        if (on) { n++; if (!reduce) { void c.offsetWidth; c.style.setProperty('--i', i++); c.classList.add('pop'); } }
+      });
+      m.hidden = !n;
+      const cnt = $('[data-cnt]', m); if (cnt) cnt.textContent = `${n} ${words(n)}`;
+    });
+  }));
+  new ResizeObserver(moveInd).observe(box); addEventListener('load', moveInd); moveInd();
+});
+
 // Контакты: открыт ли офис сейчас (по времени Симферополя, UTC+3)
 $$('[data-open]').forEach(el => {
   const d = new Date(Date.now() + 3 * 36e5), day = d.getUTCDay(), m = d.getUTCHours() * 60 + d.getUTCMinutes();
