@@ -161,3 +161,26 @@ if (!reduce) {
   }
 }
 update();
+
+// Страница мероприятия: обратный отсчёт до открытия
+$$('[data-countdown]').forEach(el => {
+  const days = Math.ceil((new Date(el.dataset.countdown + 'T10:00:00+03:00') - Date.now()) / 864e5);
+  const plural = (n, f) => f[(n % 100 > 4 && n % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][Math.min(n % 10, 5)]];
+  el.textContent = days > 0 ? `${days} ${plural(days, ['день', 'дня', 'дней'])}` : 'Уже идёт';
+});
+
+// Большое фото: раскрытие и лёгкий параллакс
+const ePh = $('.e-photo__f');
+if (ePh && !reduce) {
+  const img = $('img', ePh);
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { ePh.classList.add('in'); o.disconnect(); } }, {threshold: .2}).observe(ePh);
+  const par = () => { const r = ePh.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; img.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) / innerHeight * -60).toFixed(1) + 'px'); };
+  addEventListener('scroll', par, {passive: true}); par();
+}
+
+// Видео грузим, только когда блок рядом с экраном
+const lazyIf = $$('iframe[data-src]');
+if (lazyIf.length) {
+  const lo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.src = e.target.dataset.src; lo.unobserve(e.target); } }), {rootMargin: '300px'});
+  lazyIf.forEach(f => lo.observe(f));
+}

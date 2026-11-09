@@ -586,3 +586,158 @@ button{font:inherit;color:inherit}
 @media (prefers-reduced-motion:reduce){
   .hero-v__video{animation:none;transform:none}
 }
+
+/* ===== Страница мероприятия (версия 2) ===== */
+.page-ev{--ev:var(--red)}
+.page-ev main .eyebrow{color:var(--ev)}
+.page-ev .e-was .eyebrow{color:#fff}
+.page-ev main .btn:not(.btn--line){background:var(--ev);border-color:var(--ev)}
+.page-ev .hstep,.page-ev .prow__n{color:var(--muted)}
+.e-num .tile b,.e-num .facts__t em{color:var(--ev)}
+.e-num .tile--hero b{color:#fff}
+.e-about{padding-top:24px}
+.hero-e{padding-bottom:96px}
+.hero-e .eyebrow{color:var(--ev)}
+.hero-e .hero__title em{color:var(--ev)}
+.hero-e .hero__bgnum{-webkit-text-stroke-color:color-mix(in srgb,var(--ev) 30%,transparent)}
+.e-meta{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:16px;margin-top:56px}
+.e-meta__it{display:flex;flex-direction:column;gap:6px;padding:20px 24px;border-radius:var(--radius);background:var(--bg);min-width:200px}
+.e-meta__it small{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.e-meta__it b{font-size:22px;line-height:1.15;font-weight:600}
+.e-meta__it--ev{background:var(--ev);color:#fff}
+.e-meta__it--ev small{color:rgba(255,255,255,.75)}
+.e-meta__cd{font-variant-numeric:tabular-nums}
+.e-seal .seal__core{background:#fff;border:1px solid var(--line);width:104px;height:104px;padding:18px}
+.e-seal .seal__core img{width:100%;height:100%;object-fit:contain}
+.e-seal:hover .seal__core{transform:scale(1.06) rotate(-6deg)}
+
+/* Большое фото с раскрытием */
+.e-photo{background:#fff;padding:0 0 120px}
+.e-photo__f{position:relative;height:min(78vh,760px);border-radius:var(--radius);overflow:hidden;background:var(--ink-2)}
+.e-photo__f img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;transform:translateY(var(--py,0px)) scale(1.02);will-change:transform}
+.e-photo__cap{position:absolute;left:32px;bottom:28px;right:32px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.e-photo__f::after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(0deg,rgba(43,45,48,.7),rgba(43,45,48,0))}
+.e-photo__cap{z-index:1}
+.js-anim .e-photo__f{clip-path:inset(12% 8% 12% 8% round 24px);transition:clip-path 1.4s var(--ease)}
+.js-anim .e-photo__f.in{clip-path:inset(0 0 0 0 round 12px)}
+
+/* О выставке */
+.e-about .manifest__text em{color:var(--ev)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tags span{display:inline-flex;align-items:center;height:40px;padding:0 18px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:600;transition:background .3s,color .3s,border-color .3s}
+.tags span:hover{background:var(--ev);border-color:var(--ev);color:#fff}
+.e-about .mission::before{background:var(--ev)}
+.e-about .mission small{color:var(--ev)}
+.e-offer{display:flex;gap:16px;align-items:center;margin-top:32px;padding:20px 24px;border-radius:var(--radius);background:color-mix(in srgb,var(--ev) 10%,#fff);font-weight:600}
+.e-offer svg{width:28px;height:28px;flex-shrink:0;stroke:var(--ev);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Цифры выставки */
+.e-num .tile--hero{background:var(--ev)}
+.e-num .bento{grid-template-columns:repeat(4,1fr)}
+
+/* Экспозиции — переиспользуем указатель .plist/.prow */
+.e-expo .prow{cursor:default}
+.e-expo .prow::before{background:var(--ev)}
+.e-expo .prow__a{display:none}
+
+/* Кому стоит прийти */
+.aud{background:var(--bg);padding:120px 0}
+.aud__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.aud__c{position:relative;display:flex;flex-direction:column;gap:16px;min-height:300px;padding:28px;border-radius:var(--radius);background:#fff;overflow:hidden;isolation:isolate;transition:color .4s}
+.aud__c::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .55s var(--ease);z-index:-1}
+.aud__c:hover{color:#fff}
+.aud__c:hover::before{transform:none}
+.aud__n{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ev)}
+.aud__t{font-size:clamp(24px,2.2vw,32px);line-height:1;font-weight:600;letter-spacing:-.02em;text-transform:uppercase}
+.aud__d{margin-top:auto;color:#555;transition:color .4s}
+.aud__c:hover .aud__d{color:rgba(255,255,255,.75)}
+.aud__who{margin-top:48px;display:grid;grid-template-columns:200px 1fr;gap:24px;padding-top:32px;border-top:1px solid var(--line)}
+.aud__who small{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.aud__who ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.aud__who li{padding:8px 14px;border-radius:999px;background:#fff;font-size:14px}
+
+/* Участникам — переиспользуем .doc */
+.e-docs{background:#fff;padding:120px 0}
+.e-docs .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:56px}
+.e-docs .doc::before{background:var(--ev)}
+
+/* Как это было */
+.e-was{background:var(--ink);color:#fff;padding:120px 0;overflow:hidden}
+.e-was .eyebrow{color:#fff}
+.vids{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:16px;margin-top:56px}
+.vid{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--ink-2);aspect-ratio:16/9}
+.vid:first-child{grid-row:span 2;aspect-ratio:auto}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.gal{display:flex;gap:16px;margin-top:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.gal::-webkit-scrollbar{display:none}
+.gal figure{flex:0 0 min(420px,72vw);aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden;scroll-snap-align:start;margin:0}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.gal figure:hover img{transform:scale(1.05)}
+
+/* Место проведения */
+.venue2{background:#fff;padding:120px 0}
+.venue2__grid{display:grid;grid-template-columns:7fr 5fr;gap:56px;align-items:center;margin-top:56px}
+.venue2__ph{border-radius:var(--radius);overflow:hidden;aspect-ratio:3/2}
+.venue2__ph img{width:100%;height:100%;object-fit:cover}
+.venue2__t{font-size:clamp(28px,3vw,44px);line-height:1.05;font-weight:600;letter-spacing:-.02em;text-transform:uppercase}
+.venue2__a{margin-top:20px;font-size:18px;color:#444}
+.venue2__list{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:12px}
+.venue2__list li{display:flex;gap:12px;align-items:flex-start;color:#444}
+.venue2__list li::before{content:"";flex-shrink:0;width:8px;height:8px;margin-top:9px;background:var(--ev);transform:rotate(45deg)}
+.venue2 .btn{margin-top:32px}
+
+/* Партнёры мероприятия — все группы бегущими строками */
+.e-part .part__label:first-of-type{margin-top:48px}
+.e-part .plogo{background:#fff;border:1px solid var(--line)}
+.e-part .plogo img{max-height:84px}
+
+/* Призыв */
+.e-cta{position:relative;background:var(--ev);color:#fff;padding:120px 0;overflow:hidden}
+.e-cta .jobs__in{position:relative}
+.e-cta h2{font-size:clamp(48px,8vw,136px);line-height:.88;font-weight:600;letter-spacing:-.04em;text-transform:uppercase}
+.e-cta p{font-size:18px;max-width:560px;margin-top:32px;color:rgba(255,255,255,.9)}
+.e-cta__c{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.e-cta .chip-l{border-color:rgba(255,255,255,.4);color:#fff}
+.e-cta .chip-l svg{stroke:#fff}
+.e-cta .chip-l:hover{background:#fff;color:var(--ev);border-color:#fff}
+.e-cta .chip-l:hover svg{stroke:var(--ev)}
+.e-cta .magnet{color:var(--ev)}
+
+/* Другие мероприятия */
+.e-more{background:var(--bg);padding:120px 0}
+.e-more .egrid{margin-top:56px}
+
+@media (max-width:1100px){
+  .aud__grid{grid-template-columns:repeat(2,1fr)}
+  .e-num .bento{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .e-meta{grid-template-columns:1fr 1fr}
+  .venue2__grid,.vids{grid-template-columns:1fr}
+  .vid:first-child{grid-row:auto;aspect-ratio:16/9}
+  .e-docs .docs{grid-template-columns:1fr}
+  .aud__who{grid-template-columns:1fr;gap:12px}
+}
+@media (max-width:767px){
+  .hero-e{padding-bottom:56px}
+  .e-meta{grid-template-columns:1fr 1fr;gap:8px;margin-top:32px}
+  .e-meta__it{min-width:0;padding:14px 16px}
+  .e-meta__it b{font-size:17px}
+  .e-meta__it:first-child{grid-column:1/-1}
+  .e-seal{display:none}
+  .e-photo{padding-bottom:80px}
+  .e-photo__f{height:52vh}
+  .e-photo__cap{left:16px;right:16px;bottom:16px;font-size:11px}
+  .aud,.e-docs,.e-was,.venue2,.e-cta,.e-more{padding:80px 0}
+  .aud__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:40px calc(var(--gut) * -1) 0;padding:0 var(--gut);scroll-padding-inline:var(--gut);scrollbar-width:none}
+  .aud__grid::-webkit-scrollbar{display:none}
+  .aud__c{flex:0 0 76vw;min-height:240px;scroll-snap-align:start}
+  .vids{margin-top:40px;gap:10px}
+  .venue2__grid{margin-top:40px;gap:28px}
+  .e-more .egrid{margin-top:40px}
+  .e-about{padding-top:8px}
+  .e-expo .prow{grid-template-columns:28px 1fr;gap:12px}
+  .e-expo .prow__logo{display:none}
+  .e-expo .prow__n{display:block;font-size:12px}
+  .e-expo .prow__t{font-size:16px;overflow-wrap:anywhere}
+}
