@@ -376,3 +376,6 @@ if (tocLinks.length) {
   };
   addEventListener('scroll', spy, {passive: true}); spy();
 }
+
+// Битые картинки (старый сервер медиа недоступен) прячем, чтобы не висели сломанные иконки
+$$('img').forEach(i => i.addEventListener('error', () => { i.style.display = 'none' }, { once: true }));

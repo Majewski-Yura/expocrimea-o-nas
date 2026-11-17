@@ -1,11 +1,11 @@
 /* Версия 2: та же палитра и шрифты, смелее компоновка и анимации */
-@font-face{font-family:'Gilroy';font-weight:400;font-display:swap;src:local('Gilroy-Regular'),local('Gilroy Regular'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-regular.woff2') format('woff2')}
-@font-face{font-family:'Gilroy';font-weight:500;font-display:swap;src:local('Gilroy-Medium'),local('Gilroy Medium'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-medium.woff2') format('woff2')}
-@font-face{font-family:'Gilroy';font-weight:600;font-display:swap;src:local('Gilroy-SemiBold'),local('Gilroy SemiBold'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-semibold.woff2') format('woff2')}
-@font-face{font-family:'Gilroy';font-weight:700;font-display:swap;src:local('Gilroy-Bold'),local('Gilroy Bold'),url('https://expocrimea.com/wp-content/themes/burlak-theme2/assets/fonts/gilroy-bold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:400;font-display:swap;src:local('Gilroy-Regular'),local('Gilroy Regular'),url('media/gilroy-regular.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:500;font-display:swap;src:local('Gilroy-Medium'),local('Gilroy Medium'),url('media/gilroy-medium.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:600;font-display:swap;src:local('Gilroy-SemiBold'),local('Gilroy SemiBold'),url('media/gilroy-semibold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:700;font-display:swap;src:local('Gilroy-Bold'),local('Gilroy Bold'),url('media/gilroy-bold.woff2') format('woff2')}
 
 :root{
-  --red:#E41A00; --red-dark:#C21600;
+  --red:#C21600; --red-dark:#A31300;
   --ink:#2B2D30; --ink-2:#35383C; --ink-3:#383B3F; /* графит вместо чёрного */
   --bg:#F2F2F2; --card:#FFFFFF;
   --muted:#828282; --muted-2:#BDBDBD; --line:#E0E0E0;
@@ -22,7 +22,7 @@ button{font:inherit;color:inherit}
 .container{max-width:var(--container);margin:0 auto;padding:0 var(--gut)}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:28px}
 .eyebrow::before{content:"";width:32px;height:2px;background:currentColor}
-.h2{font-size:clamp(36px,5vw,72px);line-height:.98;font-weight:600;letter-spacing:-.02em;text-transform:uppercase}
+.h2{font-size:clamp(36px,5vw,72px);line-height:.98;font-weight:600;letter-spacing:.01em;text-transform:uppercase}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 32px;font-size:15px;font-weight:600;border:1px solid var(--red);background:var(--red);color:#fff;cursor:pointer;position:relative;overflow:hidden;isolation:isolate;transition:color .3s,border-color .3s}
 .btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1}
 .btn:hover::before{transform:none}
@@ -44,6 +44,14 @@ button{font:inherit;color:inherit}
 .logo__mark img{width:48px;height:48px}
 .logo__mark span{font-size:9px;letter-spacing:.14em;color:var(--red);font-weight:600}
 .logo__tag{font-size:15px;line-height:1.25;font-weight:500;max-width:150px}
+/* Горизонтальная сборка логотипа: эмблема + фирменная надпись + «осн. 2010» (шапка главной, подвалы) */
+.logo--h{gap:12px}
+.logo--h .logo__svg{width:54px;height:56px}
+.logo--h .logo__mark{align-items:flex-start;gap:4px}
+.logo--h .logo__mark span{font-size:10px}
+.logo__word{display:block;width:150px;height:12.5px;color:#BE2126}
+.footer .logo__word{color:#fff}
+.footer .logo--h .logo__mark span{color:rgba(255,255,255,.65)}
 .nav{display:flex;gap:40px;margin-left:auto;font-size:14px;font-weight:500}
 .nav a{position:relative;transition:color .2s}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
@@ -61,7 +69,7 @@ button{font:inherit;color:inherit}
 .crumbs{font-size:13px;color:var(--muted);margin-bottom:56px}
 .crumbs a:hover{color:var(--red)}
 .crumbs span{margin:0 8px}
-.hero__title{font-size:clamp(40px,7.6vw,128px);line-height:.92;font-weight:600;letter-spacing:-.03em;text-transform:uppercase}
+.hero__title{font-size:clamp(40px,7.6vw,128px);line-height:.92;font-weight:600;letter-spacing:0;text-transform:uppercase}
 .hero__title .ln{display:block;overflow:hidden;padding-bottom:.04em}
 .hero__title .ln>span{display:inline-block}
 .hero__title em{font-style:normal;color:var(--red)}
@@ -78,6 +86,8 @@ button{font:inherit;color:inherit}
 .hero__bgnum{position:absolute;right:-2vw;top:-2vw;font-size:32vw;line-height:.8;font-weight:700;color:transparent;-webkit-text-stroke:1px var(--line);pointer-events:none;user-select:none;letter-spacing:-.06em;z-index:0}
 .hero .container{position:relative;z-index:1}
 @keyframes spin{to{transform:rotate(360deg)}}
+/* пульс «как сердце» для эмблемы-льва вместо вращения */
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 @keyframes nudge{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
 @keyframes rise{from{transform:translateY(110%)}to{transform:none}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -91,11 +101,11 @@ button{font:inherit;color:inherit}
 .zoom{--p:1;--zx:24%;--zy:10%;position:relative;height:230vh;background:#fff}
 .zoom__stick{position:sticky;top:var(--hdr);height:calc(100vh - var(--hdr));overflow:hidden}
 .collage{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:8px;grid-template-areas:"a a b c" "a a d e" "f g g h"}
-/* каждое фото влетает в сетку по своей доле прокрутки */
-.ct{--t:clamp(0, (var(--p) - var(--k) * .07) / .3, 1);margin:0;overflow:hidden;border-radius:4px;background:var(--ink-2);opacity:var(--t);transform:translate(calc((1 - var(--t)) * var(--fx)), calc((1 - var(--t)) * var(--fy))) rotate(calc((1 - var(--t)) * var(--r))) scale(calc(.8 + var(--t) * .2));will-change:transform}
+.ct{margin:0;overflow:hidden;border-radius:4px;background:var(--ink-2)}
 .ct img{width:100%;height:100%;object-fit:cover}
 /* у «Контактов» свой блок .ct с отступами — в коллаже их не должно быть */
-.collage .ct{position:relative;padding:0;background:var(--ink-2)}
+/* «бутон»: фото стартуют стопкой в центре и по своей доле прокрутки расходятся лепестками наружу (--bx/--by считает JS) */
+.collage .ct{--t:clamp(0, (var(--p) - var(--k) * .07) / .3, 1);position:relative;padding:0;background:var(--ink-2);opacity:clamp(0, var(--t) * 1.3, 1);transform:translate(calc((1 - var(--t)) * var(--bx, 0px)), calc((1 - var(--t)) * var(--by, 0px))) rotate(calc((1 - var(--t)) * var(--r, 0deg) * 2)) scale(calc(.3 + var(--t) * .7));will-change:transform}
 .collage .ct img{position:absolute;inset:0}
 .ct:nth-child(1){grid-area:a}.ct:nth-child(2){grid-area:b}.ct:nth-child(3){grid-area:c}.ct:nth-child(4){grid-area:d}
 .ct:nth-child(5){grid-area:e}.ct:nth-child(6){grid-area:f}.ct:nth-child(7){grid-area:g}.ct:nth-child(8){grid-area:h}
@@ -122,6 +132,8 @@ button{font:inherit;color:inherit}
 .manifest__text em{font-style:normal;color:var(--red)}
 .manifest__text .w{opacity:.13;transition:opacity .35s}
 .manifest__text .w.on{opacity:1}
+/* вводный текст — три абзаца */
+.manifest__text p+p{margin-top:.75em}
 .manifest__foot{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:96px;padding-top:40px;border-top:1px solid var(--line)}
 .manifest__foot p{font-size:18px;color:#444;max-width:560px}
 .mission{--mc:var(--red);position:relative;overflow:hidden;align-self:start;padding:48px 56px 52px;border-radius:20px;background:radial-gradient(420px circle at var(--mx,85%) var(--my,10%),color-mix(in srgb,var(--mc) 14%,transparent),transparent 70%),var(--bg);transition:transform .6s var(--ease)}
@@ -144,13 +156,16 @@ button{font:inherit;color:inherit}
 .manifest__foot--stag>*{min-width:0}
 .steps--wide{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;align-items:stretch}
 .steps--wide li{position:relative;display:flex;flex-direction:column;padding:28px 28px 32px;border:1px solid var(--line);border-radius:20px;background:#fff;transition:background .4s var(--ease),border-color .4s,color .4s,transform .5s var(--ease)}
-.steps--wide li:not(:last-child)::after{position:absolute;right:-25px;top:56px;z-index:2;width:34px;height:34px;border-radius:50%;background:#fff var(--arr) center/14px no-repeat;border:1px solid var(--line);-webkit-mask:none;transform:translateY(-50%)}
-.steps--wide{--arr:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E41A00' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E")}
+/* стрелки между карточками «Всё для участников» убраны по правке заказчика */
+.steps--wide li:not(:last-child)::after{display:none}
 .steps--wide li{align-items:stretch;gap:0}
 .steps--wide li>span.st__top,.steps--wide li:hover>span.st__top{display:flex;justify-content:space-between;align-items:flex-start;height:auto;padding:0;border:0;border-radius:0;background:none;color:inherit}
 .steps--wide li>span b,.steps--wide li:hover>span b{display:block;width:auto;height:auto;border-radius:0;background:none}
 .st__ic{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--bg);color:var(--red);transition:background .4s,color .4s,transform .6s var(--ease)}
 .st__ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* круглые плашки-иконки в «Всё для участников» крупнее */
+.steps--wide .st__ic{width:76px;height:76px}
+.steps--wide .st__ic svg{width:34px;height:34px}
 .steps--wide b{font-size:14px;font-weight:600;color:var(--muted-2);transition:color .4s}
 .steps--wide strong{margin-top:48px;font-size:clamp(18px,1.45vw,22px);line-height:1.2;font-weight:600}
 .steps--wide small{margin-top:10px;font-size:15px;line-height:1.45;color:var(--muted);transition:color .4s}
@@ -182,7 +197,7 @@ button{font:inherit;color:inherit}
 .tile--hero b{color:#fff;font-size:clamp(140px,17vw,280px);letter-spacing:-.06em;line-height:.85}
 .tile--hero b+span{color:#fff;font-size:22px;font-weight:600;max-width:none}
 .tile--hero p{color:rgba(255,255,255,.85);max-width:420px;position:relative}
-.tile--hero img{position:absolute;right:-12%;top:-14%;width:72%;opacity:.14;filter:brightness(0) invert(1);animation:spin 60s linear infinite;pointer-events:none}
+.tile--hero img{position:absolute;right:-12%;top:-14%;width:72%;opacity:.14;filter:brightness(0) invert(1);animation:heartbeat 2.4s ease-in-out infinite;pointer-events:none}
 .tile--wide{grid-column:span 2}
 .tile--light{background:var(--bg);color:var(--ink)}
 .tile--light b+span{color:var(--ink)}
@@ -213,8 +228,9 @@ button{font:inherit;color:inherit}
 .prow__a{width:52px;height:52px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;transform:rotate(-45deg);transition:transform .5s var(--ease),background .3s,border-color .3s}
 .prow__a svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .prow:hover .prow__a{transform:none;background:#fff;border-color:#fff;color:var(--red)}
-.pfloat{position:fixed;left:0;top:0;border-radius:var(--radius);background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.25);padding:24px;pointer-events:none;z-index:55;opacity:0;transform:translate(48px,-50%) scale(.5) rotate(-8deg);transition:opacity .25s,transform .45s var(--ease)}
-.pfloat.on{opacity:1;transform:translate(48px,-50%) scale(1) rotate(-4deg)}
+/* лого проекта при наведении — ровное, без наклона */
+.pfloat{position:fixed;left:0;top:0;border-radius:var(--radius);background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.25);padding:24px;pointer-events:none;z-index:55;opacity:0;transform:translate(48px,-50%) scale(.5);transition:opacity .25s,transform .45s var(--ease)}
+.pfloat.on{opacity:1;transform:translate(48px,-50%) scale(1)}
 .pfloat img{display:block;width:auto;height:128px;max-width:220px;object-fit:contain}
 
 /* 6. История — горизонтальная лента */
@@ -287,7 +303,7 @@ button{font:inherit;color:inherit}
 .tcard{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--ink);color:#fff;isolation:isolate}
 .tcard[hidden]{display:none}
 .tcard__ph{position:absolute;inset:0;z-index:-2}
-.tcard__ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.tcard__ph img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .8s var(--ease)}
 .tcard:hover .tcard__ph img{transform:scale(1.06)}
 .tcard__ph--none{display:grid;place-items:center;background:var(--ink-2)}
 .tcard__ph--none svg{width:36%;height:36%;color:rgba(255,255,255,.22)}
@@ -386,9 +402,9 @@ button{font:inherit;color:inherit}
 /* 12. Вакансии */
 .jobs{position:relative;background:var(--red);color:#fff;padding:120px 0;overflow:hidden}
 .jobs__in{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:56px}
-.jobs h2{font-size:clamp(48px,8.4vw,144px);line-height:.88;font-weight:600;letter-spacing:-.04em;text-transform:uppercase}
+.jobs h2{font-size:clamp(48px,8.4vw,144px);line-height:.88;font-weight:600;letter-spacing:-.01em;text-transform:uppercase}
 .jobs p{font-size:18px;max-width:520px;margin-top:32px;color:rgba(255,255,255,.9)}
-.jobs__bg{position:absolute;right:-6%;bottom:-40%;width:48%;opacity:.07;filter:brightness(0) invert(1);animation:spin 80s linear infinite reverse;pointer-events:none}
+.jobs__bg{position:absolute;right:-6%;bottom:-40%;width:48%;opacity:.07;filter:brightness(0) invert(1);animation:heartbeat 2.4s ease-in-out infinite;pointer-events:none}
 .magnet{width:200px;height:200px;border-radius:50%;background:#fff;color:var(--red);display:grid;place-items:center;text-align:center;font-size:16px;font-weight:600;line-height:1.25;transition:transform .5s var(--ease)}
 .magnet span{display:block;transition:transform .5s var(--ease)}
 .magnet svg{display:block;margin:10px auto 0;width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -543,13 +559,13 @@ button{font:inherit;color:inherit}
 .hero-v::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,45,48,.35) 0%,rgba(43,45,48,.2) 35%,rgba(43,45,48,.9) 100%)}
 .hero-v .container{position:relative;z-index:1;width:100%;padding-top:120px;padding-bottom:164px}
 .hero-v .eyebrow{color:#fff}
-.hero-v .hero__title{font-size:clamp(64px,13.4vw,212px);line-height:.86;letter-spacing:-.04em}
+.hero-v .hero__title{font-size:clamp(64px,13.4vw,212px);line-height:.86;letter-spacing:-.01em}
+.hero-v .hero__title .ln{padding-bottom:.12em;margin-bottom:-.12em} /* запас маски снизу: глифы при плотном line-height не срезаются */
 .hero-v .hero__row{margin-top:40px}
 .hero-v .hero__sub{color:rgba(255,255,255,.85)}
 .hero-v .btn--line{color:#fff;border-color:rgba(255,255,255,.7)}
 .hero-v .btn--line:hover{border-color:var(--ink)}
-.hero-v .seal__ring text{fill:#fff}
-.hero-v__snd{position:absolute;right:var(--gut);top:24px;z-index:2;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(43,45,48,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:background .3s,border-color .3s}
+.hero-v .seal__ring text{fill:#fff}.hero-v__snd{position:absolute;right:var(--gut);top:24px;z-index:2;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(43,45,48,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:background .3s,border-color .3s}
 .hero-v__snd:hover{background:var(--red);border-color:var(--red)}
 .hero-v__snd svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
@@ -581,7 +597,7 @@ button{font:inherit;color:inherit}
 .ecard__go svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ecard:hover .ecard__go{transform:none;background:var(--red)}
 .ecard__b{position:absolute;left:20px;right:20px;bottom:20px}
-.ecard__n{font-size:clamp(20px,1.7vw,26px);line-height:1.02;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
+.ecard__n{font-size:clamp(16px,1.35vw,20px);line-height:1.02;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
 .ecard__a{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.72)}
 .ecard.pop{animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0) * 50ms)}
 
@@ -607,7 +623,7 @@ button{font:inherit;color:inherit}
 /* Подписка */
 .sub{position:relative;background:var(--red);color:#fff;padding:120px 0;overflow:hidden}
 .sub__in{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:56px}
-.sub h2{font-size:clamp(48px,8.4vw,144px);line-height:.88;font-weight:600;letter-spacing:-.04em;text-transform:uppercase}
+.sub h2{font-size:clamp(48px,8.4vw,144px);line-height:.88;font-weight:600;letter-spacing:-.01em;text-transform:uppercase}
 .sub p{font-size:18px;max-width:520px;margin-top:32px;color:rgba(255,255,255,.9)}
 .sub__f{display:flex;align-items:center;gap:16px;border-bottom:2px solid #fff;padding-bottom:12px}
 .sub__f input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:clamp(20px,2vw,28px);font-weight:500}
@@ -649,7 +665,7 @@ button{font:inherit;color:inherit}
   .ecard__date{left:10px;top:10px;font-size:9px;padding:6px 7px}
   .ecard__go{display:none}
   .ecard__b{left:12px;right:12px;bottom:12px}
-  .ecard__n{font-size:15px}
+  .ecard__n{font-size:14px}
   .ecard__a{font-size:11px;margin-top:6px}
   .ngrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(var(--gut) * -1);padding:0 var(--gut);scrollbar-width:none;scroll-padding-inline:var(--gut)}
   .ngrid::-webkit-scrollbar{display:none}
@@ -772,7 +788,7 @@ button{font:inherit;color:inherit}
 /* Призыв */
 .e-cta{position:relative;background:var(--ev);color:#fff;padding:120px 0;overflow:hidden}
 .e-cta .jobs__in{position:relative}
-.e-cta h2{font-size:clamp(48px,8vw,136px);line-height:.88;font-weight:600;letter-spacing:-.04em;text-transform:uppercase}
+.e-cta h2{font-size:clamp(48px,8vw,136px);line-height:.88;font-weight:600;letter-spacing:-.01em;text-transform:uppercase}
 .e-cta p{font-size:18px;max-width:560px;margin-top:32px;color:rgba(255,255,255,.9)}
 .e-cta__c{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .e-cta .chip-l{border-color:rgba(255,255,255,.4);color:#fff}
@@ -1060,7 +1076,7 @@ a.ct__big:hover{opacity:.8}
 .ct-map__open:hover{background:var(--red);color:#fff}
 .ct-map__open:hover svg{stroke:#fff}
 .ct-form{background:#fff;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:16px;scroll-margin-top:calc(var(--hdr) + 24px)}
-.ct-form h2{font-size:clamp(28px,2.6vw,40px);line-height:1.05;font-weight:600;letter-spacing:-.02em;text-transform:uppercase}
+.ct-form h2{font-size:clamp(28px,2.6vw,40px);line-height:1.05;font-weight:600;letter-spacing:.01em;text-transform:uppercase}
 .ct-form>p{font-size:15px;color:var(--muted);margin-bottom:8px}
 .ct-form label:not(.ct-form__ok){display:flex;flex-direction:column;gap:6px}
 .ct-form label>span{font-size:13px;font-weight:600;color:var(--muted)}
