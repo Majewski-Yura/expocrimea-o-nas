@@ -283,7 +283,7 @@ button{font:inherit;color:inherit}
 .chip{position:relative;z-index:1;height:44px;padding:0 20px;border:0;background:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;transition:color .3s}
 .chip.is-on{color:#fff}
 .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-/* карточка в стиле заставок форума: фото на всю карточку, красные плашки */
+/* карточка в стиле заставок форума: фото на всю карточку, должность текстом без плашки */
 .tcard{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--ink);color:#fff;isolation:isolate}
 .tcard[hidden]{display:none}
 .tcard__ph{position:absolute;inset:0;z-index:-2}
@@ -295,7 +295,7 @@ button{font:inherit;color:inherit}
 .tcard__dep{position:absolute;left:16px;top:16px;background:var(--red);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 10px;line-height:1}
 .tcard__b{position:absolute;left:20px;right:20px;bottom:20px}
 .tcard__n{font-size:clamp(20px,1.7vw,26px);line-height:1.02;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
-.tcard__r{display:inline-block;margin-top:10px;background:var(--red);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;line-height:1.25}
+.tcard__r{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.25}
 .tcard__c{display:flex;gap:8px;margin-top:14px}
 .tcard__c a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:grid;place-items:center;transition:background .3s}
 .tcard__c a:hover{background:var(--red)}
