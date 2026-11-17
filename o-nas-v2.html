@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/v2.css?v=202611178">
+<link rel="stylesheet" href="assets/v2.css?v=202611189">
 </head>
 <body>
 
@@ -57,10 +57,7 @@
 
 <header class="header">
   <div class="container header__in">
-    <a class="logo" href="index.html">
-      <svg class="logo__svg" role="img" aria-label="ЭКСПОКРЫМ"><use href="#i-logo"/></svg>
-      <span class="logo__tag">Место встречи профессионалов</span>
-    </a>
+    <a class="logo logo--h" href="index.html"><svg class="logo__svg" viewBox="210.98 96.64 472.90 491.56" role="img" aria-label="ЭКСПОКРЫМ"><use href="#i-logo-em"/></svg><span class="logo__mark"><svg class="logo__word" viewBox="104.74 702.31 685.41 57.35" aria-hidden="true"><use href="#i-logo-word"/></svg><span>осн. 2010</span></span></a>
     <nav class="nav">
       <a href="meropriyatiya/index.html">Мероприятия</a>
       <a href="partners/index.html">Партнёры</a>
@@ -426,16 +423,7 @@ function layoutHist() {
   hist.style.height = (hpin.offsetHeight + hExtra) + 'px';
 }
 
-// Коллаж-«бутон»: каждое фото знает своё смещение до центра — оттуда стартует лепесток
-function bloom() {
-  const col = $('.collage'); if (!col) return;
-  $$('.ct', col).forEach(ct => {
-    const dx = ct.offsetLeft + ct.offsetWidth / 2 - col.clientWidth / 2;
-    const dy = ct.offsetTop + ct.offsetHeight / 2 - col.clientHeight / 2;
-    ct.style.setProperty('--bx', (-dx).toFixed(1) + 'px');
-    ct.style.setProperty('--by', (-dy).toFixed(1) + 'px');
-  });
-}
+// Коллаж-«бутон»: каждая фотка раскрывается лепестком на своём месте, смещения до центра больше не нужны
 
 const zoom = $('.zoom'), manifest = $('.manifest__text'), bossPh = $('.boss__ph'), up = $('.fab--up'), prog = $('.progress');
 let words = [];
@@ -482,9 +470,9 @@ let ticking = false;
 const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; update(); }); } };
 addEventListener('scroll', onScroll, {passive: true});
 track.addEventListener('scroll', onScroll, {passive: true});
-addEventListener('resize', () => { layoutHist(); bloom(); update(); });
-addEventListener('load', () => { layoutHist(); bloom(); update(); });
-layoutHist(); bloom(); update();
+addEventListener('resize', () => { layoutHist(); update(); });
+addEventListener('load', () => { layoutHist(); update(); });
+layoutHist(); update();
 
 if (!reduce) {
   document.documentElement.classList.add('js-anim');

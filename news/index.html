@@ -12,6 +12,9 @@
 <style>
 /* Новости: карточки-фото 3:4 с наложением (референс newpeople); живут здесь, кандидат на перенос в v2.css */
 .page-news .ngrid--all{grid-template-columns:repeat(4,1fr);gap:24px}
+.page-news .ncard--lead{grid-column:span 2}
+.page-news .ncard--lead .ncard__t{font-size:clamp(22px,1.9vw,30px)}
+.page-news .ncard--lead .ncard__b{max-width:80%}
 .page-news .ncard--ov{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--ink-2);color:#fff;isolation:isolate}
 .page-news .ncard--ov::after{content:"";position:absolute;inset:42% 0 0;background:linear-gradient(0deg,rgba(43,45,48,.94) 10%,rgba(43,45,48,0));z-index:-1}
 .page-news .ncard--ov .ncard__ph{position:absolute;inset:0;z-index:-2;aspect-ratio:auto;border-radius:0;background:var(--ink-2)}
@@ -26,7 +29,7 @@
 .page-news .ncard.pop{animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0) * 60ms)}
 @media (max-width:1250px){.page-news .ngrid--all{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:900px){.page-news .ngrid--all{grid-template-columns:repeat(2,1fr);gap:16px}.page-news .ncard--ov .ncard__t{font-size:16px}}
-@media (max-width:640px){.page-news .ngrid--all{grid-template-columns:1fr;gap:24px}}
+@media (max-width:640px){.page-news .ngrid--all{grid-template-columns:1fr;gap:24px}.page-news .ncard--lead{grid-column:auto}.page-news .ncard--lead .ncard__t{font-size:17px}}
 </style>
 </head>
 <body class="page-news">
@@ -118,26 +121,26 @@
         <a class="lnk rv" href="https://t.me/expocrimea" target="_blank" rel="noopener">Наш телеграм<span><svg><use href="#i-arrow"/></svg></span></a>
       </div>
       <div class="ngrid ngrid--all" id="news-grid">
-        <a class="ncard ncard--ov rv" data-f="urban" href="../news/krym-urban-forum-2026.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/_placeholder.svg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--lead rv" data-f="urban" href="../news/krym-urban-forum-2026.html">
+          <span class="ncard__ph"><img src="../assets/media/wp/ph_0062.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">17 октября 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Крым Урбан Форум – 2026: главные вопросы развития девелопмента Юга России</span><span class="ncard__r">Крым Урбан Форум</span></span>
         </a>
         <a class="ncard ncard--ov rv" data-f="agro" href="../news/ves-potenczial-prodovolstviya-i-promyshlennosti-rossii-na-rosekspokrym.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/_placeholder.svg" alt="" loading="lazy"></span>
+          <span class="ncard__ph"><img src="../assets/media/wp/ph_0228-300x200.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">30 мая 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Весь потенциал продовольствия и промышленности России на «РосЭкспоКрым»</span><span class="ncard__r">РосЭкспоКрым</span></span>
         </a>
         <a class="ncard ncard--ov rv" data-f="med" href="../news/fem-2026-nachalo-bolshoj-professionalnoj-istorii.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/_placeholder.svg" alt="" loading="lazy"></span>
+          <span class="ncard__ph"><img src="../assets/media/wp/4d7a2309-300x200.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">14 апреля 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">ФЭМ-2026: начало большой профессиональной истории!</span><span class="ncard__r">Форум эстетической медицины</span></span>
         </a>
         <a class="ncard ncard--ov rv" data-f="hosp" href="../news/dostizheniya-dlya-industrii-gostepriimstva-predstavili-na-restootelmarket.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/_placeholder.svg" alt="" loading="lazy"></span>
+          <span class="ncard__ph"><img src="../assets/media/wp/img_4488-300x200.png" alt="" loading="lazy"></span>
           <span class="ncard__badge">23 марта 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Достижения для индустрии гостеприимства представили на «РестоОтельМаркет»</span><span class="ncard__r">РестоОтельМаркет</span></span>

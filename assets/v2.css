@@ -100,12 +100,12 @@ button{font:inherit;color:inherit}
 /* 2. Фото, раскрывающееся при прокрутке */
 .zoom{--p:1;--zx:24%;--zy:10%;position:relative;height:230vh;background:#fff}
 .zoom__stick{position:sticky;top:var(--hdr);height:calc(100vh - var(--hdr));overflow:hidden}
-.collage{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:8px;grid-template-areas:"a a b c" "a a d e" "f g g h"}
+.collage{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:0;grid-template-areas:"a a b c" "a a d e" "f g g h"}
 .ct{margin:0;overflow:hidden;border-radius:4px;background:var(--ink-2)}
 .ct img{width:100%;height:100%;object-fit:cover}
 /* у «Контактов» свой блок .ct с отступами — в коллаже их не должно быть */
-/* «бутон»: фото стартуют стопкой в центре и по своей доле прокрутки расходятся лепестками наружу (--bx/--by считает JS) */
-.collage .ct{--t:clamp(0, (var(--p) - var(--k) * .07) / .3, 1);position:relative;padding:0;background:var(--ink-2);opacity:clamp(0, var(--t) * 1.3, 1);transform:translate(calc((1 - var(--t)) * var(--bx, 0px)), calc((1 - var(--t)) * var(--by, 0px))) rotate(calc((1 - var(--t)) * var(--r, 0deg) * 2)) scale(calc(.3 + var(--t) * .7));will-change:transform}
+/* «бутон»: каждая фотка раскрывается на своём месте лепесток за лепестком — от сложенного угла, от нижнего края; в финале сетка ровная, фото встык */
+.collage .ct{--t:clamp(0, (var(--p) - var(--k) * .08) / .35, 1);position:relative;padding:0;background:var(--ink-2);border-radius:0;opacity:clamp(0, var(--t) * 1.4, 1);transform:rotate(calc((1 - var(--t)) * -16deg)) scale(calc(.62 + var(--t) * .38));transform-origin:50% 100%;will-change:transform}
 .collage .ct img{position:absolute;inset:0}
 .ct:nth-child(1){grid-area:a}.ct:nth-child(2){grid-area:b}.ct:nth-child(3){grid-area:c}.ct:nth-child(4){grid-area:d}
 .ct:nth-child(5){grid-area:e}.ct:nth-child(6){grid-area:f}.ct:nth-child(7){grid-area:g}.ct:nth-child(8){grid-area:h}
@@ -487,7 +487,7 @@ button{font:inherit;color:inherit}
   .seal__core{width:60px;height:60px}
   .hero__btns .btn{flex:1 1 100%}
   .zoom{height:200vh}
-  .collage{gap:6px;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr);grid-template-areas:"a a" "b c" "d e" "f h" "g g"}
+  .collage{gap:0;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr);grid-template-areas:"a a" "b c" "d e" "f h" "g g"}
   .zoom__cap{bottom:108px}
   .bands{height:180px;margin-top:-76px;background:linear-gradient(transparent 76px,#fff 76px)}
   .band--red{top:52px}
@@ -597,6 +597,9 @@ button{font:inherit;color:inherit}
 .ecard__go svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ecard:hover .ecard__go{transform:none;background:var(--red)}
 .ecard__b{position:absolute;left:20px;right:20px;bottom:20px}
+/* логотип события — отдельным элементом по центру карточки, белым поверх чистого фото */
+.ecard__l{position:absolute;inset:64px 20px;display:grid;place-items:center;pointer-events:none}
+.ecard__l img{position:absolute;inset:0;margin:auto;max-width:38%;max-height:46%;width:auto;height:auto;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.95}
 .ecard__n{font-size:clamp(16px,1.35vw,20px);line-height:1.02;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
 .ecard__a{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.72)}
 .ecard.pop{animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0) * 50ms)}
