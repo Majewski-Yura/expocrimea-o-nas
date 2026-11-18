@@ -599,7 +599,7 @@ button{font:inherit;color:inherit}
 .ecard__b{position:absolute;left:20px;right:20px;bottom:20px}
 /* логотип события — отдельным элементом по центру карточки, белым поверх чистого фото */
 .ecard__l{position:absolute;inset:64px 20px;display:grid;place-items:center;pointer-events:none}
-.ecard__l img{position:absolute;inset:0;margin:auto;max-width:38%;max-height:46%;width:auto;height:auto;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.95}
+.ecard__l img{position:absolute;inset:0;margin:auto;height:clamp(64px,9vw,116px);width:auto;max-width:52%;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.95}
 .ecard__n{font-size:clamp(16px,1.35vw,20px);line-height:1.02;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
 .ecard__a{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.72)}
 .ecard.pop{animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0) * 50ms)}
