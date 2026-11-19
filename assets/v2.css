@@ -1538,3 +1538,6 @@ a.cg-m__h:hover{color:var(--red)}
 .team-s .tcard__ph img[src$="/belousova.jpg"]{--portrait-scale:1.7;--portrait-origin:58% 75%}
 .team-s .tcard__ph img[src$="/vasilyeva.jpg"]{--portrait-scale:3;--portrait-origin:50% 8%}
 .team-s .tcard:hover .tcard__ph img{transform:scale(calc(var(--portrait-scale,1) * 1.04))}
+
+/* Год каталога — контурная типографика, как на странице о компании. */
+.hero-n .hero__bgnum--year{font-size:26vw;top:24px;right:1vw;letter-spacing:-.07em}

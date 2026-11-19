@@ -78,6 +78,7 @@ def build():
 
 <main>
   <section class="hero hero-n">
+    <div class="hero__bgnum hero__bgnum--year" aria-hidden="true">2027</div>
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Мероприятия</nav>
 <div class="eyebrow">Каталог мероприятий</div>
