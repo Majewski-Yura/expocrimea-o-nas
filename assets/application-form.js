@@ -16,12 +16,12 @@
  document.body.append(dlg);
  const form=dlg.querySelector('form');
  const title=dlg.querySelector('h2');
- const selector='[data-join-purpose],a.btn[href="#apply"],a.btn[href="#join"],a.btn[href="#contacts"],a.btn[href$="#form"],.fab--chat';
+ const selector='[data-join-purpose],a.btn[href="#apply"],a.btn[href="#join"],a.btn[href="#contacts"],a.btn[href$="#form"],.fab--chat,a.magnet[href^="mailto:"]';
  document.addEventListener('click',e=>{
    const link=e.target.closest(selector);if(!link)return;
    e.preventDefault();
    const label=link.textContent.trim().replace(/\s+/g,' ')||link.getAttribute('aria-label')||'Напишите нам';
-   let purpose=link.dataset.joinPurpose;
+   let purpose=link.dataset.joinPurpose || (link.matches('a.magnet[href^="mailto:"]') ? 'Участие в мероприятии' : '');
    if(!purpose){
      if(/участ/i.test(label))purpose='Участие в мероприятии';
      else if(/посет/i.test(label))purpose='Посещение мероприятия';
