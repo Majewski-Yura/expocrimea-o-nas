@@ -348,6 +348,8 @@ def build(slug):
         </div>
       </div>''' if slug != 'agro' else ''
 
+    sec_formats = '  <section class="formats" aria-labelledby="formats-title">\n    <div class="container">\n      <div class="formats__head"><h2 class="h2" id="formats-title">Выберите\xa0свой<br>формат\xa0участия</h2><p>Присоединяйтесь к\xa0АгроЭкспоКрым<br>в\xa0подходящей вам\xa0роли.</p></div>\n      <div class="formats__grid">\n        <article class="format-card">\n          <img class="format-card__photo" src="../collage/c2.jpg" alt="" loading="lazy">\n          <div class="format-card__body"><h3>Участник</h3><p>Представьте компанию и\xa0продукцию</p><a class="btn" href="#apply" data-join-purpose="Участие в мероприятии">Стать участником<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>\n        </article>\n        <article class="format-card">\n          <img class="format-card__photo" src="../collage/c4.jpg" alt="" loading="lazy">\n          <div class="format-card__body"><h3>Партнёр</h3><p>Расскажите о\xa0бренде профессиональной\xa0аудитории</p><a class="btn" href="#apply" data-join-purpose="Партнёрство">Стать партнёром<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>\n        </article>\n        <article class="format-card">\n          <img class="format-card__photo" src="../collage/c5.jpg" alt="" loading="lazy">\n          <div class="format-card__body"><h3>Посетитель</h3><p>Найдите поставщиков и\xa0деловые\xa0контакты</p><a class="btn" href="#apply" data-join-purpose="Посещение мероприятия">Оставить заявку<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>\n        </article>\n        <article class="format-card">\n          <img class="format-card__photo" src="../collage/c3.jpg" alt="" loading="lazy">\n          <div class="format-card__body"><h3>Спикер</h3><p>Поделитесь опытом с\xa0коллегами\xa0по\xa0отрасли</p><a class="btn" href="#apply" data-join-purpose="Выступление спикером">Предложить выступление<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>\n        </article>\n      </div>\n    </div>\n  </section>' if slug == 'agro' else ''
+
     hero_media = '\n    <video class="hero-v__video" autoplay muted loop playsinline preload="metadata" poster="../assets/media/agro-hero-poster.jpg" aria-hidden="true">\n      <source src="../assets/media/agro-hero.mp4" type="video/mp4">\n    </video>\n'
 
     body = f'''</head>
@@ -403,7 +405,7 @@ def build(slug):
     </div>
   </section>
 {featured_video if slug == 'agro' else ''}
-{sec_nums}{sec_expo}{sec_aud}{sec_docs}{sec_was}
+{sec_nums}{sec_formats}{sec_expo}{sec_aud}{sec_docs}{sec_was}
   <!-- 9. Место проведения -->
   <section class="venue2">
     <div class="container">

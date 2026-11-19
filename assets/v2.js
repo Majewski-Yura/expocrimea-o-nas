@@ -349,7 +349,24 @@ if (chat && window.HTMLDialogElement) {
     </form>`;
   document.body.append(dlg);
   const close = () => dlg.close();
-  chat.addEventListener('click', e => { e.preventDefault(); dlg.showModal(); });
+  chat.addEventListener('click', e => {
+    e.preventDefault();
+    dlg.setAttribute('aria-label', 'Напишите нам');
+    $('h2', dlg).textContent = 'Напишите нам';
+    dlg.showModal();
+  });
+  $$('[data-join-purpose]').forEach(link => link.addEventListener('click', e => {
+    e.preventDefault();
+    const role = link.closest('.format-card').querySelector('h3').textContent;
+    const heading = document.querySelector('.hero__title');
+    const page = heading.textContent.trim().replace(/\s+/g, ' ') || heading.getAttribute('aria-label') || document.title;
+    const title = 'Заявка: ' + role.toLowerCase();
+    dlg.setAttribute('aria-label', title);
+    $('h2', dlg).textContent = title;
+    $('textarea[name="msg"]', dlg).value = link.dataset.joinPurpose + ' — ' + page;
+    dlg.showModal();
+    $('input[name="name"]', dlg).focus({preventScroll: true});
+  }));
   $('.pop-f__x', dlg).addEventListener('click', close);
   dlg.addEventListener('click', e => { if (e.target === dlg) close(); });
 }
@@ -445,13 +462,6 @@ $$('.e-video__frame').forEach(frame => {
     updateSoundButton();
   });
 });
-
-// Кнопки в конце главной открывают форму с выбранной целью обращения.
-$$('[data-join-purpose]').forEach(link => link.addEventListener('click', () => {
-  const form = $('.join__f');
-  form.elements.msg.value = link.dataset.joinPurpose + ' (с главной страницы)';
-  setTimeout(() => form.elements.name.focus({preventScroll: true}), 450);
-}));
 
 // Мягкий импульс только во время прокрутки, без вращения.
 (() => {
