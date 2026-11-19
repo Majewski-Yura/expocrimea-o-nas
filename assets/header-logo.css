@@ -25,3 +25,31 @@
  .header.is-open .nav .nav-events__panel a{padding:10px;font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){.nav-events__toggle svg{transition:none}}
+
+/* Общая форма заявки для всех страниц. */
+.pop-f .ct-form{background:#fff;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:16px;scroll-margin-top:calc(var(--hdr) + 24px)}
+.pop-f .ct-form h2{font-size:clamp(28px,2.6vw,40px);line-height:1.05;font-weight:600;letter-spacing:.01em;text-transform:uppercase}
+.pop-f .ct-form>p{font-size:15px;color:var(--muted);margin-bottom:8px}
+.pop-f .ct-form label:not(.pop-f .ct-form__ok){display:flex;flex-direction:column;gap:6px}
+.pop-f .ct-form label>span{font-size:13px;font-weight:600;color:var(--muted)}
+.pop-f .ct-form input:not([type=checkbox]),.pop-f .ct-form textarea{font:inherit;font-size:16px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);outline:0;resize:vertical;transition:border-color .3s,background .3s}
+.pop-f .ct-form input:focus,.pop-f .ct-form textarea:focus{border-color:var(--red);background:#fff}
+.pop-f .ct-form__ok{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.pop-f .ct-form__ok input{margin-top:3px;accent-color:var(--red)}
+.pop-f .ct-form .btn{align-self:flex-start;margin-top:8px}
+.pop-f{margin:auto;padding:0;border:0;background:none;width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;border-radius:20px}
+.pop-f::backdrop{background:rgba(43,45,48,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.pop-f[open]{animation:popIn .45s var(--ease)}
+.pop-f[open]::backdrop{animation:fadeIn .3s ease}
+.pop-f .ct-form{position:relative}
+.pop-f__x{position:absolute;right:16px;top:16px;width:40px;height:40px;border:0;border-radius:50%;background:var(--bg);display:grid;place-items:center;cursor:pointer;transition:background .3s,transform .4s var(--ease)}
+.pop-f__x:hover{background:var(--red);transform:rotate(90deg)}
+.pop-f__x svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.pop-f__x:hover svg{stroke:#fff}
+.pop-f h2{padding-right:48px}
+@keyframes popIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}}
+.pop-f .ct-form__ok a{color:var(--red);border-bottom:1px solid color-mix(in srgb,var(--red) 35%,transparent)}
+@media(max-width:767px){.pop-f .ct-form{padding:24px 20px}}
+@media(prefers-reduced-motion:reduce){.pop-f[open],.pop-f[open]::backdrop{animation:none}}
+@media(max-width:767px){.pop-f .ct-form>.btn{width:100%;align-self:stretch}}

@@ -330,47 +330,6 @@ $$('[data-open]').forEach(el => {
   el.classList.toggle('is-open', open);
 });
 // Контакты: форма без сервера собирает письмо и открывает почтовую программу
-// Круглая кнопка чата открывает форму во всплывающем окне, а не ведёт на «Контакты»
-const chat = $('.fab--chat');
-if (chat && window.HTMLDialogElement) {
-  const dlg = document.createElement('dialog');
-  dlg.className = 'pop-f';
-  dlg.setAttribute('aria-label', 'Напишите нам');
-  dlg.innerHTML = `
-    <form class="ct-form" data-mailto="info@expocrimea.com">
-      <button class="pop-f__x" type="button" aria-label="Закрыть"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-      <h2>Напишите нам</h2>
-      <p>Ответим в рабочее время. Письмо откроется в вашей почтовой программе.</p>
-      <label><span>Имя</span><input name="name" required autocomplete="name"></label>
-      <label><span>Телефон</span><input name="phone" type="tel" required autocomplete="tel"></label>
-      <label><span>Сообщение</span><textarea name="msg" rows="4"></textarea></label>
-      <label class="ct-form__ok"><input type="checkbox" required> <span>Даю согласие на <a href="${SITE_ROOT}politika/index.html" target="_blank">обработку персональных данных</a></span></label>
-      <button class="btn" type="submit">Отправить</button>
-    </form>`;
-  document.body.append(dlg);
-  const close = () => dlg.close();
-  chat.addEventListener('click', e => {
-    e.preventDefault();
-    dlg.setAttribute('aria-label', 'Напишите нам');
-    $('h2', dlg).textContent = 'Напишите нам';
-    dlg.showModal();
-  });
-  $$('[data-join-purpose]').forEach(link => link.addEventListener('click', e => {
-    e.preventDefault();
-    const role = link.closest('.format-card').querySelector('h3').textContent;
-    const heading = document.querySelector('.hero__title');
-    const page = heading.textContent.trim().replace(/\s+/g, ' ') || heading.getAttribute('aria-label') || document.title;
-    const title = 'Заявка: ' + role.toLowerCase();
-    dlg.setAttribute('aria-label', title);
-    $('h2', dlg).textContent = title;
-    $('textarea[name="msg"]', dlg).value = link.dataset.joinPurpose + ' — ' + page;
-    dlg.showModal();
-    $('input[name="name"]', dlg).focus({preventScroll: true});
-  }));
-  $('.pop-f__x', dlg).addEventListener('click', close);
-  dlg.addEventListener('click', e => { if (e.target === dlg) close(); });
-}
-
 $$('form[data-mailto]').forEach(f => f.addEventListener('submit', e => {
   e.preventDefault();
   const v = n => (f.elements[n].value || '').trim();
