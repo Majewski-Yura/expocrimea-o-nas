@@ -1642,3 +1642,7 @@ a.cg-m__h:hover{color:var(--red)}
 .hero-e--video>.container{display:flex;flex-direction:column;min-height:calc(100svh - var(--hdr) - 80px)}
 .hero-e--video .e-meta{margin-top:auto;padding-top:36px;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:stretch}
 @media(max-width:767px){.hero-e--video{padding-bottom:24px}.hero-e--video>.container{min-height:calc(100svh - var(--hdr) - 64px)}.hero-e--video .e-meta{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:28px}}
+
+/* Воздух между видеошапкой и описанием мероприятия. */
+.hero-e--video + .e-about{padding-top:96px}
+@media(max-width:767px){.hero-e--video + .e-about{padding-top:56px}}
