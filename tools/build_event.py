@@ -348,6 +348,8 @@ def build(slug):
         </div>
       </div>''' if slug != 'agro' else ''
 
+    hero_media = '\n    <video class="hero-v__video" autoplay muted loop playsinline preload="metadata" poster="../assets/media/agro-hero-poster.jpg" aria-hidden="true">\n      <source src="../assets/media/agro-hero.mp4" type="video/mp4">\n    </video>\n'
+
     body = f'''</head>
 <body class="page-ev" style="--ev:{e['color']}">
 
@@ -359,7 +361,7 @@ def build(slug):
 
 <main>
   <!-- 1. Первый экран -->
-  <section class="hero hero-e">{bgnum}
+  <section class="hero hero-e{' hero-e--video' if slug == 'agro' else ''}">{hero_media if slug == 'agro' else bgnum}
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="../index.html#events">Мероприятия</a><span>/</span>{e['name']}</nav>
       <div class="eyebrow">{e['eyebrow']}</div>
