@@ -449,3 +449,22 @@ $$('[data-join-purpose]').forEach(link => link.addEventListener('click', () => {
   form.elements.msg.value = link.dataset.joinPurpose + ' (с главной страницы)';
   setTimeout(() => form.elements.name.focus({preventScroll: true}), 450);
 }));
+
+// Вращение фонового льва ограничено областью первого экрана.
+(() => {
+  const emblem = document.querySelector('.hero__emblem-spin');
+  if (!emblem) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const hero = emblem.closest('.hero');
+  let frame = 0;
+  const update = () => {
+    frame = 0;
+    const progress = Math.min(Math.max(scrollY, 0), hero.offsetTop + hero.offsetHeight);
+    emblem.style.transform = reduced.matches ? 'none' : `rotate(${progress * 0.12}deg)`;
+  };
+  const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+  addEventListener('scroll', schedule, {passive: true});
+  addEventListener('resize', schedule);
+  reduced.addEventListener('change', schedule);
+  update();
+})();

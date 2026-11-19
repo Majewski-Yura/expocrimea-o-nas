@@ -78,7 +78,7 @@ def build():
 
 <main>
   <section class="hero hero-n">
-    <svg class="hero__emblem" viewBox="210.98 96.64 472.90 491.56" aria-hidden="true"><use href="#i-logo-em"/></svg>
+    <div class="hero__emblem" aria-hidden="true"><div class="hero__emblem-spin"><svg viewBox="210.98 96.64 472.90 491.56"><use href="#i-logo-em"/></svg></div></div>
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Мероприятия</nav>
 <div class="eyebrow">Каталог мероприятий</div>
