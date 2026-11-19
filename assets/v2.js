@@ -379,3 +379,73 @@ if (tocLinks.length) {
 
 // Битые картинки (старый сервер медиа недоступен) прячем, чтобы не висели сломанные иконки
 $$('img').forEach(i => i.addEventListener('error', () => { i.style.display = 'none' }, { once: true }));
+
+// Подгоняем надписи на главной и в мероприятиях под полную окружность.
+const eventSealLabels = $$('.e-seal .seal__ring text, .hero-v .seal__ring text');
+if (eventSealLabels.length) {
+  const fitEventSeals = () => eventSealLabels.forEach(text => {
+    text.removeAttribute('textLength');
+    text.style.removeProperty('font-size');
+    const naturalLength = text.getComputedTextLength();
+    if (!naturalLength) return;
+    const fontSize = parseFloat(getComputedStyle(text).fontSize);
+    text.style.fontSize = Math.min(fontSize, fontSize * 430 / naturalLength) + 'px';
+    text.setAttribute('textLength', '430');
+    text.setAttribute('lengthAdjust', 'spacing');
+  });
+  document.fonts.ready.then(fitEventSeals);
+  addEventListener('resize', fitEventSeals);
+}
+
+// Видео мероприятия запускается без звука. Кнопка управляет плеером RUTUBE.
+$$('.e-video__frame').forEach(frame => {
+  const player = $('iframe', frame);
+  const button = $('[data-event-sound]', frame);
+  const error = $('.e-video__error', frame);
+  let muted = true;
+  let ready = false;
+  const command = (type, data = {}) => {
+    player.contentWindow.postMessage(JSON.stringify({type, data}), 'https://rutube.ru');
+  };
+  const updateSoundButton = () => {
+    button.textContent = muted ? 'Включить звук' : 'Выключить звук';
+    button.setAttribute('aria-pressed', String(!muted));
+  };
+  addEventListener('message', event => {
+    if (event.origin !== 'https://rutube.ru' || event.source !== player.contentWindow) return;
+    let message = event.data;
+    if (typeof message === 'string') {
+      try { message = JSON.parse(message); } catch { return; }
+    }
+    if (!message || typeof message !== 'object') return;
+    if (['player:ready', 'player:canPlay', 'player:playStart'].includes(message.type) && !ready) {
+      ready = true;
+      button.disabled = false;
+      error.hidden = true;
+      updateSoundButton();
+      command('player:mute');
+      command('player:play');
+    }
+    if (message.type === 'player:volumeChange' && typeof message.data?.muted === 'boolean') {
+      muted = message.data.muted;
+      updateSoundButton();
+    }
+    if (message.type === 'player:error') {
+      error.hidden = false;
+    }
+  });
+  player.src = player.dataset.eventSrc;
+  button.addEventListener('click', () => {
+    muted = !muted;
+    command(muted ? 'player:mute' : 'player:unMute');
+    if (!muted) command('player:setVolume', {volume: 0.7});
+    updateSoundButton();
+  });
+});
+
+// Кнопки в конце главной открывают форму с выбранной целью обращения.
+$$('[data-join-purpose]').forEach(link => link.addEventListener('click', () => {
+  const form = $('.join__f');
+  form.elements.msg.value = link.dataset.joinPurpose + ' (с главной страницы)';
+  setTimeout(() => form.elements.name.focus({preventScroll: true}), 450);
+}));

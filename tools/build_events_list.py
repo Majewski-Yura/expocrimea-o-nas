@@ -31,7 +31,7 @@ def cards_from_index():
         city = re.search(r'data-f="([^"]+)"', attrs).group(1)
         if not href.startswith('http'):
             href = '../' + href
-        body = body.replace('src="site-source/', 'src="../site-source/').replace('src="logos/', 'src="../logos/')
+        body = body.replace('src="site-source/', 'src="../site-source/').replace('src="logos/', 'src="../logos/').replace('src="assets/', 'src="../assets/').replace('src="collage/', 'src="../collage/')
         out.append({'href': href, 'attrs': attrs, 'body': body, 'mon': mon, 'year': int(d.group(4)), 'day': int(d.group(1)), 'city': city,
                     'name': re.sub(r'<[^>]+>', '', re.search(r'ecard__n">(.*?)</span>', body).group(1)), 'date': date})
     out.sort(key=lambda c: (c['year'], c['mon'], c['day']))
@@ -56,21 +56,12 @@ def build():
         if not months or months[-1][0] != c['mon']:
             months.append((c['mon'], []))
         months[-1][1].append(c)
-    nxt = cards[0]
-    nxt_iso = f'{nxt["year"]}-{nxt["mon"]:02d}-{nxt["day"]:02d}'
-    # цвет карточки «Ближайшее» — цвет мероприятия с его страницы (--ev), иначе красный
-    color = ''
-    if not nxt['href'].startswith('http'):
-        ev = (ROOT / nxt['href'][3:]).read_text(encoding='utf-8')
-        m = re.search(r'<body[^>]*style="--ev:([^";]+)', ev)
-        color = f' style="--ev:{m.group(1)}"' if m else ''
-
     chips = '\n'.join(f'          <button class="chip" data-f="{c}">{c} <small>{sum(x["city"] == c for x in cards)}</small></button>' for c in cities)
     rows = []
     for mon, cs in months:
         n = len(cs)
         rows.append(f'''      <div class="cal-m">
-        <div class="cal-m__h rv"><b>{mon:02d}</b><span>{MONTHS_NOM[mon - 1]}</span><small data-cnt>{n} {plural(n, ['событие', 'события', 'событий'])}</small></div>
+        <div class="cal-m__h rv"><span>{MONTHS_NOM[mon - 1]}</span><small data-cnt>{n} {plural(n, ['событие', 'события', 'событий'])}</small></div>
         <div class="egrid cal-m__g">
 {chr(10).join(card_html(c) for c in cs)}
         </div>
@@ -89,19 +80,10 @@ def build():
   <section class="hero hero-n">
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Мероприятия</nav>
-      <div class="cal-h">
-        <div class="cal-h__l">
-        <div class="eyebrow">Каталог мероприятий</div>
+<div class="eyebrow">Каталог мероприятий</div>
         <h1 class="hero__title"><span class="ln" style="--i:0"><span>Календарь</span></span><span class="ln" style="--i:1"><span><em>{year}</em></span></span></h1>
         <p class="hero-n__lead">{len(cards)} {plural(len(cards), ['выставка, форум и премия', 'выставки, форума и премии', 'выставок, форумов и премий'])} в {', '.join(x.replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште') for x in cities[:-1])} и {cities[-1].replace('Симферополь', 'Симферополе').replace('Ялта', 'Ялте').replace('Алушта', 'Алуште')}.</p>
-        </div>
-        <a class="cal-next"{color} href="{nxt['href']}"{' target="_blank" rel="noopener"' if nxt['href'].startswith('http') else ''}>
-          <small>Ближайшее</small>
-          <b>{nxt['name']}</b>
-          <span>{nxt['date']} · {nxt['city']}</span>
-          <span class="cal-next__cd"><i>До открытия</i><em data-countdown="{nxt_iso}">&nbsp;</em></span>
-        </a>
-      </div>
+
     </div>
   </section>
 

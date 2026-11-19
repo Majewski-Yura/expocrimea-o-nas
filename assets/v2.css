@@ -599,7 +599,7 @@ button{font:inherit;color:inherit}
 .ecard__b{position:absolute;left:20px;right:20px;bottom:20px}
 /* логотип события — отдельным элементом по центру карточки, белым поверх чистого фото */
 .ecard__l{position:absolute;inset:64px 20px;display:grid;place-items:center;pointer-events:none}
-.ecard__l img{position:absolute;inset:0;margin:auto;height:clamp(64px,9vw,116px);width:auto;max-width:52%;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.95}
+.ecard__l img{position:absolute;inset:0;margin:auto;height:var(--ecard-logo-size,128px);width:auto;max-width:100%;max-height:100%;object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.95}
 .ecard__n{font-size:clamp(16px,1.35vw,20px);line-height:1.02;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
 .ecard__a{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.72)}
 .ecard.pop{animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0) * 50ms)}
@@ -700,11 +700,11 @@ button{font:inherit;color:inherit}
 .e-meta__it{display:flex;flex-direction:column;gap:6px;padding:20px 24px;border-radius:var(--radius);background:var(--bg);min-width:200px}
 .e-meta__it small{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .e-meta__it b{font-size:22px;line-height:1.15;font-weight:600}
-.e-meta__it--ev{background:var(--ev);color:#fff}
-.e-meta__it--ev small{color:rgba(255,255,255,.75)}
+.e-meta__it--ev{background:var(--bg);color:var(--ink)}
+.e-meta__it--ev small{color:var(--muted)}
 .e-meta__cd{font-variant-numeric:tabular-nums}
 .e-seal .seal__core{background:#fff;border:1px solid var(--line);width:104px;height:104px;padding:18px}
-.e-seal .seal__core img{width:100%;height:100%;object-fit:contain}
+.e-seal .seal__core img{width:66px;height:66px;min-width:0;min-height:0;object-fit:contain}
 .e-seal:hover .seal__core{transform:scale(1.06) rotate(-6deg)}
 
 /* Большое фото с раскрытием */
@@ -1396,3 +1396,145 @@ a.cg-m__h:hover{color:var(--red)}
 .sub__note a{border-bottom:1px solid rgba(255,255,255,.5)}
 .sub__note a:hover{border-color:#fff}
 .ct-form__ok a{color:var(--red);border-bottom:1px solid color-mix(in srgb,var(--red) 35%,transparent)}
+
+/* Карточки новостей на главной и в разделе */
+.ncard--ov{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--ink-2);color:#fff;isolation:isolate}
+.ncard--ov::after{content:"";position:absolute;inset:42% 0 0;background:linear-gradient(0deg,rgba(43,45,48,.94) 10%,rgba(43,45,48,0));z-index:-1}
+.ncard--ov .ncard__ph{position:absolute;inset:0;z-index:-2;aspect-ratio:auto;border-radius:0;background:var(--ink-2)}
+.ncard__badge{position:absolute;left:16px;top:16px;max-width:calc(100% - 84px);background:var(--red);color:#fff;padding:8px 10px;font-size:11px;font-weight:700;line-height:1.3;letter-spacing:.12em;text-transform:uppercase}
+.ncard__go{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:grid;place-items:center;transition:background .3s}
+.ncard--ov:hover .ncard__go{background:var(--red)}
+.ncard__go svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ncard--ov .ncard__b{position:absolute;left:20px;right:20px;bottom:20px}
+.ncard--ov .ncard__t{margin-top:0;font-size:clamp(17px,1.35vw,21px);line-height:1.18;font-weight:700;text-transform:uppercase}
+.ncard--ov:hover .ncard__t{color:#fff}
+.ncard__r{margin-top:10px;font-size:12px;font-weight:600;line-height:1.25;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.ncard--ov .ncard__go{color:#fff}
+.ncard--ov .ncard__go svg{transform:rotate(-35deg)}
+.page-news .ncard--ov .ncard__go svg{transform:none}
+.hero-e .hero__btns .btn{min-height:52px;font-weight:700}
+.hero-e .hero__btns .btn--line{background:var(--ink);color:#fff;border:1px solid var(--ink)}
+.hero-e .hero__btns .btn--line:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hero-e .hero__btns .btn:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+
+
+/* Месяцы календаря — одинаковые квадратные ячейки */
+.cg-m{aspect-ratio:1;min-height:0;gap:6px;padding:10px}
+.cg-m__l{gap:4px}
+.cg-l{width:24px;height:24px;padding:2px}
+.cg-l img{width:20px;height:20px}
+@media (max-width:767px){
+  .cg-m{padding:8px}
+  .cg-l{width:22px;height:22px}
+  .cg-l img{width:18px;height:18px}
+}
+@media (max-width:359px){.cg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.e-seal .seal__ring text{font-size:13px;letter-spacing:.14em}
+
+/* Видео вместо большого фото мероприятия */
+.e-video{background:#fff;padding:0 0 120px}
+.e-video__frame{position:relative;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:var(--ink-2)}
+.e-video__frame iframe{display:block;width:100%;height:100%;border:0}
+.e-video__sound{position:absolute;top:20px;right:20px;z-index:2;min-height:44px;padding:12px 18px;border:1px solid rgba(255,255,255,.6);border-radius:999px;background:rgba(43,45,48,.85);color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.e-video__sound:hover{background:var(--red)}
+.e-video__sound:disabled{cursor:wait;opacity:.8}
+.e-video__sound:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.e-video__error{position:absolute;inset:auto 16px 16px;margin:0;padding:12px 16px;border-radius:var(--radius);background:var(--ink);color:#fff;font-size:14px}
+.e-video__error a{text-decoration:underline}
+@media(max-width:767px){.e-video{padding-bottom:80px}.e-video__sound{top:10px;right:10px;min-height:40px;padding:10px 14px;font-size:12px}}
+
+/* Кнопки участия и посещения на первом экране мероприятий */
+.hero-e .hero__btns{gap:16px}
+.hero-e .hero__btns .btn{height:60px;min-width:184px;padding:0 28px;gap:18px;font-size:16px;transition:transform .25s var(--ease),box-shadow .25s,color .3s,border-color .3s,background .3s}
+.hero-e .hero__btns .btn::after{content:"↗" / "";font-size:24px;font-weight:400;line-height:1;transition:transform .25s var(--ease)}
+.hero-e .hero__btns .btn:not(.btn--line){box-shadow:0 8px 22px color-mix(in srgb,var(--ev,var(--red)) 23%,transparent)}
+.hero-e .hero__btns .btn--line{background:var(--ink);color:#fff;border:2px solid var(--ink)}
+.hero-e .hero__btns .btn:hover,.hero-e .hero__btns .btn:focus-visible{transform:translateY(-3px)}
+.hero-e .hero__btns .btn:hover::after,.hero-e .hero__btns .btn:focus-visible::after{transform:translate(3px,-3px)}
+.hero-e .hero__btns .btn:active{transform:translateY(0)}
+@keyframes eventCtaPulse{
+  0%,70%,100%{box-shadow:0 8px 22px color-mix(in srgb,var(--ev,var(--red)) 23%,transparent),0 0 0 0 color-mix(in srgb,var(--ev,var(--red)) 20%,transparent)}
+  35%{box-shadow:0 10px 28px color-mix(in srgb,var(--ev,var(--red)) 30%,transparent),0 0 0 9px transparent}
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero-e .hero__btns .btn:not(.btn--line){animation:eventCtaPulse 3.6s ease-in-out infinite}
+  .hero-e .hero__btns .btn:hover,.hero-e .hero__btns .btn:focus-visible{animation-play-state:paused}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-e .hero__btns .btn,.hero-e .hero__btns .btn::after{transition:none;transform:none}
+}
+@media(max-width:767px){.hero-e .hero__btns .btn{min-width:0}}
+
+/* Оптический размер знаков в карточках с учётом формы и полей исходников */
+.ecard__l img[src*="logos/agro.png"]{--ecard-logo-size:100px}
+.ecard__l img[src*="logos/fem.svg"]{--ecard-logo-size:200px}
+.ecard__l img[src*="logos/rhm.svg"]{--ecard-logo-size:164px}
+.ecard__l img[src*="logos/ros.svg"]{--ecard-logo-size:142px}
+.ecard__l img[src*="logos/chnk.svg"]{--ecard-logo-size:144px}
+.ecard__l img[src*="logos/cuf.svg"]{--ecard-logo-size:140px}
+.ecard__l img[src*="logos/stroy.svg"]{--ecard-logo-size:124px}
+.ecard__l img[src*="logos/mebel.svg"]{--ecard-logo-size:154px}
+.ecard__l img[src*="logos/m2.svg"]{--ecard-logo-size:124px}
+.ecard__l img[src*="logos/safety.svg"]{--ecard-logo-size:156px}
+.ecard__l img[src*="logos/cua.svg"]{--ecard-logo-size:116px}
+.ecard__l img[src*="logos/med.svg"]{--ecard-logo-size:132px}
+.ecard__l img[src*="logos/efet.svg"]{--ecard-logo-size:88px}
+.ecard__l img[src*="logos/turist.svg"]{--ecard-logo-size:160px}
+
+/* Векторная надпись из фирменного логотипа на первом экране */
+.hero-v .hero-v__brand{line-height:0}
+.hero-v__brand svg{display:block;width:100%;height:auto;overflow:visible;fill:currentColor}
+
+.hero-v .seal__ring text{font-size:14px;letter-spacing:.12em}
+
+/* Квадратные карточки мероприятий */
+.ecard{aspect-ratio:1}
+.ecard__l{inset:50px 20px 105px}
+.ecard__l img{height:calc(var(--ecard-logo-size,128px) * .9);max-height:none}
+.cal-h{display:block}
+.cal-h__l{max-width:760px}
+
+/* Новости широкими фотографиями, по одной в строке */
+.news-s#news .ngrid,.page-news .ngrid--all{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;margin:0;padding:0;overflow:visible}
+.ncard--banner{aspect-ratio:4/1;min-height:280px;flex:none}
+.ncard--banner::after{inset:0;background:linear-gradient(90deg,rgba(25,27,30,.8),rgba(25,27,30,.12) 85%),linear-gradient(0deg,rgba(25,27,30,.55),transparent 75%)}
+.ncard--banner .ncard__ph img{object-position:50% 38%}
+.ncard--banner .ncard__b{left:32px;right:32px;bottom:28px;max-width:68%}
+.ncard--banner .ncard__t{font-size:clamp(22px,2.1vw,34px);line-height:1.15}
+.ncard--banner .ncard__badge{left:32px;top:24px}
+.ncard--banner .ncard__go{right:24px;top:24px}
+.ncard--banner .ncard__r{font-size:12px}
+
+/* Единый стиль портретов команды */
+.team-s .tcard__ph img{filter:grayscale(1) contrast(1.04);object-position:50% 35%}
+.team-s .tcard__ph{background:#3a3c3f}
+.team-s .tcard__ph--none{background:#3a3c3f}
+.team-s .tcard::after{background:linear-gradient(0deg,rgba(30,32,35,.97),rgba(30,32,35,.2) 75%,transparent)}
+
+/* Повторная заявка в конце главной */
+.join{scroll-margin-top:calc(var(--hdr) + 20px)}
+.join-end{padding:88px 0;background:var(--bg)}
+.join-end__in{display:flex;align-items:center;justify-content:space-between;gap:64px}
+.join-end h2{max-width:660px;font-size:clamp(30px,3.8vw,56px);line-height:1.05;letter-spacing:-.025em}
+.join-end h2 em{font-style:normal;color:var(--red)}
+.join-end p{max-width:540px;margin-top:24px;font-size:18px;line-height:1.5;color:var(--muted)}
+.join-end__actions{display:flex;flex-direction:column;gap:12px;min-width:260px}
+.join-end__actions .btn{justify-content:space-between}
+.join-end__actions .btn--line{background:var(--ink);border-color:var(--ink);color:#fff}
+@media(max-width:767px){
+  .ecard{aspect-ratio:1}
+  .ncard--banner{aspect-ratio:4/3;min-height:260px}
+  .ncard--banner .ncard__b{left:20px;right:20px;bottom:20px;max-width:none}
+  .ncard--banner .ncard__t{font-size:19px}
+  .ncard--banner .ncard__badge{left:20px;top:16px}
+  .ncard--banner .ncard__go{right:16px;top:16px}
+  .join-end{padding:56px 0}
+  .join-end__in{flex-direction:column;align-items:stretch;gap:32px}
+  .join-end__actions{min-width:0}
+}
+/* Кадрирование исходных портретов с разным масштабом съёмки */
+.team-s .tcard__ph img{transform:scale(var(--portrait-scale,1));transform-origin:var(--portrait-origin,50% 35%)}
+.team-s .tcard__ph img[src$="/belousova.jpg"]{--portrait-scale:1.7;--portrait-origin:58% 75%}
+.team-s .tcard__ph img[src$="/vasilyeva.jpg"]{--portrait-scale:3;--portrait-origin:50% 8%}
+.team-s .tcard:hover .tcard__ph img{transform:scale(calc(var(--portrait-scale,1) * 1.04))}

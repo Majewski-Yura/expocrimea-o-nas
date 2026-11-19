@@ -1,0 +1,3 @@
+/* Общий логотип шапки для всех страниц сайта */
+.header .logo--h{display:flex;align-items:center;gap:0;flex-shrink:0}
+.header .logo--h .logo__horizontal{display:block;width:216px;height:56px;max-width:none;flex-shrink:0;object-fit:contain}

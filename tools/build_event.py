@@ -29,7 +29,7 @@ EVENTS = {
         'dates': '10–12 февраля 2027',
         'start': '2027-02-10',
         'city': 'Симферополь',
-        'place_short': 'Экс-терминал аэропорта',
+        'place_short': 'Симферополь',
         'lead': 'Главная деловая площадка производителей, дистрибьюторов и оптовиков сельхозтехники Крыма и Юга России. 15 лет мы собираем профессионалов АПК, чтобы обсуждать тренды аграрных рынков и находить новых партнёров.',
         'photo': '2021/08/img_3402-2-2.jpg',
         'photo_cap': ['Открытие АгроЭкспоКрым', 'Симферополь'],
@@ -96,10 +96,10 @@ ICONS.update(event_data.ICONS_EXTRA)
 # Расписание 2027 — порядок как на главной. slug=None: страница на отдельном сайте, ведём туда
 ALL = [
     ('АгроЭкспоКрым', 'agro', 'https://expocrimea.com/events/agro/', '2021/08/1000h800-1-2.jpg', '10–12 февраля', 'Симферополь'),
-    ('РестоОтельМаркет', 'rhm', 'https://expocrimea.com/events/rhm/', '2021/08/frame-1241.png', '25–27 марта', 'Ялта, «Ялта-Интурист»'),
-    ('РосЭкспоКрым', 'ros', 'https://expocrimea.com/events/ros/', '2021/09/frame-1243.png', '25–27 марта', 'Ялта, «Ялта-Интурист»'),
-    ('Чемпионат национальной кухни', 'chempionat-naczionalnoj-kuhni', 'https://expocrimea.com/events/chempionat-naczionalnoj-kuhni/', '2026/10/group-10.jpg', '25–26 марта', 'Ялта, «Ялта-Интурист»'),
     ('Форум эстетической медицины', None, 'https://fem.expocrimea.com/', '2025/10/1000h800_4-1.png', '8–9 апреля', 'Алушта, MORE SPA & Resort 5*'),
+    ('РестоОтельМаркет', 'rhm', 'https://expocrimea.com/events/rhm/', '2021/08/frame-1241.png', '27–29 мая', 'Ялта, «Ялта-Интурист»'),
+    ('РосЭкспоКрым', 'ros', 'https://expocrimea.com/events/ros/', '2021/09/frame-1243.png', '27–29 мая', 'Ялта, «Ялта-Интурист»'),
+    ('Чемпионат национальной кухни', 'chempionat-naczionalnoj-kuhni', 'https://expocrimea.com/events/chempionat-naczionalnoj-kuhni/', '2026/10/group-10.jpg', '27–29 мая', 'Ялта, «Ялта-Интурист»'),
     ('КрымУрбанФорум', None, 'https://cuf.expocrimea.com/', '2022/05/1000-h-801-1.jpg', '8–10 сентября', 'Симферополь'),
     ('СтройЭкспоКрым', 'stroy', 'https://expocrimea.com/events/stroy/', '2021/09/img_2463.webp', '8–10 сентября', 'Симферополь'),
     ('Выставка мебели', 'mvmk', 'https://expocrimea.com/events/mvmk/', '2021/09/frame-1229.png', '8–10 сентября', 'Симферополь'),
@@ -133,7 +133,7 @@ def shared_parts():
     ver = re.search(r'assets/v2\.js(\?v=\d+)?', s).group(1) or ''
 
     def fix(x):
-        x = x.replace('src="site-source/', 'src="../site-source/').replace('href="assets/', 'href="../assets/')
+        x = x.replace('src="site-source/', 'src="../site-source/').replace('src="assets/', 'src="../assets/').replace('href="assets/', 'href="../assets/')
         x = x.replace('href="news/', 'href="../news/').replace('href="partners/', 'href="../partners/').replace('href="vakansii/', 'href="../vakansii/').replace('href="kontakty/', 'href="../kontakty/').replace('href="meropriyatiya/', 'href="../meropriyatiya/').replace('href="dokumenty/', 'href="../dokumenty/').replace('href="politika/', 'href="../politika/').replace('href="events/', 'href="../events/')
         x = x.replace('href="index.html"', 'href="../index.html"').replace('href="o-nas-v2.html', 'href="../o-nas-v2.html')
         x = x.replace('href="#events"', 'href="../index.html#events"').replace('href="#news"', 'href="../index.html#news"')
@@ -196,6 +196,21 @@ def build(slug):
     </div>
   </section>
 '''
+
+    featured_video = ''
+    if e.get('videos'):
+        video_url = e['videos'][0].rstrip('/') + '/?autoplay=true&autostartmute=true'
+        featured_video = f'''
+  <!-- 2. Видео мероприятия -->
+  <section class="e-video">
+    <div class="container">
+      <div class="e-video__frame">
+        <iframe data-event-src="{esc(video_url)}" title="Видео {esc(e['name'])}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <button class="e-video__sound" type="button" data-event-sound aria-pressed="false" disabled>Загрузка видео…</button>
+        <p class="e-video__error" role="status" hidden>Видео временно недоступно. <a href="{esc(e['videos'][0].replace('/play/embed/', '/video/'))}" target="_blank" rel="noopener">Открыть на RUTUBE</a></p>
+      </div>
+    </div>
+  </section>'''
 
     # 5. Экспозиции
     sec_expo = ''
@@ -266,9 +281,9 @@ def build(slug):
 
     # 8. Как это было
     sec_was = ''
-    if e.get('videos') or e.get('gallery'):
-        nv = len(e.get('videos') or [])
-        vids = '\n'.join(f'        <div class="vid rv"><iframe data-src="{esc(v)}" title="Видео {e["name"]} {k + 1}" allow="clipboard-write; autoplay" allowfullscreen loading="lazy"></iframe></div>' for k, v in enumerate(e.get('videos') or []))
+    if (e.get('videos') or [])[1:] or e.get('gallery'):
+        nv = len((e.get('videos') or [])[1:])
+        vids = '\n'.join(f'        <div class="vid rv"><iframe data-src="{esc(v)}" title="Видео {e["name"]} {k + 1}" allow="clipboard-write; autoplay" allowfullscreen loading="lazy"></iframe></div>' for k, v in enumerate((e.get('videos') or [])[1:], start=1))
         gal = '\n'.join(f'        <figure><img src="{U}{g}" alt="" loading="lazy"></figure>' for g in e.get('gallery') or [])
         sec_was = f'''
   <!-- 8. Как это было -->
@@ -304,19 +319,34 @@ def build(slug):
 
     # 12. Другие мероприятия — следующие четыре по расписанию
     idx = next(k for k, a in enumerate(ALL) if a[1] == slug)
+    # Используем карточки главной с отдельными фотографиями и логотипами.
+    home = (ROOT / 'index.html').read_text(encoding='utf-8')
+    home_cards = {
+        match[1].rstrip('/'): match[0]
+        for match in re.finditer(r'<a class="ecard[^"]*"[^>]*href="([^"]+)"[^>]*>.*?</a>', home, re.S)
+    }
     more = []
-    for n, s2, h, i, d, a in (ALL[idx + 1:] + ALL[:idx])[:4]:
-        href = f'{s2}.html' if s2 in BUILT else h
-        ext = '' if s2 in BUILT else ' target="_blank" rel="noopener"'
-        more.append(f'''        <a class="ecard rv" href="{href}"{ext}>
-          <span class="ecard__ph"><img src="{U}{i}" alt="" loading="lazy"></span>
-          <span class="ecard__date">{d.replace(' ', NB)} 2027</span>
-          <span class="ecard__go"><svg><use href="#i-arrow"/></svg></span>
-          <span class="ecard__b"><span class="ecard__n">{n}</span><span class="ecard__a">{a}</span></span>
-        </a>''')
+    for _, next_slug, url, *_ in (ALL[idx + 1:] + ALL[:idx])[:4]:
+        target = f'events/{next_slug}.html' if next_slug in BUILT else url.rstrip('/')
+        card = home_cards[target]
+        card = re.sub(r'src="(?!https?:|data:)([^"]+)"', r'src="../\1"', card)
+        if next_slug in BUILT:
+            card = card.replace(f'href="{target}"', f'href="{next_slug}.html"')
+        more.append(card)
     more = '\n'.join(more)
 
     bgnum = f'\n    <div class="hero__bgnum" aria-hidden="true">{e["bgnum"]}</div>' if e.get('bgnum') else ''
+
+    about_details = f'''      <div class="manifest__foot">
+        <div class="rv">
+          <p>{e['about_p']}</p>
+          {tasks}
+        </div>
+        <div class="rv" style="--d:.1s">
+          {mission}
+          {offer}
+        </div>
+      </div>''' if slug != 'agro' else ''
 
     body = f'''</head>
 <body class="page-ev" style="--ev:{e['color']}">
@@ -347,7 +377,7 @@ def build(slug):
         <a class="seal e-seal" href="#about" aria-label="Листайте вниз">
           <svg class="seal__ring" viewBox="0 0 168 168" aria-hidden="true">
             <defs><path id="ring" d="M84 84m-70 0a70 70 0 1 1 140 0a70 70 0 1 1-140 0"/></defs>
-            <text><textPath href="#ring">{e['name']} • {e['dates']} • </textPath></text>
+            <text><textPath href="#ring">{e['name']} • {e['dates']} • {e['city']} • </textPath></text>
           </svg>
           <span class="seal__core"><img src="{e['logo']}" alt=""></span>
         </a>
@@ -360,28 +390,14 @@ def build(slug):
     </div>
   </section>
 
-  <!-- 2. Фото -->
-  <section class="e-photo">
-    <div class="container">
-      <div class="e-photo__f"><img src="{U}{e['photo']}" alt=""><div class="e-photo__cap"><span>{e['photo_cap'][0]}</span><span>{e['photo_cap'][1]}</span></div></div>
-    </div>
-  </section>
+{featured_video}
 
   <!-- 3. О выставке -->
   <section class="manifest e-about" id="about">
     <div class="container">
       <div class="eyebrow rv">О мероприятии</div>
       <p class="manifest__text">{e['about']}</p>
-      <div class="manifest__foot">
-        <div class="rv">
-          <p>{e['about_p']}</p>
-          {tasks}
-        </div>
-        <div class="rv" style="--d:.1s">
-          {mission}
-          {offer}
-        </div>
-      </div>
+{about_details}
     </div>
   </section>
 {sec_nums}{sec_expo}{sec_aud}{sec_docs}{sec_was}

@@ -8,29 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/v2.css?v=202611178">
-<style>
-/* Новости: карточки-фото 3:4 с наложением (референс newpeople); живут здесь, кандидат на перенос в v2.css */
-.page-news .ngrid--all{grid-template-columns:repeat(4,1fr);gap:24px}
-.page-news .ncard--lead{grid-column:span 2}
-.page-news .ncard--lead .ncard__t{font-size:clamp(22px,1.9vw,30px)}
-.page-news .ncard--lead .ncard__b{max-width:80%}
-.page-news .ncard--ov{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--ink-2);color:#fff;isolation:isolate}
-.page-news .ncard--ov::after{content:"";position:absolute;inset:42% 0 0;background:linear-gradient(0deg,rgba(43,45,48,.94) 10%,rgba(43,45,48,0));z-index:-1}
-.page-news .ncard--ov .ncard__ph{position:absolute;inset:0;z-index:-2;aspect-ratio:auto;border-radius:0;background:var(--ink-2)}
-.page-news .ncard__badge{position:absolute;left:16px;top:16px;max-width:calc(100% - 84px);background:var(--red);color:#fff;padding:8px 10px;font-size:11px;font-weight:700;line-height:1.3;letter-spacing:.12em;text-transform:uppercase}
-.page-news .ncard__go{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:grid;place-items:center;transition:background .3s}
-.page-news .ncard--ov:hover .ncard__go{background:var(--red)}
-.page-news .ncard__go svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.page-news .ncard--ov .ncard__b{position:absolute;left:20px;right:20px;bottom:20px}
-.page-news .ncard--ov .ncard__t{margin-top:0;font-size:clamp(17px,1.35vw,21px);line-height:1.18;font-weight:700;text-transform:uppercase}
-.page-news .ncard--ov:hover .ncard__t{color:#fff}
-.page-news .ncard__r{margin-top:10px;font-size:12px;font-weight:600;line-height:1.25;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85)}
-.page-news .ncard.pop{animation:pop .6s var(--ease) both;animation-delay:calc(var(--i,0) * 60ms)}
-@media (max-width:1250px){.page-news .ngrid--all{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:900px){.page-news .ngrid--all{grid-template-columns:repeat(2,1fr);gap:16px}.page-news .ncard--ov .ncard__t{font-size:16px}}
-@media (max-width:640px){.page-news .ngrid--all{grid-template-columns:1fr;gap:24px}.page-news .ncard--lead{grid-column:auto}.page-news .ncard--lead .ncard__t{font-size:17px}}
-</style>
+<link rel="stylesheet" href="../assets/v2.css?v=202611197">
+
+<link rel="stylesheet" href="../assets/header-logo.css?v=202611191">
 </head>
 <body class="page-news">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -80,10 +60,7 @@
 <div class="progress" aria-hidden="true"></div>
 <header class="header">
   <div class="container header__in">
-    <a class="logo" href="../index.html">
-      <svg class="logo__svg" role="img" aria-label="ЭКСПОКРЫМ"><use href="#i-logo"/></svg>
-      <span class="logo__tag">Место встречи профессионалов</span>
-    </a>
+    <a class="logo logo--h" href="../index.html" aria-label="ЭКСПОКРЫМ — на главную"><img class="logo__horizontal" src="../assets/logo-horizontal.svg?v=202611191" alt="ЭКСПОКРЫМ, осн. 2010" width="216" height="56"></a>
     <nav class="nav">
       <a href="../meropriyatiya/index.html">Мероприятия</a>
       <a href="../partners/index.html">Партнёры</a>
@@ -113,148 +90,148 @@
           <span class="chips__ind"></span>
           <button class="chip is-on" role="tab" data-f="all">Все</button>
           <button class="chip" role="tab" data-f="agro">АПК</button>
-          <button class="chip" role="tab" data-f="hosp">Гостеприимство</button>
-          <button class="chip" role="tab" data-f="urban">Стройка</button>
+          <button class="chip" role="tab" data-f="hosp">Туризм</button>
+          <button class="chip" role="tab" data-f="urban">Строительство</button>
           <button class="chip" role="tab" data-f="med">Медицина</button>
           <button class="chip" role="tab" data-f="company">Компания</button>
         </div>
         <a class="lnk rv" href="https://t.me/expocrimea" target="_blank" rel="noopener">Наш телеграм<span><svg><use href="#i-arrow"/></svg></span></a>
       </div>
       <div class="ngrid ngrid--all" id="news-grid">
-        <a class="ncard ncard--ov ncard--lead rv" data-f="urban" href="../news/krym-urban-forum-2026.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/ph_0062.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="urban" href="../news/krym-urban-forum-2026.html">
+          <span class="ncard__ph"><img src="../assets/media/news/krym-urban-forum-2026.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">17 октября 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
-          <span class="ncard__b"><span class="ncard__t">Крым Урбан Форум – 2026: главные вопросы развития девелопмента Юга России</span><span class="ncard__r">Крым Урбан Форум</span></span>
+          <span class="ncard__b"><span class="ncard__t">Крым Урбан Форум – 2026: главные вопросы развития девелопмента Юга России</span><span class="ncard__r">Крым Урбан Форум</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="agro" href="../news/ves-potenczial-prodovolstviya-i-promyshlennosti-rossii-na-rosekspokrym.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/ph_0228-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="agro" href="../news/ves-potenczial-prodovolstviya-i-promyshlennosti-rossii-na-rosekspokrym.html">
+          <span class="ncard__ph"><img src="../assets/media/news/ves-potenczial-prodovolstviya-i-promyshlennosti-rossii-na-rosekspokrym.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">30 мая 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Весь потенциал продовольствия и промышленности России на «РосЭкспоКрым»</span><span class="ncard__r">РосЭкспоКрым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="med" href="../news/fem-2026-nachalo-bolshoj-professionalnoj-istorii.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/4d7a2309-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="med" href="../news/fem-2026-nachalo-bolshoj-professionalnoj-istorii.html">
+          <span class="ncard__ph"><img src="../assets/media/news/fem-2026-nachalo-bolshoj-professionalnoj-istorii.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">14 апреля 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">ФЭМ-2026: начало большой профессиональной истории!</span><span class="ncard__r">Форум эстетической медицины</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="hosp" href="../news/dostizheniya-dlya-industrii-gostepriimstva-predstavili-na-restootelmarket.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/img_4488-300x200.png" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="hosp" href="../news/dostizheniya-dlya-industrii-gostepriimstva-predstavili-na-restootelmarket.html">
+          <span class="ncard__ph"><img src="../assets/media/news/dostizheniya-dlya-industrii-gostepriimstva-predstavili-na-restootelmarket.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">23 марта 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Достижения для индустрии гостеприимства представили на «РестоОтельМаркет»</span><span class="ncard__r">РестоОтельМаркет</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="agro" href="../news/dostizheniya-i-potenczial-apk-predstavili-na-agroekspokrym.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/2026-03-04-16.27.41-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="agro" href="../news/dostizheniya-i-potenczial-apk-predstavili-na-agroekspokrym.html">
+          <span class="ncard__ph"><img src="../assets/media/news/dostizheniya-i-potenczial-apk-predstavili-na-agroekspokrym.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">16 февраля 2026</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Достижения и потенциал АПК представили на АгроЭкспоКрым</span><span class="ncard__r">АгроЭкспоКрым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="urban" href="../news/krym-urban-forum-2025-delovye-kontakty-vektory-razvitiya-stroitelnosti-otrasli-i-drugie-itogi.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/ph_0110-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="urban" href="../news/krym-urban-forum-2025-delovye-kontakty-vektory-razvitiya-stroitelnosti-otrasli-i-drugie-itogi.html">
+          <span class="ncard__ph"><img src="../assets/media/news/krym-urban-forum-2025-delovye-kontakty-vektory-razvitiya-stroitelnosti-otrasli-i-drugie-itogi.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">12 сентября 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Крым Урбан Форум 2025: Деловые контакты, векторы развития строительной отрасли и другие итоги!</span><span class="ncard__r">Крым Урбан Премия</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="urban" href="../news/uznajte-vsyu-pravdu-o-remonte-na-strojekspokrym.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/1600h900-11-300x169.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="urban" href="../news/uznajte-vsyu-pravdu-o-remonte-na-strojekspokrym.html">
+          <span class="ncard__ph"><img src="../assets/media/news/uznajte-vsyu-pravdu-o-remonte-na-strojekspokrym.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">29 августа 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Узнайте всю правду о ремонте на СтройЭкспоКрым!</span><span class="ncard__r">Крым Урбан Форум</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="company" href="../news/ekspokrym-prisoedinilsya-k-federalnoj-praktike.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/ibps72zduoulycekcticdsculmxovrsvrxotm3zkdagluldnhojrlpm3s9h7qqf-1-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="company" href="../news/ekspokrym-prisoedinilsya-k-federalnoj-praktike.html">
+          <span class="ncard__ph"><img src="../assets/media/news/ekspokrym-prisoedinilsya-k-federalnoj-praktike.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">26 августа 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">ЭКСПОКРЫМ присоединился к «Федеральной Практике»</span><span class="ncard__r">ЭКСПОКРЫМ</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="hosp" href="../news/15-17-oktyabrya-v-yalte-projdet-turistekspo-krym-2025.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/turistekspokrym-1600h900_2-300x169.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="hosp" href="../news/15-17-oktyabrya-v-yalte-projdet-turistekspo-krym-2025.html">
+          <span class="ncard__ph"><img src="../assets/media/news/15-17-oktyabrya-v-yalte-projdet-turistekspo-krym-2025.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">18 июня 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">15-17 октября в Ялте пройдет ТуристЭкспо. Крым 2025</span><span class="ncard__r">ТуристЭкспо. Крым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="urban" href="../news/luchshie-obekty-rynka-nedvizhimosti-kryma-podtverdyat-svoj-status-na-krymurbanpremii.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/2025-06-08-00.54.20-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="urban" href="../news/luchshie-obekty-rynka-nedvizhimosti-kryma-podtverdyat-svoj-status-na-krymurbanpremii.html">
+          <span class="ncard__ph"><img src="../assets/media/news/luchshie-obekty-rynka-nedvizhimosti-kryma-podtverdyat-svoj-status-na-krymurbanpremii.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">8 июня 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Лучшие объекты рынка недвижимости Крыма подтвердят свой статус на КрымУрбанПремии!</span><span class="ncard__r">Крым Урбан Премия</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="agro" href="../news/itogi-rosekspokrym2025.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/3-5-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="agro" href="../news/itogi-rosekspokrym2025.html">
+          <span class="ncard__ph"><img src="../assets/media/news/itogi-rosekspokrym2025.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">3 июня 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Старт новых контрактов и возможностей для российских производителей: итоги РосЭкспоКрым!</span><span class="ncard__r">РосЭкспоКрым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="hosp" href="../news/restootelmarket-i-turizmekspokrym-3-dnya-na-odnoj-volne-s-industriej-gostepriimstva-i-turizma.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/img_1731-300x200.webp" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="hosp" href="../news/restootelmarket-i-turizmekspokrym-3-dnya-na-odnoj-volne-s-industriej-gostepriimstva-i-turizma.html">
+          <span class="ncard__ph"><img src="../assets/media/news/restootelmarket-i-turizmekspokrym-3-dnya-na-odnoj-volne-s-industriej-gostepriimstva-i-turizma.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">22 апреля 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">«РестоОтельМаркет» и «ТуризмЭкспоКрым»: 3 дня на одной волне с индустрией гостеприимства и туризма</span><span class="ncard__r">РестоОтельМаркет</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="hosp" href="../news/v-yalte-sostoitsya-glavnoe-sobytie-industrii-turizma-i-gostepriimstva.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/2025-04-23-15.56.43-300x169.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="hosp" href="../news/v-yalte-sostoitsya-glavnoe-sobytie-industrii-turizma-i-gostepriimstva.html">
+          <span class="ncard__ph"><img src="../assets/media/news/v-yalte-sostoitsya-glavnoe-sobytie-industrii-turizma-i-gostepriimstva.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">10 апреля 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">В Ялте состоится главное событие индустрии туризма и гостеприимства!</span><span class="ncard__r">РестоОтельМаркет</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="hosp" href="../news/chuvstvujte-sebya-kak-doma-kakie-trendy-stoit-uchest-v-sfere-gostepriimstva.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/freepik_the_style_is_candid_image_photography_with_natural_13048-300x205.jpeg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="hosp" href="../news/chuvstvujte-sebya-kak-doma-kakie-trendy-stoit-uchest-v-sfere-gostepriimstva.html">
+          <span class="ncard__ph"><img src="../assets/media/news/chuvstvujte-sebya-kak-doma-kakie-trendy-stoit-uchest-v-sfere-gostepriimstva.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">4 марта 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Чувствуйте себя как дома: какие тренды стоит учесть в сфере гостеприимства?</span><span class="ncard__r">РестоОтельМаркет</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="agro" href="../news/innovaczii-partnerstvo-i-vektory-razvitiya-biznesa-agroekspokrym-v-2025-godu.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/ot8v9f0yf4q-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="agro" href="../news/innovaczii-partnerstvo-i-vektory-razvitiya-biznesa-agroekspokrym-v-2025-godu.html">
+          <span class="ncard__ph"><img src="../assets/media/news/innovaczii-partnerstvo-i-vektory-razvitiya-biznesa-agroekspokrym-v-2025-godu.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">20 февраля 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Инновации, партнерство и векторы развития бизнеса: «АгроЭкспоКрым» в 2025 году!</span><span class="ncard__r">АгроЭкспоКрым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="hosp" href="../news/transformacziya-turisticheskogo-biznesa-chto-zhdyot-industriyu-gostepriimstva-v-rossii-v-2025.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/img_6664-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="hosp" href="../news/transformacziya-turisticheskogo-biznesa-chto-zhdyot-industriyu-gostepriimstva-v-rossii-v-2025.html">
+          <span class="ncard__ph"><img src="../assets/media/news/transformacziya-turisticheskogo-biznesa-chto-zhdyot-industriyu-gostepriimstva-v-rossii-v-2025.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">18 февраля 2025</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Трансформация туристического бизнеса: что ждёт индустрию гостеприимства в России в 2025?</span><span class="ncard__r">РестоОтельМаркет</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="company" href="../news/krym-perehodit-na-avtomaticheskuyu-usn.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/woman-with-face-protection-standing-with-arms-crossed-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="company" href="../news/krym-perehodit-na-avtomaticheskuyu-usn.html">
+          <span class="ncard__ph"><img src="../assets/media/news/krym-perehodit-na-avtomaticheskuyu-usn.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">20 декабря 2024</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Крым переходит на автоматическую УСН</span><span class="ncard__r">ЭКСПОКРЫМ</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="company" href="../news/sdaetsya-zemelnyj-uchastok-pod-vash-biznes-hvoya.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/img_2441-300x169.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="company" href="../news/sdaetsya-zemelnyj-uchastok-pod-vash-biznes-hvoya.html">
+          <span class="ncard__ph"><img src="../assets/media/news/sdaetsya-zemelnyj-uchastok-pod-vash-biznes-hvoya.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">25 октября 2024</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Сдается земельный участок под ваш бизнес – ХВОЯ</span><span class="ncard__r">ЭКСПОКРЫМ</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="agro" href="../news/rekordnyh-urozhaev.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/u7riyzepl75qlzj94pt69w91c5ofs338-300x225.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="agro" href="../news/rekordnyh-urozhaev.html">
+          <span class="ncard__ph"><img src="../assets/media/news/rekordnyh-urozhaev.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">16 октября 2024</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">«Мишустин: сельское хозяйство России достигло рекордных урожаев в 2024 году»</span><span class="ncard__r">АгроЭкспоКрым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="agro" href="../news/eksport-produkczii-apk.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/close-up-person-with-green-apple-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="agro" href="../news/eksport-produkczii-apk.html">
+          <span class="ncard__ph"><img src="../assets/media/news/eksport-produkczii-apk.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">15 октября 2024</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">В России планируют в 1,5 раза увеличить экспорт продукции АПК к 2030 году</span><span class="ncard__r">АгроЭкспоКрым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="agro" href="../news/proizvoditelej-selhoztehniki.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/qa8q6u15aeru0uckisn3ruaix8m1b6oj-e1728908955873-300x265.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="agro" href="../news/proizvoditelej-selhoztehniki.html">
+          <span class="ncard__ph"><img src="../assets/media/news/proizvoditelej-selhoztehniki.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">14 октября 2024</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">В Госдуме разработают инициативы для поддержки производителей сельхозтехники</span><span class="ncard__r">АгроЭкспоКрым</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="company" href="../news/v-krymu-proshla-konferencziya-novye-gorizonty.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/konfa-foto-1-300x225.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="company" href="../news/v-krymu-proshla-konferencziya-novye-gorizonty.html">
+          <span class="ncard__ph"><img src="../assets/media/news/v-krymu-proshla-konferencziya-novye-gorizonty.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">11 октября 2024</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">В Крыму прошла конференция «Новые горизонты»</span><span class="ncard__r">ЭКСПОКРЫМ</span></span>
         </a>
-        <a class="ncard ncard--ov rv" data-f="company" href="../news/kompaniya-ekspokrym-poluchila-premiyu-priznanie-goda.html">
-          <span class="ncard__ph"><img src="../assets/media/wp/grgzg_yeqwo-300x200.jpg" alt="" loading="lazy"></span>
+        <a class="ncard ncard--ov ncard--banner rv" data-f="company" href="../news/kompaniya-ekspokrym-poluchila-premiyu-priznanie-goda.html">
+          <span class="ncard__ph"><img src="../assets/media/news/kompaniya-ekspokrym-poluchila-premiyu-priznanie-goda.jpg" alt="" loading="lazy"></span>
           <span class="ncard__badge">1 октября 2024</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-ext"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">Компания ЭКСПОКРЫМ получила премию «Признание года»</span><span class="ncard__r">ЭКСПОКРЫМ</span></span>
@@ -296,6 +273,6 @@
 
 <a class="fab fab--chat" href="../kontakty/index.html#form" aria-label="Написать нам"><svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 5v2h10V8zm0 4v2h7v-2z"/></svg></a>
 <a class="fab fab--up" href="#" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="M12 21V3M5 10l7-7 7 7"/></svg></a>
-<script src="../assets/v2.js?v=202611172"></script>
+<script src="../assets/v2.js?v=202611192"></script>
 </body>
 </html>

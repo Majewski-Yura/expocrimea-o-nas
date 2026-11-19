@@ -44,10 +44,18 @@ def link(href, up):
     return href if href.startswith('http') else up + href
 
 
-def card(n, up, big=False, rv=True):
+def card(n, up, big=False, rv=True, banner=False):
     label, _, cat = meta(n)
     lead = f'\n          <span class="ncard__l">{esc(n["lead"][:220].rsplit(" ", 1)[0] + "…" if len(n["lead"]) > 220 else n["lead"])}</span>' if big else ''
-    img = n['image'] if big else (n['thumb'] or n['image'])
+    optimized = ROOT / 'assets' / 'media' / 'news' / (n['slug'] + '.jpg')
+    img = up + 'assets/media/news/' + optimized.name if optimized.exists() else (n['image'] or n['thumb'])
+    if banner:
+        return f'''        <a class="ncard ncard--ov ncard--banner{' rv' if rv else ''}" data-f="{cat}" href="{up}news/{n['slug']}.html">
+          <span class="ncard__ph"><img src="{esc(img)}" alt="" loading="lazy"></span>
+          <span class="ncard__badge">{n['date_h']}</span>
+          <span class="ncard__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+          <span class="ncard__b"><span class="ncard__t">{esc(n['title'])}</span><span class="ncard__r">{esc(label)}</span></span>
+        </a>'''
     return f'''        <a class="ncard{' ncard--big' if big else ''}{' rv' if rv else ''}" data-f="{cat}" href="{up}news/{n['slug']}.html">
           <span class="ncard__ph"><img src="{esc(img)}" alt="" loading="lazy"></span>
           <span class="ncard__b">
@@ -83,7 +91,7 @@ def page(title, desc, body_cls, main):
 def build_list():
     counts = {c: sum(meta(n)[2] == c for n in NEWS) for c, _ in CATS}
     chips = '\n'.join(f'          <button class="chip" role="tab" data-f="{c}">{t}</button>' for c, t in CATS if counts[c])
-    cards = '\n'.join(card(n, '../', big=(i == 0)) for i, n in enumerate(NEWS))
+    cards = '\n'.join(card(n, '../', banner=True) for n in NEWS)
     main = f'''  <section class="hero hero-n">
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Новости</nav>
@@ -173,7 +181,7 @@ def update_index():
     s = p.read_text(encoding='utf-8')
     a = s.index('<div class="ngrid">') + len('<div class="ngrid">')
     b = s.index('</div>\n    </div>\n  </section>', a)
-    s = s[:a] + '\n' + '\n'.join(card(n, '') for n in NEWS[:4]) + '\n      ' + s[b:]
+    s = s[:a] + '\n' + '\n'.join(card(n, '', banner=True) for n in NEWS[:4]) + '\n      ' + s[b:]
     s = s.replace('<a class="lnk rv" href="https://expocrimea.com/news/" target="_blank" rel="noopener">Все новости', '<a class="lnk rv" href="news/index.html">Все новости')
     p.write_text(s, encoding='utf-8')
 
