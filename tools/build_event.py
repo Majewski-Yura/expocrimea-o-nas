@@ -21,7 +21,7 @@ NB = ' '
 EVENTS = {
     'agro': {
         'name': 'АгроЭкспоКрым',
-        'title_lines': ['Агро', '<em>Экспо</em>Крым'],
+        'title_lines': ['АгроЭкспоКрым'],
         'eyebrow': 'XV юбилейная аграрная выставка',
         'bgnum': 'XV',
         'color': '#42924B',
@@ -363,7 +363,7 @@ def build(slug):
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="../index.html#events">Мероприятия</a><span>/</span>{e['name']}</nav>
       <div class="eyebrow">{e['eyebrow']}</div>
-      <h1 class="hero__title">
+      <h1 class="hero__title{' hero__title--single' if slug == 'agro' else ''}">
 {lines}
       </h1>
       <div class="hero__row">
