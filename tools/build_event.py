@@ -384,7 +384,6 @@ def build(slug):
           <span class="seal__core"><img src="{e['logo']}" alt=""></span>
         </a>
       </div>
-{'    </div></section><section class="event-summary" aria-label="Даты и место проведения"><div class="container">' if slug == 'agro' else ''}
       <div class="e-meta">
         <div class="e-meta__it e-meta__it--ev"><small>Даты</small><b>{e['dates']}</b></div>
         <div class="e-meta__it"><small>{e['city']}</small><b>{e['place_short']}</b></div>
@@ -393,7 +392,7 @@ def build(slug):
     </div>
   </section>
 
-{featured_video}
+{featured_video if slug != 'agro' else ''}
 
   <!-- 3. О выставке -->
   <section class="manifest e-about" id="about">
@@ -403,6 +402,7 @@ def build(slug):
 {about_details}
     </div>
   </section>
+{featured_video if slug == 'agro' else ''}
 {sec_nums}{sec_expo}{sec_aud}{sec_docs}{sec_was}
   <!-- 9. Место проведения -->
   <section class="venue2">

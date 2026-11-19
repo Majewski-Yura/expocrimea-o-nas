@@ -1637,6 +1637,8 @@ a.cg-m__h:hover{color:var(--red)}
 /* Единое закругление основных кнопок на всех страницах. */
 .btn{border-radius:14px}
 
-.event-summary{padding:40px 0;background:#fff}
-.event-summary .e-meta{margin:0;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:stretch}
-@media(max-width:767px){.event-summary{padding:24px 0}.event-summary .e-meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.hero-e--video{align-items:flex-end;padding-bottom:40px}
+.hero-e--video>.container{display:flex;flex-direction:column;min-height:calc(100svh - var(--hdr) - 80px)}
+.hero-e--video .e-meta{margin-top:auto;padding-top:36px;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:stretch}
+@media(max-width:767px){.hero-e--video{padding-bottom:24px}.hero-e--video>.container{min-height:calc(100svh - var(--hdr) - 64px)}.hero-e--video .e-meta{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:28px}}

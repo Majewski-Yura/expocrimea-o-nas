@@ -1,0 +1,32 @@
+(() => {
+ const script=document.currentScript;
+ const base=new URL('../',script.src);
+ const events=[{"href": "events/agro.html", "logo": "logos/agro.png", "name": "АгроЭкспоКрым"}, {"href": "https://fem.expocrimea.com/", "logo": "logos/fem.svg", "name": "Форум эстетической медицины"}, {"href": "events/rhm.html", "logo": "logos/rhm.svg", "name": "РестоОтельМаркет"}, {"href": "events/ros.html", "logo": "logos/ros.svg", "name": "РосЭкспоКрым"}, {"href": "events/chempionat-naczionalnoj-kuhni.html", "logo": "logos/chnk.svg", "name": "Чемпионат национальной кухни"}, {"href": "https://cuf.expocrimea.com/", "logo": "logos/cuf.svg", "name": "КрымУрбанФорум"}, {"href": "events/stroy.html", "logo": "logos/stroy.svg", "name": "СтройЭкспоКрым"}, {"href": "events/mvmk.html", "logo": "logos/mebel.svg", "name": "Выставка мебели"}, {"href": "events/m2.html", "logo": "logos/m2.svg", "name": "Ярмарка недвижимости"}, {"href": "events/safety.html", "logo": "logos/safety.svg", "name": "Безопасность. Крым"}, {"href": "https://cuf.expocrimea.com/cua", "logo": "logos/cua.svg", "name": "КрымУрбанПремия"}, {"href": "events/med.html", "logo": "logos/med.svg", "name": "Здравоохранение. Крым"}, {"href": "events/efetovskie-chteniya.html", "logo": "logos/efet.svg?v=202611192", "name": "Ефетовские чтения"}, {"href": "events/turistekspo-krym.html", "logo": "logos/turist.svg", "name": "ТуристЭкспо. Крым"}];
+ const nav=document.querySelector('.header .nav');
+ if(!nav)return;
+ const link=Array.from(nav.children).find(a=>a.textContent.trim()==='Мероприятия');
+ if(!link)return;
+ const wrap=document.createElement('div');wrap.className='nav-events';
+ const button=document.createElement('button');button.type='button';button.className='nav-events__toggle';
+ button.innerHTML='Мероприятия<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>';
+ button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls','nav-events-list');
+ if(link.hasAttribute('aria-current'))button.classList.add('is-current');
+ const panel=document.createElement('div');panel.className='nav-events__panel';panel.id='nav-events-list';panel.hidden=true;
+ const all=document.createElement('a');all.className='nav-events__all';all.href=new URL('meropriyatiya/index.html',base);all.textContent='Все мероприятия';panel.append(all);
+ events.forEach(e=>{const a=document.createElement('a');a.className='nav-events__item';a.href=new URL(e.href,base);
+ const img=document.createElement('img');img.src=new URL(e.logo,base);img.alt='';img.width=36;img.height=36;
+ const name=document.createElement('span');name.textContent=e.name.replace(/ (\S+)$/, '\u00a0$1');a.append(img,name);
+ if(new URL(a.href).origin!==location.origin){a.target='_blank';a.rel='noopener';}
+ if(new URL(a.href).pathname===location.pathname)a.setAttribute('aria-current','page');
+ panel.append(a);});
+ wrap.append(button,panel);link.replaceWith(wrap);
+ let timer;const setOpen=open=>{clearTimeout(timer);panel.hidden=!open;button.setAttribute('aria-expanded',String(open));};
+ button.addEventListener('click',()=>setOpen(panel.hidden));
+ wrap.addEventListener('mouseenter',()=>{if(matchMedia('(hover:hover) and (min-width:1101px)').matches)setOpen(true)});
+ wrap.addEventListener('mouseleave',()=>{if(matchMedia('(hover:hover) and (min-width:1101px)').matches)timer=setTimeout(()=>setOpen(false),180)});
+ wrap.addEventListener('focusout',e=>{if(!wrap.contains(e.relatedTarget))setOpen(false)});
+ document.addEventListener('click',e=>{if(!wrap.contains(e.target))setOpen(false)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){setOpen(false);button.focus()}});
+ button.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();setOpen(true);all.focus()}});
+ panel.addEventListener('click',e=>{if(e.target.closest('a')){setOpen(false);document.querySelector('.header').classList.remove('is-open');document.body.classList.remove('menu-open');const burger=document.querySelector('.burger');if(burger)burger.setAttribute('aria-expanded','false')}});
+})();
