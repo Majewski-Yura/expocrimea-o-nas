@@ -450,21 +450,21 @@ $$('[data-join-purpose]').forEach(link => link.addEventListener('click', () => {
   setTimeout(() => form.elements.name.focus({preventScroll: true}), 450);
 }));
 
-// Вращение фонового льва ограничено областью первого экрана.
+// Мягкий импульс только во время прокрутки, без вращения.
 (() => {
   const emblem = document.querySelector('.hero__emblem-spin');
   if (!emblem) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const hero = emblem.closest('.hero');
-  let frame = 0;
-  const update = () => {
-    frame = 0;
-    const progress = Math.min(Math.max(scrollY, 0), hero.offsetTop + hero.offsetHeight);
-    emblem.style.transform = reduced.matches ? 'none' : `rotate(${progress * 0.12}deg)`;
-  };
-  const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-  addEventListener('scroll', schedule, {passive: true});
-  addEventListener('resize', schedule);
-  reduced.addEventListener('change', schedule);
-  update();
+  let pulse;
+  addEventListener('scroll', () => {
+    if (reduced.matches || scrollY > hero.offsetTop + hero.offsetHeight || pulse) return;
+    pulse = emblem.animate([
+      {transform: 'scale(1)'},
+      {transform: 'scale(1.025)'},
+      {transform: 'scale(1)'}
+    ], {duration: 900, easing: 'ease-in-out'});
+    pulse.onfinish = pulse.oncancel = () => { pulse = null; };
+  }, {passive: true});
+  reduced.addEventListener('change', () => { if (reduced.matches && pulse) pulse.cancel(); });
 })();
