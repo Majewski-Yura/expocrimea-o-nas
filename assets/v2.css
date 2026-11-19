@@ -1507,7 +1507,7 @@ a.cg-m__h:hover{color:var(--red)}
 .ncard--banner .ncard__r{font-size:12px}
 
 /* Единый стиль портретов команды */
-.team-s .tcard__ph img{filter:grayscale(1) contrast(1.04);object-position:50% 35%}
+.team-s .tcard__ph img{filter:none;object-position:50% 35%}
 .team-s .tcard__ph{background:#3a3c3f}
 .team-s .tcard__ph--none{background:#3a3c3f}
 .team-s .tcard::after{background:linear-gradient(0deg,rgba(30,32,35,.97),rgba(30,32,35,.2) 75%,transparent)}
@@ -1539,5 +1539,6 @@ a.cg-m__h:hover{color:var(--red)}
 .team-s .tcard__ph img[src$="/vasilyeva.jpg"]{--portrait-scale:3;--portrait-origin:50% 8%}
 .team-s .tcard:hover .tcard__ph img{transform:scale(calc(var(--portrait-scale,1) * 1.04))}
 
-/* Год каталога — контурная типографика, как на странице о компании. */
-.hero-n .hero__bgnum--year{font-size:26vw;top:24px;right:1vw;letter-spacing:-.07em}
+/* Фоновая эмблема каталога. */
+.hero-n .hero__emblem{position:absolute;right:4vw;top:24px;width:clamp(240px,32vw,460px);height:calc(100% - 48px);color:var(--line);pointer-events:none;user-select:none;z-index:0}
+@media(max-width:700px){.hero-n .hero__emblem{right:-55px;top:28px;width:240px;opacity:.45}}

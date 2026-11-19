@@ -78,7 +78,7 @@ def build():
 
 <main>
   <section class="hero hero-n">
-    <div class="hero__bgnum hero__bgnum--year" aria-hidden="true">2027</div>
+    <svg class="hero__emblem" viewBox="210.98 96.64 472.90 491.56" aria-hidden="true"><use href="#i-logo-em"/></svg>
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Мероприятия</nav>
 <div class="eyebrow">Каталог мероприятий</div>
