@@ -1625,10 +1625,10 @@ a.cg-m__h:hover{color:var(--red)}
 .team-s .tcard__ph img[src$="/dorosh.jpg"]{--portrait-scale:1.3;--portrait-origin:50% 0%}
 
 /* Пробный видеофон первого экрана АгроЭкспоКрым. */
-.hero-e--video{isolation:isolate;overflow:hidden;background:var(--ink);color:#fff}
+.hero-e--video{min-height:calc(100svh - var(--hdr));display:flex;align-items:center;isolation:isolate;overflow:hidden;background:var(--ink);color:#fff}
 .hero-e--video::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(15,24,18,.78),rgba(15,24,18,.3)),linear-gradient(0deg,rgba(15,24,18,.75),transparent 70%);pointer-events:none}
 .hero-e--video>.hero-v__video{z-index:-1;transform:none;animation:none}
-.hero-e--video>.container{position:relative;z-index:1}
+.hero-e--video>.container{position:relative;z-index:1;width:100%}
 .page-ev .hero-e--video .eyebrow,.hero-e--video .hero__title--single{color:#fff}
 .hero-e--video .hero__sub,.hero-e--video .crumbs,.hero-e--video .crumbs a{color:rgba(255,255,255,.88)}
 .hero-e--video .seal__ring text{fill:#fff}
