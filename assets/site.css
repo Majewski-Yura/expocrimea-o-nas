@@ -509,3 +509,6 @@ a{color:inherit;text-decoration:none}
   .adv .swipe-hint{display:none}
 }
 @media(max-width:767px){p,dd,a,h1,h2,h3{overflow-wrap:anywhere}section .container>*{min-width:0}}
+
+/* Единое закругление основных кнопок на всех страницах. */
+.btn{border-radius:14px}

@@ -1633,3 +1633,10 @@ a.cg-m__h:hover{color:var(--red)}
 .hero-e--video .hero__sub,.hero-e--video .crumbs,.hero-e--video .crumbs a{color:rgba(255,255,255,.88)}
 .hero-e--video .seal__ring text{fill:#fff}
 .hero-e--video .e-meta__it{color:var(--ink);background:var(--bg)}
+
+/* Единое закругление основных кнопок на всех страницах. */
+.btn{border-radius:14px}
+
+.event-summary{padding:40px 0;background:#fff}
+.event-summary .e-meta{margin:0;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:stretch}
+@media(max-width:767px){.event-summary{padding:24px 0}.event-summary .e-meta{grid-template-columns:repeat(2,minmax(0,1fr))}}

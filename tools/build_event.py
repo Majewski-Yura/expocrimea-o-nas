@@ -384,6 +384,7 @@ def build(slug):
           <span class="seal__core"><img src="{e['logo']}" alt=""></span>
         </a>
       </div>
+{'    </div></section><section class="event-summary" aria-label="Даты и место проведения"><div class="container">' if slug == 'agro' else ''}
       <div class="e-meta">
         <div class="e-meta__it e-meta__it--ev"><small>Даты</small><b>{e['dates']}</b></div>
         <div class="e-meta__it"><small>{e['city']}</small><b>{e['place_short']}</b></div>
