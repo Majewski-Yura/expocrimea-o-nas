@@ -1535,7 +1535,7 @@ a.cg-m__h:hover{color:var(--red)}
 }
 /* Кадрирование исходных портретов с разным масштабом съёмки */
 .team-s .tcard__ph img{transform:scale(var(--portrait-scale,1));transform-origin:var(--portrait-origin,50% 35%)}
-.team-s .tcard__ph img[src$="/belousova.jpg"]{--portrait-scale:1.4;--portrait-origin:50% 80%}
+.team-s .tcard__ph img[src$="/belousova-upright.jpg"]{--portrait-scale:1.4;--portrait-origin:50% 80%}
 .team-s .tcard__ph img[src$="/vasilyeva.jpg"]{--portrait-scale:3;--portrait-origin:50% 8%}
 .team-s .tcard:hover .tcard__ph img{transform:scale(calc(var(--portrait-scale,1) * 1.04))}
 
@@ -1621,5 +1621,5 @@ a.cg-m__h:hover{color:var(--red)}
 /* Оптическая нормализация лиц после замены фонов. */
 .team-s .tcard__ph img[src$="/oganisyan.jpg"]{--portrait-scale:1.2;--portrait-origin:50% 0%}
 .team-s .tcard__ph img[src$="/uvarovskaya.jpg"]{--portrait-scale:1.1;--portrait-origin:50% 70%}
-.team-s .tcard__ph img[src$="/belousova.jpg"]{--portrait-scale:1.6;--portrait-origin:50% 65%}
+.team-s .tcard__ph img[src$="/belousova-upright.jpg"]{--portrait-scale:1.6;--portrait-origin:50% 65%}
 .team-s .tcard__ph img[src$="/dorosh.jpg"]{--portrait-scale:1.3;--portrait-origin:50% 0%}
