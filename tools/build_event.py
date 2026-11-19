@@ -370,8 +370,8 @@ def build(slug):
         <div>
           <p class="hero__sub">{e['lead']}</p>
           <div class="hero__btns">
-            <a class="btn" href="#apply">Участвовать</a>
-            <a class="btn btn--line" href="#apply">Посетить</a>
+            <a class="btn" href="#apply">Участвовать<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+            <a class="btn btn--line" href="#apply">Посетить<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
           </div>
         </div>
         <a class="seal e-seal" href="#about" aria-label="Листайте вниз">

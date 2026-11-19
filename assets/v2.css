@@ -1447,7 +1447,7 @@ a.cg-m__h:hover{color:var(--red)}
 /* Кнопки участия и посещения на первом экране мероприятий */
 .hero-e .hero__btns{gap:16px}
 .hero-e .hero__btns .btn{height:60px;min-width:184px;padding:0 28px;gap:18px;font-size:16px;transition:transform .25s var(--ease),box-shadow .25s,color .3s,border-color .3s,background .3s}
-.hero-e .hero__btns .btn::after{content:"↗" / "";font-size:24px;font-weight:400;line-height:1;transition:transform .25s var(--ease)}
+
 .hero-e .hero__btns .btn:not(.btn--line){box-shadow:0 8px 22px color-mix(in srgb,var(--ev,var(--red)) 23%,transparent)}
 .hero-e .hero__btns .btn--line{background:var(--ink);color:#fff;border:2px solid var(--ink)}
 .hero-e .hero__btns .btn:hover,.hero-e .hero__btns .btn:focus-visible{transform:translateY(-3px)}
@@ -1462,7 +1462,7 @@ a.cg-m__h:hover{color:var(--red)}
   .hero-e .hero__btns .btn:hover,.hero-e .hero__btns .btn:focus-visible{animation-play-state:paused}
 }
 @media(prefers-reduced-motion:reduce){
-  .hero-e .hero__btns .btn,.hero-e .hero__btns .btn::after{transition:none;transform:none}
+  .hero-e .hero__btns .btn,
 }
 @media(max-width:767px){.hero-e .hero__btns .btn{min-width:0}}
 
@@ -1535,7 +1535,7 @@ a.cg-m__h:hover{color:var(--red)}
 }
 /* Кадрирование исходных портретов с разным масштабом съёмки */
 .team-s .tcard__ph img{transform:scale(var(--portrait-scale,1));transform-origin:var(--portrait-origin,50% 35%)}
-.team-s .tcard__ph img[src$="/belousova.jpg"]{--portrait-scale:1.7;--portrait-origin:58% 75%}
+.team-s .tcard__ph img[src$="/belousova.jpg"]{--portrait-scale:1.4;--portrait-origin:50% 80%}
 .team-s .tcard__ph img[src$="/vasilyeva.jpg"]{--portrait-scale:3;--portrait-origin:50% 8%}
 .team-s .tcard:hover .tcard__ph img{transform:scale(calc(var(--portrait-scale,1) * 1.04))}
 
@@ -1549,3 +1549,77 @@ a.cg-m__h:hover{color:var(--red)}
 @media(max-width:700px){.hero-n .hero__emblem{right:-130px;top:-80px;width:400px}}
 
 .hero-e .hero__title--single{font-size:clamp(24px,6.6vw,108px);letter-spacing:-.035em;white-space:nowrap;color:var(--ink)}
+
+/* Мобильные ленты главной: одна крупная карточка и край следующей. */
+.ncard--all-news{display:none}
+@media(max-width:767px){
+ :is(#ev-grid,.cal .egrid,.e-more .egrid),.news-s#news .ngrid{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);margin:0 calc(var(--gut) * -1);padding:0 var(--gut) 12px;scrollbar-width:none;overscroll-behavior-x:contain}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid)::-webkit-scrollbar,.news-s#news .ngrid::-webkit-scrollbar{display:none}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard{flex:0 0 84%;height:420px;aspect-ratio:auto;scroll-snap-align:start;display:flex;flex-direction:column;padding:20px}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard[hidden]{display:none}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__date{top:20px;left:20px;font-size:10px;letter-spacing:.05em}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__go{top:16px;right:16px;width:36px;height:36px}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__l{position:relative;inset:auto;flex:0 0 130px;margin-top:52px;margin-bottom:auto}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__l img{position:static;inset:auto;height:min(calc(var(--ecard-logo-size,128px) * .65),100px);width:auto;max-width:170px;max-height:110px;margin:0}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__b{position:static;inset:auto;margin-top:24px}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__n{display:block;font-size:20px;line-height:1.15}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__a{font-size:14px;line-height:1.4;margin-top:12px}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard::after{inset:25% 0 0;background:linear-gradient(0deg,rgba(25,27,30,.96),rgba(25,27,30,.12))}
+ .news-s#news .ngrid>.ncard{flex:0 0 84%;height:400px;min-height:0;aspect-ratio:auto;scroll-snap-align:start}
+ .news-s#news .ncard__b{left:20px;right:20px;bottom:24px;max-width:none}
+ .news-s#news .ncard__t{font-size:21px;line-height:1.2}
+ .news-s#news .ncard__r{line-height:1.4;margin-top:12px}
+ .news-s#news .ncard--all-news{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;background:var(--bg);color:var(--ink);padding:28px 24px}
+ .ncard--all-news::after{display:none}
+ .ncard--all-news__label{font-size:14px;color:var(--muted)}
+ .ncard--all-news__title{font-size:30px;line-height:1.1;font-weight:600;letter-spacing:-.03em}
+ .ncard--all-news .btn{width:100%;justify-content:space-between}
+}
+
+.formats{padding:100px 0;background:var(--bg)}
+.formats__head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:40px}
+.formats__head p{max-width:380px;font-size:18px;line-height:1.5;color:var(--muted)}
+.formats__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.format-card{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);overflow:hidden}
+.format-card__photo{width:100%;aspect-ratio:4/3;object-fit:cover}
+.format-card__body{display:flex;flex-direction:column;flex:1;padding:24px;gap:16px}
+.format-card h3{font-size:26px;font-weight:600}
+.format-card p{font-size:15px;line-height:1.5;color:var(--muted);margin-bottom:8px}
+.format-card .btn{margin-top:auto;width:100%;height:auto;min-height:56px;padding:14px 16px;justify-content:space-between;font-size:13px;line-height:1.3}
+@media(max-width:1000px){.formats__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767px){.formats{padding:56px 0}.formats__head{display:block;margin-bottom:28px}.formats__head p{margin-top:24px;font-size:16px}.formats__grid{grid-template-columns:1fr;gap:20px}.format-card__photo{aspect-ratio:16/9}.format-card__body{padding:24px}.format-card .btn{font-size:15px}}
+
+@media(max-width:767px){
+ .cal .egrid,.e-more .egrid{margin-top:24px}
+ .page-news .ngrid--all,.formats__grid{display:flex;overflow-x:auto;overflow-y:hidden;gap:14px;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);margin:0 calc(var(--gut) * -1);padding:0 var(--gut) 12px;scrollbar-width:none;overscroll-behavior-x:contain}
+ .page-news .ngrid--all .ncard{flex:0 0 84%;height:400px;aspect-ratio:auto;min-height:0;scroll-snap-align:start}
+ .formats__grid .format-card{flex:0 0 84%;scroll-snap-align:start}
+ .tgrid,.gal,.ngrid,.aud__grid{overscroll-behavior-x:contain;scroll-padding-inline:var(--gut)}
+ .sgrid{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+ .sgrid .slogo{flex:0 0 56%;scroll-snap-align:start}
+}
+
+.btn .btn__arrow{display:block;flex:0 0 20px;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transform:none;transition:transform .25s var(--ease)}
+@media(hover:hover){.btn:hover .btn__arrow{transform:translate(2px,-2px)}}
+@media(prefers-reduced-motion:reduce){.btn .btn__arrow{transition:none}}
+/* Узкие экраны: содержимое не расширяет колонки до min-content. */
+@media(max-width:767px){
+ .req__grid,.pp__grid{grid-template-columns:minmax(0,1fr)}
+ .req__grid>*,.pp__grid>*,.rq__row>*{min-width:0}
+ .rq__row{grid-template-columns:minmax(0,1fr) 40px}
+ .rq__row dd,.pp__body,.pp__toc,.art__body,.art__lead,.e-meta__it b,.venue2__a{overflow-wrap:anywhere}
+ .art__t{font-size:clamp(27px,7vw,34px);overflow-wrap:anywhere}
+}
+@media(max-width:767px){.facts__t{font-size:clamp(22px,6.8vw,30px)}.e-about .manifest__text{font-size:clamp(22px,6.8vw,28px);overflow-wrap:anywhere}}
+@media(max-width:767px){.devs,.droutes,.dgrid,.dhalls{grid-template-columns:minmax(0,1fr)}.dev,.dev__h,.dl__t{min-width:0;overflow-wrap:anywhere}.dev__h{font-size:20px}.ncard--all-news{border-radius:var(--radius)}}
+.ncard--banner{min-width:0;width:100%}
+.ecard__l img{max-height:100%}
+
+@media(max-width:767px){.formats__head .h2{font-size:clamp(28px,7.8vw,36px)}}
+
+.team-s .tcard__ph img[src$="/memetova.jpg"]{--portrait-scale:1.15;--portrait-origin:50% 70%}
+/* Оптическая нормализация лиц после замены фонов. */
+.team-s .tcard__ph img[src$="/oganisyan.jpg"]{--portrait-scale:1.2;--portrait-origin:50% 0%}
+.team-s .tcard__ph img[src$="/uvarovskaya.jpg"]{--portrait-scale:1.1;--portrait-origin:50% 70%}
+.team-s .tcard__ph img[src$="/belousova.jpg"]{--portrait-scale:1.6;--portrait-origin:50% 65%}
+.team-s .tcard__ph img[src$="/dorosh.jpg"]{--portrait-scale:1.3;--portrait-origin:50% 0%}

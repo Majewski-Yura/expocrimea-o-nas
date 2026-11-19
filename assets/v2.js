@@ -10,7 +10,9 @@ const SITE_ROOT = new URL('..', document.currentScript ? document.currentScript.
 const header = $('.header'), burger = $('.burger');
 if (burger) {
   burger.addEventListener('click', () => burger.setAttribute('aria-expanded', header.classList.toggle('is-open')));
-  $$('.nav a').forEach(a => a.addEventListener('click', () => header.classList.remove('is-open')));
+  const closeMenu = () => { header.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); };
+  $$('.nav a').forEach(a => a.addEventListener('click', closeMenu));
+  addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 }
 
 // Фильтры с бегущей плашкой: .chips[data-for="#grid"], кнопки data-f, карточки data-f
@@ -20,6 +22,7 @@ $$('.chips[data-for]').forEach(box => {
   btns.forEach(b => b.addEventListener('click', () => {
     btns.forEach(c => c.classList.toggle('is-on', c === b));
     moveInd();
+    grid.scrollLeft = 0;
     let i = 0;
     [...grid.children].forEach(p => {
       p.hidden = b.dataset.f !== 'all' && p.dataset.f !== b.dataset.f;

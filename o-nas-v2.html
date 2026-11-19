@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/v2.css?v=202611199">
+<link rel="stylesheet" href="assets/v2.css?v=2026111913">
 <link rel="stylesheet" href="assets/header-logo.css?v=202611191">
 </head>
 <body>
@@ -205,7 +205,7 @@
   <!-- 7. Руководство -->
   <section class="boss">
     <div class="container boss__grid">
-      <div class="boss__ph rv"><div class="boss__frame"><img src="team/semeretsky.jpg" alt="Сергей Семерецкий, генеральный директор ЭКСПОКРЫМ" loading="lazy"></div></div>
+      <div class="boss__ph rv"><div class="boss__frame"><img src="team/portraits/semeretsky.jpg" alt="Сергей Семерецкий, генеральный директор ЭКСПОКРЫМ" loading="lazy"></div></div>
       <div>
         <div class="eyebrow rv">Руководство</div>
         <div class="boss__role rv">Генеральный директор</div>
@@ -353,7 +353,7 @@ const TEAM = [
 const grid = $('#team-grid');
 const card = t => `
   <article class="tcard rv">
-    ${t.ph ? `<div class="tcard__ph"><img src="team/${t.ph}.jpg" alt="" loading="lazy"></div>` : `<div class="tcard__ph tcard__ph--none"><svg><use href="#i-user"/></svg></div>`}
+    ${t.ph ? `<div class="tcard__ph"><img src="team/portraits/${t.ph}.jpg" alt="" loading="lazy"></div>` : `<div class="tcard__ph tcard__ph--none"><svg><use href="#i-user"/></svg></div>`}
     <div class="tcard__b">
       <div class="tcard__n">${t.n}</div>
       <div class="tcard__r">${t.r}</div>

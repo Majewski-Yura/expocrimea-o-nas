@@ -508,3 +508,4 @@ a{color:inherit;text-decoration:none}
   .subscribe__form input,.subscribe__form .btn{flex:none;height:48px;width:100%}
   .adv .swipe-hint{display:none}
 }
+@media(max-width:767px){p,dd,a,h1,h2,h3{overflow-wrap:anywhere}section .container>*{min-width:0}}

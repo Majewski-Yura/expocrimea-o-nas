@@ -181,7 +181,7 @@ def update_index():
     s = p.read_text(encoding='utf-8')
     a = s.index('<div class="ngrid">') + len('<div class="ngrid">')
     b = s.index('</div>\n    </div>\n  </section>', a)
-    s = s[:a] + '\n' + '\n'.join(card(n, '', banner=True) for n in NEWS[:4]) + '\n      ' + s[b:]
+    s = s[:a] + '\n' + '\n'.join(card(n, '', banner=True) for n in NEWS[:4]) + '\n' + '        <a class="ncard ncard--all-news" href="news/index.html">\n          <span class="ncard--all-news__label">Продолжим читать?</span>\n          <span class="ncard--all-news__title">Больше новостей<br>ЭКСПОКРЫМ</span>\n          <span class="btn">Все\xa0новости <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>\n        </a>' + '\n      ' + s[b:]
     s = s.replace('<a class="lnk rv" href="https://expocrimea.com/news/" target="_blank" rel="noopener">Все новости', '<a class="lnk rv" href="news/index.html">Все новости')
     p.write_text(s, encoding='utf-8')
 
