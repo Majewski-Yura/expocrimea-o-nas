@@ -1646,3 +1646,11 @@ a.cg-m__h:hover{color:var(--red)}
 /* Воздух между видеошапкой и описанием мероприятия. */
 .hero-e--video + .e-about{padding-top:96px}
 @media(max-width:767px){.hero-e--video + .e-about{padding-top:56px}}
+
+/* Исходные портреты: сохраняем реальные лица сотрудников. */
+.team-s .tcard__ph img[src^="team/"]{--portrait-scale:1;--portrait-origin:50% 35%;object-position:50% 25%}
+.team-s .tcard__ph img[src="team/vasilyeva.jpg"]{--portrait-scale:2.2;--portrait-origin:50% 5%}
+@media(max-width:767px){
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__l img{height:min(calc(var(--ecard-logo-size,128px) * .85),120px);max-width:180px;max-height:120px}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__l img[src*="logos/fem.svg"]{transform:scale(1.6)}
+}
