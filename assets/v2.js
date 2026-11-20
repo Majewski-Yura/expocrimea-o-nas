@@ -378,6 +378,25 @@ if (eventSealLabels.length) {
 
 // Видео мероприятия запускается без звука. Кнопка управляет плеером RUTUBE.
 $$('.e-video__frame').forEach(frame => {
+  const native = $('video', frame);
+  if (native) {
+    const sound = $('[data-event-sound]', frame);
+    const error = $('.e-video__error', frame);
+    const sync = () => {sound.textContent = native.muted ? 'Включить звук' : 'Выключить звук';sound.setAttribute('aria-pressed', String(!native.muted));};
+    native.addEventListener('volumechange', sync);
+    native.addEventListener('error', () => {error.hidden = false;});
+    native.addEventListener('playing', () => {error.hidden = true;});
+    sound.addEventListener('click', () => {native.muted = !native.muted;if (!native.muted) native.play().catch(() => {});sync();});
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !reduce) native.play().catch(() => {});
+        else native.pause();
+      });
+    }, {threshold: .15});
+    observer.observe(native);
+    sync();
+    return;
+  }
   const player = $('iframe', frame);
   const button = $('[data-event-sound]', frame);
   const error = $('.e-video__error', frame);

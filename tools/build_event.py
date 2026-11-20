@@ -212,6 +212,10 @@ def build(slug):
     </div>
   </section>'''
 
+    if slug == 'agro':
+        featured_video = re.sub(r'<iframe data-event-src="[^"]+".*?</iframe>', '<video class="e-video__native" controls muted playsinline preload="metadata" poster="../assets/media/agro-report-poster.jpg" aria-label="Репортаж АгроЭкспоКрым-2026"><source src="../assets/media/agro-report-2026.mp4" type="video/mp4"></video>', featured_video, count=1)
+        featured_video = featured_video.replace(' disabled>Загрузка видео…</button>', '>Включить звук</button>')
+
     # 5. Экспозиции
     sec_expo = ''
     if e.get('expo'):

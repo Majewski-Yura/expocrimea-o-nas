@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/v2.css?v=202611201">
+<link rel="stylesheet" href="../assets/v2.css?v=202611202">
 <link rel="stylesheet" href="../assets/header-logo.css?v=202611193">
 </head>
 <body class="page-ev" style="--ev:#42924B">
@@ -127,8 +127,8 @@
   <section class="e-video">
     <div class="container">
       <div class="e-video__frame">
-        <iframe data-event-src="https://rutube.ru/play/embed/09eae6cd3f232aa4dd060295caf007cc/?autoplay=true&amp;autostartmute=true" title="Видео АгроЭкспоКрым" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <button class="e-video__sound" type="button" data-event-sound aria-pressed="false" disabled>Загрузка видео…</button>
+        <video class="e-video__native" controls muted playsinline preload="metadata" poster="../assets/media/agro-report-poster.jpg" aria-label="Репортаж АгроЭкспоКрым-2026"><source src="../assets/media/agro-report-2026.mp4" type="video/mp4"></video>
+        <button class="e-video__sound" type="button" data-event-sound aria-pressed="false">Включить звук</button>
         <p class="e-video__error" role="status" hidden>Видео временно недоступно. <a href="https://rutube.ru/video/09eae6cd3f232aa4dd060295caf007cc" target="_blank" rel="noopener">Открыть на RUTUBE</a></p>
       </div>
     </div>
@@ -428,6 +428,6 @@
 
 <a class="fab fab--chat" href="../kontakty/index.html#form" aria-label="Написать нам"><svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 5v2h10V8zm0 4v2h7v-2z"/></svg></a>
 <a class="fab fab--up" href="#" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="M12 21V3M5 10l7-7 7 7"/></svg></a>
-<script src="../assets/v2.js?v=202611197"></script>
+<script src="../assets/v2.js?v=202611201"></script>
 </body>
 </html>
