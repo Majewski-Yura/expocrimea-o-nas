@@ -356,6 +356,14 @@ def build(slug):
 
     hero_media = '\n    <video class="hero-v__video" autoplay muted loop playsinline preload="metadata" poster="../assets/media/agro-hero-poster.jpg" aria-hidden="true">\n      <source src="../assets/media/agro-hero.mp4" type="video/mp4">\n    </video>\n'
 
+    event_clips = {'med': 'med', 'efetovskie-chteniya': 'efet', 'stroy': 'cuf', 'mvmk': 'cuf', 'm2': 'cuf', 'safety': 'cuf', 'rhm': 'rhm', 'ros': 'rhm', 'chempionat-naczionalnoj-kuhni': 'chnk', 'turistekspo-krym': 'turist'}
+    if slug in event_clips:
+        clip = event_clips[slug]
+        hero_media = f'<video class="hero-v__video" autoplay muted loop playsinline preload="metadata" poster="../assets/media/event-{clip}-0.jpg" aria-hidden="true"><source src="../assets/media/event-hero-{clip}.mp4" type="video/mp4"></video>'
+        sec_formats = (ROOT / 'tools/event-formats.html').read_text().replace('АгроЭкспоКрым', e['name'])
+        for i, photo in enumerate(['ybqmwplj63o.jpg', 'ot8v9f0yf4q.jpg', 'tbxrtgxj_zq.jpg', '7bp87qevt1m.jpg']):
+            sec_formats = sec_formats.replace('wp/' + photo, f'event-{clip}-{i}.jpg')
+
     body = f'''</head>
 <body class="page-ev" style="--ev:{e['color']}">
 
@@ -367,7 +375,7 @@ def build(slug):
 
 <main>
   <!-- 1. Первый экран -->
-  <section class="hero hero-e{' hero-e--video' if slug == 'agro' else ''}">{hero_media if slug == 'agro' else bgnum}
+  <section class="hero hero-e{' hero-e--video' if slug == 'agro' or slug in event_clips else ''}">{hero_media if slug == 'agro' or slug in event_clips else bgnum}
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="../index.html#events">Мероприятия</a><span>/</span>{e['name']}</nav>
       <div class="eyebrow">{e['eyebrow']}</div>
@@ -398,7 +406,7 @@ def build(slug):
     </div>
   </section>
 
-{featured_video if slug != 'agro' else ''}
+{featured_video if slug != 'agro' and slug not in event_clips else ''}
 
   <!-- 3. О выставке -->
   <section class="manifest e-about" id="about">
@@ -408,7 +416,7 @@ def build(slug):
 {about_details}
     </div>
   </section>
-{featured_video if slug == 'agro' else ''}
+{featured_video if slug == 'agro' or slug in event_clips else ''}
 {sec_nums}{sec_formats}{sec_expo}{sec_aud}{sec_docs}{sec_was}
   <!-- 9. Место проведения -->
   <section class="venue2">

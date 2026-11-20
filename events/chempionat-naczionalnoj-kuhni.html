@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/v2.css?v=202611201">
+<link rel="stylesheet" href="../assets/v2.css?v=202611203">
 <link rel="stylesheet" href="../assets/header-logo.css?v=202611193">
 </head>
 <body class="page-ev" style="--ev:#BA141D">
@@ -78,7 +78,7 @@
 
 <main>
   <!-- 1. Первый экран -->
-  <section class="hero hero-e">
+  <section class="hero hero-e hero-e--video"><video class="hero-v__video" autoplay muted loop playsinline preload="metadata" poster="../assets/media/event-chnk-0.jpg" aria-hidden="true"><source src="../assets/media/event-hero-chnk.mp4" type="video/mp4"></video>
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="../index.html#events">Мероприятия</a><span>/</span>Чемпионат национальной кухни</nav>
       <div class="eyebrow">Кулинарный Кубок Крыма</div>
@@ -112,15 +112,7 @@
   </section>
 
   <!-- 2. Видео мероприятия -->
-  <section class="e-video">
-    <div class="container">
-      <div class="e-video__frame">
-        <iframe data-event-src="https://rutube.ru/play/embed/bee634fa77de3e743076f8b0203105d0/?autoplay=true&amp;autostartmute=true" title="Видео РестоОтельМаркет и чемпионат национальной кухни" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <button class="e-video__sound" type="button" data-event-sound aria-pressed="false" disabled>Загрузка видео…</button>
-        <p class="e-video__error" role="status" hidden>Видео временно недоступно. <a href="https://rutube.ru/video/bee634fa77de3e743076f8b0203105d0" target="_blank" rel="noopener">Открыть на RUTUBE</a></p>
-      </div>
-    </div>
-  </section>
+
 
   <!-- 3. О выставке -->
   <section class="manifest e-about" id="about">
@@ -130,12 +122,44 @@
       <div class="manifest__foot">
         <div class="rv">
           <p>Организаторы чемпионата: АНО «Международный альянс кулинаров» (Москва) и ООО «ЭКСПОКРЫМ» (Симферополь). Чемпионат проходит в рамках выставки «РестоОтельМаркет» при поддержке Министерства курортов и туризма Республики Крым.</p>
-          
+
         </div>
         <div class="rv" style="--d:.1s">
-          
-          
+
+
         </div>
+      </div>
+    </div>
+  </section>
+  <section class="formats" aria-labelledby="formats-title">
+    <div class="container">
+      <div class="formats__head"><h2 class="h2" id="formats-title">Выберите свой<br>формат участия</h2><p>Присоединяйтесь к Чемпионат национальной кухни<br>в подходящей вам роли.</p></div>
+      <div class="formats__grid">
+        <article class="format-card">
+          <img class="format-card__photo" src="../assets/media/event-chnk-0.jpg" alt="Общение участников у стенда на Чемпионат национальной кухни" loading="lazy">
+          <div class="format-card__body"><h3>Участник</h3><p>Представьте компанию и продукцию</p><a class="btn" href="#apply" data-join-purpose="Участие в мероприятии">Стать участником<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+        </article>
+        <article class="format-card">
+          <img class="format-card__photo" src="../assets/media/event-chnk-1.jpg" alt="Открытие выставки Чемпионат национальной кухни" loading="lazy">
+          <div class="format-card__body"><h3>Партнёр</h3><p>Расскажите о бренде профессиональной аудитории</p><a class="btn" href="#apply" data-join-purpose="Партнёрство">Стать партнёром<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+        </article>
+        <article class="format-card">
+          <img class="format-card__photo" src="../assets/media/event-chnk-2.jpg" alt="Посетители экспозиции сельхозтехники Чемпионат национальной кухни" loading="lazy">
+          <div class="format-card__body"><h3>Посетитель</h3><p>Найдите поставщиков и деловые контакты</p><a class="btn" href="#apply" data-join-purpose="Посещение мероприятия">Оставить заявку<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+        </article>
+        <article class="format-card">
+          <img class="format-card__photo" src="../assets/media/event-chnk-3.jpg" alt="Деловая программа Чемпионат национальной кухни" loading="lazy">
+          <div class="format-card__body"><h3>Спикер</h3><p>Поделитесь опытом с коллегами по отрасли</p><a class="btn" href="#apply" data-join-purpose="Выступление спикером">Предложить выступление<svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+<section class="e-video">
+    <div class="container">
+      <div class="e-video__frame">
+        <iframe data-event-src="https://rutube.ru/play/embed/bee634fa77de3e743076f8b0203105d0/?autoplay=true&amp;autostartmute=true" title="Видео РестоОтельМаркет и чемпионат национальной кухни" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <button class="e-video__sound" type="button" data-event-sound aria-pressed="false" disabled>Загрузка видео…</button>
+        <p class="e-video__error" role="status" hidden>Видео временно недоступно. <a href="https://rutube.ru/video/bee634fa77de3e743076f8b0203105d0" target="_blank" rel="noopener">Открыть на RUTUBE</a></p>
       </div>
     </div>
   </section>
@@ -149,7 +173,7 @@
         <div class="rv">
           <div class="venue2__t">Отель «Ялта-Интурист»</div>
           <p class="venue2__a">Республика Крым, г. Ялта, ул. Дражинского, 50</p>
-          
+
           <a class="btn btn--line" href="https://yandex.ru/maps/-/CCUvyTDMOA" target="_blank" rel="noopener">Показать на карте</a>
         </div>
       </div>

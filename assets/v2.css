@@ -1656,3 +1656,7 @@ a.cg-m__h:hover{color:var(--red)}
 }
 
 .e-video__native{display:block;width:100%;height:100%;object-fit:contain;background:#111}
+
+.hero-e--video .hero__title,.hero-e--video .hero__title em{color:#fff}
+.hero-e--video+.e-about{padding-top:96px}
+@media(max-width:767px){.hero-e--video+.e-about{padding-top:56px}}
