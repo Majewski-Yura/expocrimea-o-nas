@@ -1684,3 +1684,9 @@ a.cg-m__h:hover{color:var(--red)}
 
 /* Монтаж исходных портретов: единый масштаб уже задан в файлах. */
 .team-s .tcard__ph img[src^="team/expo/"],.team-s .tcard:hover .tcard__ph img[src^="team/expo/"]{transform:none;filter:none;object-position:50% 50%}
+
+/* Плавная пульсация декоративного льва на всех страницах. */
+@keyframes lion-breathe{0%,100%{scale:1}50%{scale:1.035}}
+.jobs__bg,.sub>.jobs__bg,.jobs>.jobs__bg,.tile--hero img,.hero-n .hero__emblem{animation:lion-breathe 3.6s ease-in-out infinite;transform-origin:center}
+.tile--hero img{transform-origin:left center}
+@media(prefers-reduced-motion:reduce){.jobs__bg,.sub>.jobs__bg,.jobs>.jobs__bg,.tile--hero img,.hero-n .hero__emblem{animation:none}}
