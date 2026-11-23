@@ -1690,3 +1690,6 @@ a.cg-m__h:hover{color:var(--red)}
 .jobs__bg,.sub>.jobs__bg,.jobs>.jobs__bg,.tile--hero img,.hero-n .hero__emblem{animation:lion-breathe 3.6s ease-in-out infinite;transform-origin:center}
 .tile--hero img{transform-origin:left center}
 @media(prefers-reduced-motion:reduce){.jobs__bg,.sub>.jobs__bg,.jobs>.jobs__bg,.tile--hero img,.hero-n .hero__emblem{animation:none}}
+
+/* Половина льва у правого края, без обрезки сверху и снизу. */
+.tile--hero img{top:8%;right:0;width:auto;height:84%;max-width:none;object-fit:contain;transform:translateX(50%);transform-origin:center}
