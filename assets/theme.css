@@ -38,3 +38,7 @@ html[data-theme="dark"] .e-video__error{background:#30343a}
 
 html[data-theme="dark"] .section--white{background:#17191c}
 html[data-theme="dark"] :is(.feat,.ceo,.leader,.chip,.venue,.review,.req,.dl,.event){background:#222529}
+
+html[data-theme="dark"] .join__panel{background:#222529;color:#f0f1f3;border-color:#3c4149}
+html[data-theme="dark"] .join__field{color:#e2e5e9}
+html[data-theme="dark"] .join__t h2 em{color:#f47a65}
