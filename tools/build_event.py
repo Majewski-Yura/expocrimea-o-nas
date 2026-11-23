@@ -159,6 +159,7 @@ def partner_groups(e):
 
 def build(slug):
     e = get_event(slug)
+    if slug == 'med': e['title_lines'] = ['Здравоохранение.', 'Крым']
     head, sprite, header, footer, fabs = shared_parts()
     head = re.sub(r'<title>[^<]*</title>', f'<title>{e["name"]}{NB}— ЭКСПОКРЫМ</title>', head)
     head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(e["eyebrow"])}. {esc(e["name"])}: {esc(e["dates"])}, {esc(e["city"])}.">', head)
@@ -379,7 +380,7 @@ def build(slug):
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="../index.html#events">Мероприятия</a><span>/</span>{e['name']}</nav>
       <div class="eyebrow">{e['eyebrow']}</div>
-      <h1 class="hero__title{' hero__title--single' if slug == 'agro' else ''}">
+      <h1 class="hero__title{' hero__title--single' if slug == 'agro' else ' hero__title--medical' if slug == 'med' else ''}">
 {lines}
       </h1>
       <div class="hero__row">

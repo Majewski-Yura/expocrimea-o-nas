@@ -1660,3 +1660,24 @@ a.cg-m__h:hover{color:var(--red)}
 .hero-e--video .hero__title,.hero-e--video .hero__title em{color:#fff}
 .hero-e--video+.e-about{padding-top:96px}
 @media(max-width:767px){.hero-e--video+.e-about{padding-top:56px}}
+
+/* Правки визуального оформления от 23 ноября. */
+.hero-v::after{background:linear-gradient(180deg,rgba(25,30,32,.16),rgba(25,30,32,.08) 35%,rgba(25,30,32,.58))}
+.hero-e--video::before{background:linear-gradient(90deg,rgba(15,24,18,.45),rgba(15,24,18,.08)),linear-gradient(0deg,rgba(15,24,18,.42),transparent 70%)}
+.hero-v__brand img{display:block;width:100%;height:auto;filter:brightness(0) invert(1)}
+.hero-e .hero__title--medical{font-size:clamp(22px,6.5vw,106px)}
+.sub>.jobs__bg,.jobs>.jobs__bg{top:8%;bottom:auto;right:4%;height:84%;width:42%;object-fit:contain;animation:none}
+.tile--hero img{top:0;right:-50%;width:100%;height:100%;object-fit:contain;animation:none}
+.collage .ct{opacity:1;transform:none;transform-origin:center;clip-path:ellipse(calc(var(--t) * 75%) calc(var(--t) * 75%) at 50% 50%);will-change:clip-path}
+.team-s .tcard__ph img[src^="team/"]{filter:saturate(.9) contrast(.98) brightness(1.03);transform-origin:50% 0%;transform:scale(var(--portrait-scale,1)) translateY(var(--portrait-y,0%))}
+.team-s .tcard:hover .tcard__ph img[src^="team/"]{transform:scale(var(--portrait-scale,1)) translateY(var(--portrait-y,0%))}
+.team-s .tcard__ph img[src="team/belousova.jpg"]{--portrait-scale:1.8;--portrait-y:-22%}
+.team-s .tcard__ph img[src="team/vasilyeva.jpg"]{--portrait-scale:3;--portrait-y:-6%}
+.team-s .tcard__ph img[src="team/dorosh.jpg"]{--portrait-scale:1.35;--portrait-y:-4%}
+@media(max-width:767px){
+ .sub>.jobs__bg,.jobs>.jobs__bg{right:3%;width:80%;opacity:.06}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__l{position:absolute;inset:auto 20px auto;top:44%;height:120px;margin:0;transform:translateY(-50%);display:flex;align-items:center;justify-content:center}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard__b{margin-top:auto}
+ :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard::after{inset:0;background:linear-gradient(180deg,rgba(25,27,30,.03) 0%,rgba(25,27,30,.1) 40%,rgba(25,27,30,.7) 75%,rgba(25,27,30,.96) 100%)}
+}
+@media(prefers-reduced-motion:reduce){.collage .ct{clip-path:none}}
