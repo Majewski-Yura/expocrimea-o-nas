@@ -1681,3 +1681,6 @@ a.cg-m__h:hover{color:var(--red)}
  :is(#ev-grid,.cal .egrid,.e-more .egrid) .ecard::after{inset:0;background:linear-gradient(180deg,rgba(25,27,30,.03) 0%,rgba(25,27,30,.1) 40%,rgba(25,27,30,.7) 75%,rgba(25,27,30,.96) 100%)}
 }
 @media(prefers-reduced-motion:reduce){.collage .ct{clip-path:none}}
+
+/* Монтаж исходных портретов: единый масштаб уже задан в файлах. */
+.team-s .tcard__ph img[src^="team/expo/"],.team-s .tcard:hover .tcard__ph img[src^="team/expo/"]{transform:none;filter:none;object-position:50% 50%}
