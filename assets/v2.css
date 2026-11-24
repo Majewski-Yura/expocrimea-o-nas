@@ -1693,3 +1693,6 @@ a.cg-m__h:hover{color:var(--red)}
 
 /* Половина льва у правого края, без обрезки сверху и снизу. */
 .tile--hero img{top:8%;right:0;width:auto;height:84%;max-width:none;object-fit:contain;transform:translateX(50%);transform-origin:center}
+
+/* Полный архив новостей с постепенным показом. */
+.nl__more{display:flex;flex-direction:column;align-items:center;gap:20px;margin-top:48px}.nl__count{color:var(--muted)}.nl__more [hidden]{display:none}.ncard__ph .ncard__fallback{object-fit:contain;padding:18%;filter:brightness(0) invert(1);opacity:.5}

@@ -16,7 +16,7 @@ NEWS = json.loads((ROOT / 'data' / 'news.json').read_text(encoding='utf-8'))
 MON_SHORT = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
 
 # Рубрики фильтра: ключ → подпись
-CATS = [('agro', 'АПК'), ('hosp', 'Гостеприимство'), ('urban', 'Стройка'), ('med', 'Медицина'), ('company', 'Компания')]
+CATS = [('agro', 'АПК'), ('hosp', 'Туризм'), ('urban', 'Строительство'), ('med', 'Медицина'), ('company', 'Компания')]
 # Метка мероприятия: (слова в тегах или заголовке, подпись, ссылка от корня, рубрика)
 EVENT_TAGS = [
     (('КрымУрбанПремия', 'Урбан Прем', 'УРБАН ПРЕМИ'), 'Крым Урбан Премия', 'https://cuf.expocrimea.com/cua', 'urban'),
@@ -48,16 +48,17 @@ def card(n, up, big=False, rv=True, banner=False):
     label, _, cat = meta(n)
     lead = f'\n          <span class="ncard__l">{esc(n["lead"][:220].rsplit(" ", 1)[0] + "…" if len(n["lead"]) > 220 else n["lead"])}</span>' if big else ''
     optimized = ROOT / 'assets' / 'media' / 'news' / (n['slug'] + '.jpg')
-    img = up + 'assets/media/news/' + optimized.name if optimized.exists() else (n['image'] or n['thumb'])
+    img = up + 'assets/media/news/' + optimized.name if optimized.exists() else (up + (n['image'] or n['thumb']) if (n['image'] or n['thumb']).startswith('assets/') else (n['image'] or n['thumb']))
+    photo = f'<img src="{esc(img)}" alt="" loading="lazy">' if img else f'<img class="ncard__fallback" src="{up}assets/logo-horizontal.svg" alt="" loading="lazy">'
     if banner:
         return f'''        <a class="ncard ncard--ov ncard--banner{' rv' if rv else ''}" data-f="{cat}" href="{up}news/{n['slug']}.html">
-          <span class="ncard__ph"><img src="{esc(img)}" alt="" loading="lazy"></span>
+          <span class="ncard__ph">{photo}</span>
           <span class="ncard__badge">{n['date_h']}</span>
           <span class="ncard__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
           <span class="ncard__b"><span class="ncard__t">{esc(n['title'])}</span><span class="ncard__r">{esc(label)}</span></span>
         </a>'''
     return f'''        <a class="ncard{' ncard--big' if big else ''}{' rv' if rv else ''}" data-f="{cat}" href="{up}news/{n['slug']}.html">
-          <span class="ncard__ph"><img src="{esc(img)}" alt="" loading="lazy"></span>
+          <span class="ncard__ph">{photo}</span>
           <span class="ncard__b">
           <span class="ncard__m"><span class="ncard__d">{n['date_h']}</span><span class="ncard__tag">{esc(label)}</span></span>
           <span class="ncard__t">{esc(n['title'])}</span>{lead}
@@ -91,7 +92,7 @@ def page(title, desc, body_cls, main):
 def build_list():
     counts = {c: sum(meta(n)[2] == c for n in NEWS) for c, _ in CATS}
     chips = '\n'.join(f'          <button class="chip" role="tab" data-f="{c}">{t}</button>' for c, t in CATS if counts[c])
-    cards = '\n'.join(card(n, '../', banner=True) for n in NEWS)
+    cards = '\n'.join(card(n, '../', rv=False, banner=True) for n in NEWS)
     main = f'''  <section class="hero hero-n">
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span>Новости</nav>
@@ -114,7 +115,9 @@ def build_list():
       <div class="ngrid ngrid--all" id="news-grid">
 {cards}
       </div>
-      <p class="nl__arch">Новости до&nbsp;октября 2024 года — в&nbsp;<a href="https://expocrimea.com/news/page/3/" target="_blank" rel="noopener">архиве старого сайта</a>.</p>
+      <div class="nl__more"><p class="nl__count" aria-live="polite"></p><button class="btn" type="button" id="news-more">Показать ещё</button></div>
+      <p class="nl__arch">В архиве — {len(NEWS)} публикация. Публикации с {NEWS[-1]["date"][:4]} по {NEWS[0]["date"][:4]} год.</p>
+      <script src="../assets/news-archive.js?v=202611241" defer></script>
     </div>
   </section>'''
     (ROOT / 'news').mkdir(exist_ok=True)
@@ -129,12 +132,13 @@ def build_article(i):
     more = (same + [m for m in more if m not in same])[:3]
     prev_n, next_n = (NEWS[i - 1] if i > 0 else None), (NEWS[i + 1] if i + 1 < len(NEWS) else None)
     body = n['body']
-    if n['lead'] and n['lead'][:40] in re.sub(r'<[^>]+>', '', body.split('</p>')[0]):
+    if '</p>' in body and n['lead'] and n['lead'][:40] in re.sub(r'<[^>]+>', '', body.split('</p>')[0]):
         body = body.split('</p>', 1)[1].strip()  # первый абзац уже стоит лидом
     url = f'https://majewski-yura.github.io/expocrimea-o-nas/news/{n["slug"]}.html'
     nav = ''
     if prev_n or next_n:
         nav = '\n      <nav class="art__pn">' + (f'<a class="art__pv" href="{prev_n["slug"]}.html"><small>Новее</small>{esc(prev_n["title"])}</a>' if prev_n else '<span></span>') + (f'<a class="art__nx" href="{next_n["slug"]}.html"><small>Раньше</small>{esc(next_n["title"])}</a>' if next_n else '') + '</nav>'
+    photo = f'<figure class="art__ph e-photo__f"><img src="../{esc(n["image"])}" alt=""></figure>' if n["image"].startswith("assets/") else (f'<figure class="art__ph e-photo__f"><img src="{esc(n["image"])}" alt=""></figure>' if n["image"] else "")
     main = f'''  <article class="art">
     <div class="container">
       <nav class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="index.html">Новости</a><span>/</span>{n['date_h']}</nav>
@@ -143,7 +147,7 @@ def build_article(i):
         <h1 class="art__t rv">{esc(n['title'])}</h1>
         <p class="art__lead rv">{esc(n['lead'])}</p>
       </div>
-      <figure class="art__ph e-photo__f"><img src="{esc(n['image'])}" alt=""></figure>
+      {photo}
       <div class="art__grid">
         <aside class="art__side">
           <a class="art__back" href="index.html"><span><svg><use href="#i-arrow"/></svg></span>Все новости</a>
