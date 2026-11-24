@@ -42,3 +42,18 @@ html[data-theme="dark"] :is(.feat,.ceo,.leader,.chip,.venue,.review,.req,.dl,.ev
 html[data-theme="dark"] .join__panel{background:#222529;color:#f0f1f3;border-color:#3c4149}
 html[data-theme="dark"] .join__field{color:#e2e5e9}
 html[data-theme="dark"] .join__t h2 em{color:#f47a65}
+
+/* Кнопки фильтров не перекрывают красный индикатор выбора. */
+html[data-theme="dark"] .chips .chip{background:transparent}
+html[data-theme="dark"] .chips .chips__ind{background:#c21600}
+html[data-theme="dark"] .chips .chip.is-on{color:#fff}
+
+/* Читаемый основной текст статей и описаний мероприятий. */
+html[data-theme="dark"] :is(.art__body,.pp__s p){color:#d5d9df}
+html[data-theme="dark"] :is(.manifest__foot p,.pidx__head p,.team__head p,.adv2__head p,.ev__head p,.venue2__a,.venue2__list li){color:#b8bdc5}
+/* Белые фирменные знаки в тёмной теме. */
+html[data-theme="dark"] :is(.nav-events__item img,img[src*="logos/"],.logo img,.prow__logo img,.slogo img){filter:brightness(0) invert(1);opacity:1}
+html[data-theme="dark"] :is(.plogo,.pcard__l,.partner,.proj__logo){background:#222529}
+html[data-theme="dark"] :is(.plogo img,.pcard__l img,.partner img,.proj__logo img){filter:grayscale(1) invert(1) contrast(3) brightness(2);mix-blend-mode:screen;opacity:1}
+
+html[data-theme="dark"] .hero.hero-v .container>.eyebrow{color:#fff}
